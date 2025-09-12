@@ -1,0 +1,8 @@
+configuration {
+font: "DepartureMono Nerd Font SemiBold 13";
+}
+
+element-text {
+font: "DepartureMono Nerd Font SemiBold 11";
+}
+

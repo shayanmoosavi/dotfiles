@@ -1,0 +1,4 @@
+theme = catppuccin-mocha
+font-family = FiraCode Nerd Font Mono
+background-opacity = 0.6
+background-blur = 20

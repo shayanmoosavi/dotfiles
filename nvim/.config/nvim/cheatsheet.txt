@@ -1,0 +1,77 @@
+## Navigation
+# Must be in normal mode
+Switch to upper pane | <C-K>
+Switch to lower pane | <C-J>
+Switch to left pane | <C-H>
+Switch to right pane | <C-L>
+
+## Comments
+Toggle line comment | gcc
+Toggle comment visual selection | gc
+
+## Barbar @tabs
+# Must be in normal mode
+Move to previous buffer | <A-,>
+Move to next buffer | <A-.>
+Go to Buffer 1 | <A-1>
+Go to Buffer 2 | <A-2>
+Go to Buffer 3 | <A-3>
+Go to Buffer 4 | <A-4>
+Go to Buffer 5 | <A-5>
+Go to Buffer 6 | <A-6>
+Go to Buffer 7 | <A-7>
+Go to Buffer 8 | <A-8>
+Go to Buffer 9 | <A-9>
+Go to last Buffer | <A-0>
+Close current buffer | <A-C>
+
+## DAP @debugging
+Toggle breakpoint | <leader>b
+Continue | <F5>
+Step over | <F10>
+Step into | <F11>
+Step out | <F12>
+
+## File Manager
+Open new file | <leader>e
+Open new file in horizontal split | <leader>eh
+Open new file in vertical split | <leader>ev
+Open new file in new tab | <leader>et
+Change file manager program | <leader>ec
+
+## Git
+LazyGit | <leader>lg
+
+## LaTeX
+Vimtex compile document | <localleader>ll
+Vimtex LaTeX errors | <localleader>le
+Vimtex clean files | <localleader>lc
+Delete surrounding environment | dse
+Delete surrounding command | dsc
+Delete math environment | ds$
+Delete surrounding delimitter | dsd
+Change surrounding environment | cse
+Change surrounding command | csc
+Change surrounding math environment | cs$
+Change surrounding delimitter | csd
+Toggle fraction mode | tsf
+Toggle starred command | tsc
+Toggle starred environment | tse
+Toggle math mode | ts$
+Toggle line break | tsb
+Toggle left-right delimitter | tsd
+Go to next end of a section | ]]
+Go to next beginning of a section | ][
+Go to previous beginning of a section | [[
+Go to previous end of a section | []
+Go to next beginning of an environment | ]m
+Go to next end of an environment | ]M
+Go to previous beginning of an environment | [m
+Go to previous end of an environment | [M
+
+## LSP
+LSP hover info | K
+LSP go to definition | <leader>gd
+LSP go to reference | <leader>gr
+LSP code action | <leader>ca
+

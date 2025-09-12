@@ -1,0 +1,205 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$fill\
+$conda\
+$python\
+$all\
+$time\
+$line_break\
+$shell\
+$character
+"""
+
+palette = 'wallust'
+
+[palettes.wallust]
+color0 = '#4B473D'
+color1 = '#1C3C6A'
+color2 = '#7D443B'
+color3 = '#5E5F51'
+color4 = '#34709B'
+color5 = '#96744F'
+color6 = '#A6938F'
+color7 = '#899FBE'
+color8 = '#606F85'
+color9 = '#254F8D'
+color10 = '#A75A4E'
+color11 = '#7E7E6C'
+color12 = '#4596CF'
+color13 = '#C89B69'
+color14 = '#DDC4BF'
+color15 = '#899FBE'
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[palettes.nord]
+nord0 = '#2E3440' # black
+nord1 = '#3B4252' # night blue
+nord2 = '#434C5E' # gray
+nord3 = '#4C566A' # light gray
+nord4 = '#D8DEE9' # medium gray
+nord5 = '#E5E9F0' # graphite
+nord6 = '#ECEFF4' # black 2
+nord7 = '#8FBCBB' # mute green
+nord8 = '#88C0D0' # turquise
+nord9 = '#81A1C1' # blue
+nord10 = '#5E81AC' # light blue
+nord11 = '#BF616A' # red
+nord12 = '#D08770' # orange
+nord13 = '#EBCB8B' # yellow
+nord14 = '#A2BE8A' # green
+nord15 = '#B48EAD' # purple
+
+[palettes.cyberpunk]
+color0 = '#000000'
+color8 = '#777777'
+color1 = '#FF0055'
+color9 = '#FF4081'
+color2  = '#009550'
+color10 = '#00FF9C'
+color3  = '#F4EF00'
+color11 = '#FFFC58'
+color4  = '#6766B3'
+color12 = '#76C1FF'
+color5  = '#D57BFF'
+color13 = '#C592FF'
+color6  = '#0DCDCD'
+color14 = '#00FFC8'
+color7  = '#EEFFFF'
+color15 = '#FFFFFF'
+
+[os]
+disabled = false
+style = "bold color1"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = ""
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Garuda = ""
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bold color9"
+style_root = "bold color9"
+format = '[ $user ]($style)'
+
+[shell]
+fish_indicator = '󰈺 '
+bash_indicator = ''
+zsh_indicator = '󰬇'
+unknown_indicator = ''
+style = 'bold color8'
+format = '[\(at $indicator\) ]($style)'
+disabled = false
+
+[directory]
+style = "color10"
+format = "[  $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bold color7"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bold color8"
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+format = '[($all_status$ahead_behind )]($style)'
+
+[conda]
+symbol = "󱔎"
+style = "bold #00D115"
+format = '[[ $symbol \($environment\) ](fg:#00D115 bg:transparent)]($style)'
+ignore_base = false
+
+[python]
+symbol = ""
+style = "bold #FFF200"
+format = '[ $symbol( $version) ]($style)'
+
+[perl]
+symbol = ""
+style = "bg:#1A0091 fg:#F5F5F5"
+format = '[ $symbol ]($style)'
+
+[lua]
+symbol = "󰢱"
+style = "bold #091CED"
+format = '[ $symbol ]($style)'
+
+[time]
+disabled = false
+time_format = "%r"
+style = "color15"
+format = '[  $time ]($style)'
+
+[cmd_duration]
+min_time = 100
+show_milliseconds = true
+style = 'bold color11'
+format = '[took $duration]($style) '
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color4)'
+error_symbol = '[](bold fg:#FF2A17)'
+

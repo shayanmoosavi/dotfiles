@@ -1,0 +1,135 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "icon_theme": "Catppuccin Mocha",
+  "auto_update_extensions": {
+    "ruff": true
+  },
+  "vim_mode": false,
+  "base_keymap": "VSCode",
+  "buffer_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Macchiato (Blur)",
+    "dark": "Catppuccin Frappé (Blur)"
+  },
+  // Whether to confirm before quitting Zed.
+  "confirm_quit": true,
+  // Whether to restore last closed project when fresh Zed instance is opened.
+  "restore_on_startup": "last_session",
+  // Whether to pop the completions menu while typing in an editor without
+  // explicitly requesting it.
+  "show_completions_on_input": true,
+  // Whether to display inline and alongside documentation for items in the
+  // completions menu
+  "show_completion_documentation": true,
+  // Show method signatures in the editor, when inside parentheses.
+  "auto_signature_help": true,
+  // Controls whether inline completions are shown immediately (true)
+  // or manually by triggering `editor::ShowInlineCompletion` (false).
+  "show_edit_predictions": false,
+  "indent_guides": {
+    /// Whether to show indent guides in the editor.
+    "enabled": true,
+    /// The width of the indent guides in pixels, between 1 and 10.
+    "line_width": 1,
+    /// The width of the active indent guide in pixels, between 1 and 10.
+    "active_line_width": 1,
+    /// Determines how indent guides are colored.
+    /// This setting can take the following three values:
+    ///
+    /// 1. "disabled"
+    /// 2. "fixed"
+    /// 3. "indent_aware"
+    "coloring": "indent_aware",
+    /// Determines how indent guide backgrounds are colored.
+    /// This setting can take the following two values:
+    ///
+    /// 1. "disabled"
+    /// 2. "indent_aware"
+    "background_coloring": "disabled"
+  },
+  "relative_line_numbers": false,
+  // Inlay hint related settings
+  "inlay_hints": {
+    // Global switch to toggle hints on and off, switched off by default.
+    // "enabled": true,
+    // Toggle certain types of hints on and off, all switched on by default.
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    // Corresponds to null/None LSP hint type value.
+    "show_other_hints": true,
+    // Time to wait after editing the buffer, before requesting the hints,
+    // set to 0 to disable debouncing.
+    "edit_debounce_ms": 700,
+    // Time to wait after scrolling the buffer, before requesting the hints,
+    // set to 0 to disable debouncing.
+    "scroll_debounce_ms": 50
+  },
+  // Whether to use language servers to provide code intelligence.
+  "enable_language_server": true,
+  "lsp": {
+    // Configuring LaTeX LSP
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "onSave": true,
+            "forwardSearchAfter": true
+          },
+          "forwardSearch": {
+            "executable": "zathura",
+            "args": [
+              "--synctex-forward",
+              "%l:1:%f",
+              "-x",
+              "zed %%{input}:%%{line}",
+              "%p"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "languages": {
+    "Python": {
+      "tab_size": 4,
+      "formatter": "language_server",
+      "language_servers": ["ruff", "!pyright"]
+    }
+  },
+  "tabs": {
+    // Show git status colors in the editor tabs.
+    "git_status": true,
+    // Position of the close button on the editor tabs.
+    "close_position": "right",
+    // Whether to show the file icon for a tab.
+    "file_icons": true
+  },
+  "terminal": {
+    "shell": {
+      "with_arguments": {
+        "program": "/usr/bin/zsh",
+        "args": ["-i"]
+      }
+    },
+    "working_directory": "current_project_directory"
+  },
+  // Whether to start a new line with a comment when a previous line is a comment as well.
+  "extend_comment_on_newline": true,
+  // Whether or not to ensure there's a single newline at the end of a buffer
+  // when saving it.
+  "ensure_final_newline_on_save": true
+}

@@ -1,0 +1,24 @@
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+
+plugins=(
+    command-not-found
+    copypath
+    colored-man-pages
+    dirhistory
+    eza
+    man
+    sudo
+    zsh-autosuggestions
+    zsh-interactive-cd
+    zsh-syntax-highlighting
+    zsh-completions
+)
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+source $ZSH/oh-my-zsh.sh

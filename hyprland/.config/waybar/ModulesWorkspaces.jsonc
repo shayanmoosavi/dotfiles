@@ -1,0 +1,67 @@
+{
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1" : "󰎤",
+            "2" : "󰎧",
+            "3" : "󰎪",
+            "4" : "󰎭",
+            "5" : "󰎱",
+            "6" : "󰎳",
+            "7" : "󰎶",
+            "8" : "󰎹",
+            "9" : "󰎼",
+            "10": "󰽽"
+        },
+        "sort-by-number": true,
+        "persistent-workspaces": {
+             "*": 5 // 5 workspaces by default on every monitor
+        },
+        "window-rewrite-default": " ",
+	    "window-rewrite": {		
+            "title<.*amazon.*>": " ",
+            "title<.*reddit.*>": " ",
+            "class<firefox|org.mozilla.firefox|librewolf|floorp|mercury-browser|[Cc]achy-browser>": " ",
+            "class<zen>": "󰰷 ",
+            "class<Chromium|Thorium|[Cc]hrome>": " ",
+            "class<brave-browser>": "🦁 ",
+            "class<tor browser>": " ",
+            "class<kitty|konsole|com.mitchellh.ghostty|org.wezfurlong.wezterm>": " ",
+            "class<[Tt]hunderbird|[Tt]hunderbird-esr>": " ",
+            "class<eu.betterbird.Betterbird>": " ",
+            "title<.*gmail.*>": "󰊫 ",
+
+            "class<[Tt]elegram-desktop|org.telegram.desktop|io.github.tdesktop_x64.TDesktop>": " ",
+            "class<discord|[Ww]ebcord|Vesktop>": " ",
+            "title<.*whatsapp.*>": " ",
+            "title<.*ChatGPT.*>": "󰚩 ",
+            "class<mpv>": " ",
+            "class<Zoom>": " ",
+            "title<.*Picture-in-Picture.*>": " ",
+            "title<.*youtube.*>": " ",
+            "class<vlc>": "󰕼 ",
+            "class<[Ss]potify>": " ",
+
+            "class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
+            "class<dev.zed.Zed>": "󰵁",
+            "class<codeblocks>": "󰅩 ",
+            "title<.*github.*>": " ",
+            "class<mousepad>": " ",
+            "class<libreoffice-writer>": " ",
+            "class<libreoffice-startcenter>": "󰏆 ",
+            "class<libreoffice-calc>": " ",
+            "title<.*nvim ~.*>": " ",
+            "title<.*vim.*>": " ",
+            "title<.*nvim.*>": " ",
+            "class<jetbrains-idea>": " ",
+            "class<obs|com.obsproject.Studio>": " ",
+            "class<polkit-gnome-authentication-agent-1>": "󰒃 ",
+            "class<nwg-look>": " ",
+            "class<[Pp]avucontrol|org.pulseaudio.pavucontrol>": "󱡫 ",
+            "class<steam>": " ",
+            "class<thunar|nemo>": "󰝰 ",	
+            "class<Gparted>":""
+		}
+    }
+}

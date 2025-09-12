@@ -1,0 +1,80 @@
+{
+    "backlight": {
+        "format": " {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+    },
+    "battery": {
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 15
+        },
+        "format": " {icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
+                         "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-charging": " {capacity}%",
+	    "format-plugged": "󱘖 {capacity}%",
+        "max-length": 25
+    },
+    "clock": {
+        "format": "{:%a, %b %m%n %I:%M %p}",
+        "tooltip-format": "{:%Y-%m-%d}"
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": {
+            "numlock": " {icon}",
+            "capslock": "󰪛 {icon}"
+            },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "hyprland/language": {
+        "format": " 󰌌 {}",
+        "format-en": "en",
+        "format-fa": "fa"
+    },
+    "tray": {
+        "spacing": 12
+    },
+    "mpris": {
+        "format": "{player_icon} {status_icon} {dynamic}",
+        "player-icons": {
+            "default": "󰎄",
+            "mpv": ""
+        },
+        "status-icons": {
+            "playing": "",
+            "paused": "󰏤",
+            "stopped": ""
+        },
+        "max-length": 20
+    },
+    "wireplumber#sink": {
+        "node-type": "Audio/Sink",
+        "format": " {volume}% ",
+        "format-muted": "󰖁",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5
+    },
+    "wireplumber#source": {
+        "node-type": "Audio/Source",
+        "format": "󰍬 {volume}% ",
+        "format-muted": "󰍭",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "scroll-step": 5
+    },
+    "systemd-failed-units": {
+        "hide-on-ok": false, // Do not hide if there is zero failed units.
+        "format": "  {nr_failed}",
+        "format-ok": " ",
+        "system": true // Monitor failed systemwide units.
+    },
+    "hyprland/window": {
+        "format": "{class}"
+    }
+}

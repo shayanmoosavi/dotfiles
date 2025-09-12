@@ -1,0 +1,38 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "margin-top": 4,
+    "margin-left": 6,
+    "margin-right": 6,
+    "reload_style_on_change": true,
+    "include": [
+        "$HOME/.config/waybar/Modules.jsonc",
+        "$HOME/.config/waybar/ModulesWorkspaces.jsonc",
+        "$HOME/.config/waybar/ModulesCustom.jsonc",
+        "$HOME/.config/waybar/ModulesGroups.jsonc"
+    ],
+    "modules-left": [
+        "custom/power",
+        "custom/menu",
+        "custom/separator",
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "backlight",
+        "custom/separator",
+        "custom/swaync",
+        "tray",
+        "custom/separator",
+        "group/system_info",
+        "custom/separator",
+        "group/audio",
+        "battery",
+        "hyprland/language",
+        "custom/separator",
+        "group/app_drawer"
+    ]
+}
