@@ -32,7 +32,7 @@ threshold = 9
 
 [templates]
 hypr.template = 'colors-hyprland.conf'
-hypr.target = '~/.config/hypr/wallust/colors-hyprland.conf'
+hypr.target = '~/.config/hypr/colors/colors-wallust.conf'
 
 rofi.template = 'colors-rofi.rasi'
 rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
