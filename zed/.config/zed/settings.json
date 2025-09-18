@@ -8,7 +8,7 @@
 // command palette
 {
   "agent": {
-    "default_profile": "ask"
+    "default_profile": "write"
   },
   "features": {
     "edit_prediction_provider": "zed"

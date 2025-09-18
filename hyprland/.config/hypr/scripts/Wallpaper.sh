@@ -43,9 +43,8 @@ ln -sf "$current_wallpaper" "$HOME/.config/hypr/current_wallpaper"
 
 echo "Updating SDDM background..."
 
-# Development version. Will change once completed
-# sddm_script="$HOME/.config/hypr/scripts/UpdateSDDM.sh"
-sddm_script="$HOME/dotfiles/hyprland/.config/hypr/scripts/UpdateSDDM.sh"
+# Path to the script for updating SDDM background
+sddm_script="$HOME/.config/hypr/scripts/UpdateSDDM.sh"
 
 cmd="kitty -e $sddm_script \"$current_wallpaper\""
 hyprctl dispatch exec "$cmd"
@@ -58,4 +57,3 @@ matugen image "$current_wallpaper" &> /dev/null
 # Reloading swaync
 swaync-client --reload-config
 swaync-client --reload-css
-

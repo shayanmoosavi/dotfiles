@@ -2,8 +2,7 @@
 
 
 # Path to default applications
-# HYPR_CONFIG="$HOME/.config/hypr/defaults.conf"
-DEFAULTS_DIR="$HOME/dotfiles/hyprland/.config/hypr/defaults.conf"
+DEFAULTS_DIR="$HOME/.config/hypr/modules/defaults.conf"
 
 # Function to extract variable value from hyprland config
 get_hypr_variable() {
@@ -18,7 +17,7 @@ get_default_app() {
     local app_type="$1"
     local var_name=""
     local fallback=""
-    
+
     case "$app_type" in
         "browser")
             var_name="browser"
@@ -37,7 +36,7 @@ get_default_app() {
             return 1
             ;;
     esac
-    
+
     local app=$(get_hypr_variable "$var_name")
     echo "${app:-$fallback}"
 }
