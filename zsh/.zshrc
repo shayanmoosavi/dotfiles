@@ -23,7 +23,7 @@ else
 fi
 
 # Starship prompt
-export STARSHIP_CONFIG=~/.config/starship-wallust.toml
+export STARSHIP_CONFIG=~/.config/starship.toml
 eval "$(starship init zsh)"
 
 
