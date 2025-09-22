@@ -43,8 +43,8 @@ rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
 starship.template = 'starship.toml'
 starship.target = '~/.config/starship.toml'
 
-kitty.template = 'wallust-kitty.conf'
-kitty.target = '~/.config/kitty/wallust.conf'
+# kitty.template = 'wallust-kitty.conf'
+# kitty.target = '~/.config/kitty/wallust.conf'
 
 # swaync.template = 'colors-swaync.css'
 # swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
