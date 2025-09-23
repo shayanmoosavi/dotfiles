@@ -1,0 +1,6 @@
+/* Modified version of HyprNova dotfiles to work with matugen */
+/* https://github.com/zDyant/HyprNova */
+
+@import '../waybar/colors/colors-matugen.css';
+@import 'themes/nova-dark/notifications.css';
+@import 'themes/nova-dark/central_control.css';
