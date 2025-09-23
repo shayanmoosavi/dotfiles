@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+iconsDir="$HOME/.config/swaync/icons"
 
 # Function to show usage
 show_usage() {
@@ -47,3 +48,23 @@ case "$1" in
     ;;
 esac
 
+# Get current brightness percentage
+current_brightness=$(brightnessctl get)
+max_brightness=$(brightnessctl max)
+brightness_percent=$((current_brightness * 100 / max_brightness))
+
+# Determine icon based on brightness level
+if [ "$brightness_percent" -ge 80 ]; then
+    icon="$iconsDir/brightness-100.png"
+elif [ "$brightness_percent" -ge 60 ]; then
+    icon="$iconsDir/brightness-80.png"
+elif [ "$brightness_percent" -ge 40 ]; then
+    icon="$iconsDir/brightness-60.png"
+elif [ "$brightness_percent" -ge 20 ]; then
+    icon="$iconsDir/brightness-40.png"
+else
+    icon="$iconsDir/brightness-20.png"
+fi
+
+# Send notification with replacement
+notify-send -t 2000 -h string:x-canonical-private-synchronous:brightness -h int:value:"$brightness_percent" -i "$icon" "Brightness: ${brightness_percent}%"
