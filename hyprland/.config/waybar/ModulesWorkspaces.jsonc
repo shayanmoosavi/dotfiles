@@ -3,23 +3,23 @@
         "format": "{icon}",
         "on-click": "activate",
         "format-icons": {
-            "1" : "󰎤",
-            "2" : "󰎧",
-            "3" : "󰎪",
-            "4" : "󰎭",
-            "5" : "󰎱",
-            "6" : "󰎳",
-            "7" : "󰎶",
-            "8" : "󰎹",
-            "9" : "󰎼",
+            "1": "󰎤",
+            "2": "󰎧",
+            "3": "󰎪",
+            "4": "󰎭",
+            "5": "󰎱",
+            "6": "󰎳",
+            "7": "󰎶",
+            "8": "󰎹",
+            "9": "󰎼",
             "10": "󰽽"
         },
         "sort-by-number": true,
         "persistent-workspaces": {
-             "*": 5 // 5 workspaces by default on every monitor
+            "*": 5 // 5 workspaces by default on every monitor
         },
         "window-rewrite-default": " ",
-	    "window-rewrite": {		
+        "window-rewrite": {
             "title<.*amazon.*>": " ",
             "title<.*reddit.*>": " ",
             "class<firefox|org.mozilla.firefox|librewolf|floorp|mercury-browser|[Cc]achy-browser>": " ",
@@ -60,8 +60,8 @@
             "class<nwg-look>": " ",
             "class<[Pp]avucontrol|org.pulseaudio.pavucontrol>": "󱡫 ",
             "class<steam>": " ",
-            "class<thunar|nemo>": "󰝰 ",	
-            "class<Gparted>":""
-		}
+            "class<thunar|nemo>": "󰝰 ",
+            "class<Gparted>": ""
+        }
     }
 }
