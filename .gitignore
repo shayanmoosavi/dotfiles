@@ -3,4 +3,5 @@
 hyprland/.config/hypr/colors/colors-wallust.conf
 hyprland/.config/hypr/current_wallpaper
 hyprland/.config/waybar/colors/colors-matugen.css
-hyprland/.config/rofi/wallust/colors-rofi.rasi
+hyprland/.config/waybar/colors/colors-wallust.css
+rofi/.config/rofi/wallust/colors-rofi.rasi
