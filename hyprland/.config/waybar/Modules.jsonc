@@ -57,6 +57,7 @@
         "node-type": "Audio/Sink",
         "format": " {volume}% ",
         "format-muted": "󰖁",
+        "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "scroll-step": 5
     },
