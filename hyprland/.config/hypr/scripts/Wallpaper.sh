@@ -46,7 +46,7 @@ echo "Updating SDDM background..."
 # Path to the script for updating SDDM background
 sddm_script="$HOME/.config/hypr/scripts/UpdateSDDM.sh"
 
-cmd="kitty -e $sddm_script \"$current_wallpaper\""
+cmd="kitty --title=\"Update SDDM Wallpaper\" -e $sddm_script \"$current_wallpaper\""
 hyprctl dispatch exec "$cmd"
 
 # Giving the current wallpaper to wallust for color palette generation
