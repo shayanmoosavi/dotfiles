@@ -30,6 +30,9 @@ descriptions:
 
     # Hyprland Control
     # ----------------------------------------------------------------------------------------------------
+    "exec, ~/.config/hypr/scripts/KeybindsReference.sh": "Open Keybinds Reference"
+    "exec, ~/.config/hypr/scripts/KeybindsReference.sh --tui": "Open Keybinds Reference (TUI)"
+
     "killactive": "Close active window"
     "exec, $scriptsDir/KillProgram.sh": "Kill active window"
     "exec, $scriptsDir/Refresh.sh": "Refresh desktop"
