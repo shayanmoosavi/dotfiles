@@ -14,13 +14,12 @@
     "modules-left": [
         "custom/power",
         "custom/menu",
+        "custom/key_ref",
         "custom/separator",
         "hyprland/workspaces",
         "hyprland/window"
     ],
-    "modules-center": [
-        "clock"
-    ],
+    "modules-center": ["clock"],
     "modules-right": [
         "backlight",
         "custom/separator",
