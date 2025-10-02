@@ -1,0 +1,122 @@
+categories:
+    Applications:
+        icon: ""
+        color: "cyan"
+    Desktop:
+        icon: ""
+        color: "green"
+    Workspaces:
+        icon: "󰨇"
+        color: "magenta"
+
+descriptions:
+    # Applications (apps.conf)
+    # ==============================================================================================================
+    "exec, $terminal": "Launch Terminal"
+    "exec, rofi -show drun": "Application Launcher"
+    "exec, $filemanager": "Launch File Manager"
+    "exec, $browser": "Launch Browser"
+    "exec, $terminal --class clipse -e clipse": "Clipboard Manager"
+    "exec, ~/.config/hypr/scripts/Wallpaper.sh": "Change Wallpaper and Theme"
+
+    # Desktop (hypr.conf)
+    # ==============================================================================================================
+
+    # Session Control
+    # ----------------------------------------------------------------------------------------------------
+    "exec, hyprctl dispatch exit 0": "Exit Hyprland"
+    "exec, wlogout": "Logout Menu"
+    "exec, $scriptsDir/LockSession.sh": "Lock Session"
+
+    # Hyprland Control
+    # ----------------------------------------------------------------------------------------------------
+    "killactive": "Close active window"
+    "exec, $scriptsDir/KillProgram.sh": "Kill active window"
+    "exec, $scriptsDir/Refresh.sh": "Refresh desktop"
+    "togglefloating": "Toggle floating active window"
+    "fullscreen": "Toggle fullscreen"
+
+    # Resize windows
+    "resizeactive,-50 0": "Resize window to left"
+    "resizeactive,50 0": "Resize window to right"
+    "resizeactive,0 -50": "Resize window to top"
+    "resizeactive,0 50": "Resize window to bottom"
+
+    # Move windows
+    "movewindow, l": "Move window to left"
+    "movewindow, r": "Move window to right"
+    "movewindow, u": "Move window to top"
+    "movewindow, d": "Move window to bottom"
+
+    # Move focus
+    "movefocus, l": "Move focus to left window"
+    "movefocus, r": "Move focus to right window"
+    "movefocus, u": "Move focus to top window"
+    "movefocus, d": "Move focus to bottom window"
+
+    # Dwindle Layout
+    "togglesplit": "Toggle vertical/horizontal split in dwindle layout"
+    "pseudo": "Toggle pseudo tiling for active window"
+
+    # group
+    "togglegroup": "Toggle active window's group"
+    "changegroupactive": "Change focus to next window in group"
+
+    # Cycle windows, if floating bring to top
+    "cyclenext": "Cycle focus to next window"
+    "bringactivetotop": "Bring active floating window to top layer (for multiple floating windows)"
+
+    # Move/resize windows with mainMod + LMB/RMB and dragging
+    "movewindow": "Move window"
+    "resizewindow": "Resize window"
+
+    # Workspaces (workspaces.conf)
+    # ==============================================================================================================
+
+    # Cycle workspaces on monitor
+    "workspace, m+1": "Go to next workspace on monitor"
+    "workspace, m-1": "Go to previous workspace on monitor"
+
+    # Cycle open workspaces
+    "workspace, e+1": "Go to next open workspace"
+    "workspace, e-1": "Go to previous open workspace"
+
+    # Switch workspaces with mainMod + [0-9]
+    "workspace, 1": "Switch to workspace 1"
+    "workspace, 2": "Switch to workspace 2"
+    "workspace, 3": "Switch to workspace 3"
+    "workspace, 4": "Switch to workspace 4"
+    "workspace, 5": "Switch to workspace 5"
+    "workspace, 6": "Switch to workspace 6"
+    "workspace, 7": "Switch to workspace 7"
+    "workspace, 8": "Switch to workspace 8"
+    "workspace, 9": "Switch to workspace 9"
+    "workspace, 10": "Switch to workspace 10"
+
+    # Move active window and follow to workspace mainMod + SHIFT [0-9]
+    "movetoworkspace, 1": "Move active window to workspace 1"
+    "movetoworkspace, 2": "Move active window to workspace 2"
+    "movetoworkspace, 3": "Move active window to workspace 3"
+    "movetoworkspace, 4": "Move active window to workspace 4"
+    "movetoworkspace, 5": "Move active window to workspace 5"
+    "movetoworkspace, 6": "Move active window to workspace 6"
+    "movetoworkspace, 7": "Move active window to workspace 7"
+    "movetoworkspace, 8": "Move active window to workspace 8"
+    "movetoworkspace, 9": "Move active window to workspace 9"
+    "movetoworkspace, 10": "Move active window to workspace 10"
+    "movetoworkspace, -1": "Move active window to previous workspace"
+    "movetoworkspace, +1": "Move active window to next workspace"
+
+    # Move active window to a workspace silently mainMod + CTRL [0-9]
+    "movetoworkspacesilent, 1": "Move active window to workspace 1 silently"
+    "movetoworkspacesilent, 2": "Move active window to workspace 2 silently"
+    "movetoworkspacesilent, 3": "Move active window to workspace 3 silently"
+    "movetoworkspacesilent, 4": "Move active window to workspace 4 silently"
+    "movetoworkspacesilent, 5": "Move active window to workspace 5 silently"
+    "movetoworkspacesilent, 6": "Move active window to workspace 6 silently"
+    "movetoworkspacesilent, 7": "Move active window to workspace 7 silently"
+    "movetoworkspacesilent, 8": "Move active window to workspace 8 silently"
+    "movetoworkspacesilent, 9": "Move active window to workspace 9 silently"
+    "movetoworkspacesilent, 10": "Move active window to workspace 10 silently"
+    "movetoworkspacesilent, -1": "Move active window to previous workspace silently"
+    "movetoworkspacesilent, +1": "Move active window to next workspace silently"
