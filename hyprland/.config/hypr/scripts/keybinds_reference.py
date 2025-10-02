@@ -39,50 +39,45 @@ class KeybindReference:
         """Create mapping of Hyprland key codes to user-friendly representations"""
         return {
             # Mouse buttons
-            'mouse:272': ' Left Click',
-            'mouse:273': ' Right Click',
-            'mouse:274': ' Middle Click',
-            'mouse:275': ' Side Button 1',
-            'mouse:276': ' Side Button 2',
-
+            "mouse:272": " Left Click",
+            "mouse:273": " Right Click",
+            "mouse:274": " Middle Click",
+            "mouse:275": " Side Button 1",
+            "mouse:276": " Side Button 2",
             # Number row (code:X format)
-            'code:10': '1',
-            'code:11': '2',
-            'code:12': '3',
-            'code:13': '4',
-            'code:14': '5',
-            'code:15': '6',
-            'code:16': '7',
-            'code:17': '8',
-            'code:18': '9',
-            'code:19': '0',
-
+            "code:10": "1",
+            "code:11": "2",
+            "code:12": "3",
+            "code:13": "4",
+            "code:14": "5",
+            "code:15": "6",
+            "code:16": "7",
+            "code:17": "8",
+            "code:18": "9",
+            "code:19": "0",
             # Special characters
-            'bracketleft': '[',
-            'bracketright': ']',
-            'semicolon': ';',
-            'apostrophe': "'",
-            'grave': '`',
-            'backslash': '\\',
-            'comma': ',',
-            'period': '.',
-            'slash': '/',
-            'minus': '-',
-            'equal': '=',
-
+            "bracketleft": "[",
+            "bracketright": "]",
+            "semicolon": ";",
+            "apostrophe": "'",
+            "grave": "`",
+            "backslash": "\\",
+            "comma": ",",
+            "period": ".",
+            "slash": "/",
+            "minus": "-",
+            "equal": "=",
             # Arrow keys
-            'left': '←',
-            'right': '→',
-            'up': '↑',
-            'down': '↓',
-
+            "left": "←",
+            "right": "→",
+            "up": "↑",
+            "down": "↓",
             # Editing keys
-            'Return': '↵ Enter',
-            'KP_Enter': '↵ Enter (Numpad)',
-            'BackSpace': '⌫ Backspace',
-            'Escape': '󱊷 Esc',
-            'Space': '␣ Space',
-
+            "Return": "↵ Enter",
+            "KP_Enter": "↵ Enter (Numpad)",
+            "BackSpace": "⌫ Backspace",
+            "Escape": "󱊷 Esc",
+            "Space": "␣ Space",
         }
 
     def _format_key(self, key: str) -> str:
@@ -152,7 +147,9 @@ class KeybindReference:
 
                     # Create keybind string and get description
                     keybind_str = (
-                        f"{modifier} + {formatted_key}" if modifier != "" else f" + {formatted_key}"
+                        f"{modifier} + {formatted_key}"
+                        if modifier != ""
+                        else f" + {formatted_key}"
                     )
                     description = self.descriptions.get(action, action)
 
@@ -222,23 +219,23 @@ class KeybindReference:
 
         # Define color scheme (Catppuccin-inspired)
         colors = {
-            'Applications': '#89dceb',  # Cyan
-            'Desktop': '#a6e3a1',  # Green
-            'Workspaces': '#cba6f7'  # Magenta
+            "Applications": "#89dceb",  # Cyan
+            "Desktop": "#a6e3a1",  # Green
+            "Workspaces": "#cba6f7",  # Magenta
         }
 
         # Description color scheme (analogous colors)
         colors_desc = {
-            'Applications': '#89abeb',
-            'Desktop': '#a1e3bc',
-            'Workspaces': '#f3a6f7'
+            "Applications": "#89abeb",
+            "Desktop": "#a1e3bc",
+            "Workspaces": "#f3a6f7",
         }
 
         # Seperator color scheme (complementary colors)
         colors_sep = {
-            'Applications': '#eb9889',
-            'Desktop': '#dda1e3',
-            'Workspaces': '#d3f7a6'
+            "Applications": "#eb9889",
+            "Desktop": "#dda1e3",
+            "Workspaces": "#d3f7a6",
         }
 
         for category, binds in self.keybinds.items():
@@ -247,14 +244,16 @@ class KeybindReference:
 
             cat_info = self.categories.get(category, {})
             icon = cat_info.get("icon", "📝")
-            category_color = colors.get(category, '#cdd6f4')
-            seperator_color = colors_sep.get(category, '#f4ebcd')
-            description_color = colors_desc.get(category, '#cdeaf4')
+            category_color = colors.get(category, "#cdd6f4")
+            seperator_color = colors_sep.get(category, "#f4ebcd")
+            description_color = colors_desc.get(category, "#cdeaf4")
 
             # Styled category header with background
             header = f"<span background='{category_color}' foreground='#1e1e2e' weight='bold' size='large'> {icon} {category.upper()} </span>"
             rofi_entries.append(header)
-            rofi_entries.append(f"<span foreground='{seperator_color}'>{'─' * 100}</span>")  # Spacing after header
+            rofi_entries.append(
+                f"<span foreground='{seperator_color}'>{'─' * 100}</span>"
+            )  # Spacing after header
 
             # Add keybinds
             for bind in binds:
@@ -267,8 +266,10 @@ class KeybindReference:
                 rofi_entries.append(entry)
 
             # Category separator
-            rofi_entries.append(f"<span foreground='{seperator_color}'>{'─' * 100}</span>")
-            rofi_entries.append("") # Separator
+            rofi_entries.append(
+                f"<span foreground='{seperator_color}'>{'─' * 100}</span>"
+            )
+            rofi_entries.append("")  # Separator
 
         # Create rofi command
         rofi_input = "\n".join(rofi_entries)
@@ -276,7 +277,7 @@ class KeybindReference:
             "rofi",
             "-dmenu",
             "-mesg",
-            f"<span foreground='#17d7e8' weight='bold'> Hyprland Keybind Reference</span>",
+            "<span foreground='#17d7e8' weight='bold'> Hyprland Keybind Reference</span>",
             "-i",  # Case-insensitive
             "-theme-str",
             "window { width: 75%; height: 75%; }",
