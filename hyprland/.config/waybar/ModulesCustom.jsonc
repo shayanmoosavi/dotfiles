@@ -59,7 +59,7 @@
         "format": " ",
         "on-click": "~/.config/hypr/scripts/KeybindsReference.sh --rofi",
         "on-click-right": "~/.config/hypr/scripts/KeybindsReference.sh --tui",
-        "tooltip-format": "Left Click: Keybinds Reference\n Right Click: Keybinds Reference (TUI)"
+        "tooltip-format": "Left Click: Keybinds Reference\nRight Click: Keybinds Reference (TUI)"
     },
     "custom/power": {
         "format": "  ",
