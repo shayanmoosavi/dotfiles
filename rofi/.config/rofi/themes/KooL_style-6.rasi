@@ -10,10 +10,10 @@ https://github.com/JaKooLit
 configuration {
 	modi:                       "drun,run,filebrowser";
     show-icons:                 true;
-    display-drun:               "  apps";
-    display-run:                "  term";
-    display-filebrowser:        "  files";
-    display-window:             "  window";
+    display-drun:               " apps";
+    display-run:                " term";
+    display-filebrowser:        " files";
+    display-window:             " window";
 	drun-display-format:        "{name}";
 	hover-select:               true;
 	me-select-entry:            "MouseSecondary";
@@ -122,7 +122,7 @@ listview {
 scrollbar {
   	border:						0px;
   	border-radius:				10px;
-  	background-color:				transparent;
+  	background-color:			transparent;
   	handle-color: 				@active;
   	handle-width: 				2px ;
   	padding:      				0;
