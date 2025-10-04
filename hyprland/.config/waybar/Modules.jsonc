@@ -17,7 +17,7 @@
         "max-length": 25
     },
     "clock": {
-        "format": "{:%a, %b %e%n %I:%M %p}",
+        "format": "{:%a, %b %d%n %I:%M %p}",
         "tooltip-format": "{:%Y-%m-%d}"
     },
     "keyboard-state": {
