@@ -40,3 +40,32 @@ get_default_app() {
     local app=$(get_hypr_variable "$var_name")
     echo "${app:-$fallback}"
 }
+
+LOG_FILE="$HOME/.local/state/hypr/refresh.log"
+MAX_LOG_SIZE=1048576  # 1MB
+
+# Ensure log directory exists
+mkdir -p "$(dirname "$LOG_FILE")"
+
+# Function to log messages
+log_message() {
+    local level="$1"
+    local message="$2"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $message" >> "$LOG_FILE"
+}
+
+# Function to rotate log if too large
+rotate_log() {
+    if [[ -f "$LOG_FILE" ]]; then
+        local log_size=$(stat -c %s "$LOG_FILE" 2>/dev/null || echo 0)
+        if [[ $log_size -gt $MAX_LOG_SIZE ]]; then
+            mv "$LOG_FILE" "$LOG_FILE.old"
+            log_message "INFO" "Log rotated due to size"
+        fi
+    fi
+}
+
+# Function to check if a process is running
+is_running() {
+    pgrep -x "$1" > /dev/null
+}
