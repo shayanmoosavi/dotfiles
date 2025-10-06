@@ -2529,7 +2529,7 @@ notify_on_cmd_finish always 60 bell
 
 
 # BEGIN_KITTY_THEME
-# Dark Pastel
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
 
