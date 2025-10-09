@@ -2,11 +2,19 @@
 
 
 # Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+if [[ -t 1 ]]; then
+    RED='\033[0;31m'
+    GREEN='\033[0;32m'
+    YELLOW='\033[1;33m'
+    BLUE='\033[0;34m'
+    NC='\033[0m' # No Color
+else
+    RED=''
+    GREEN=''
+    YELLOW=''
+    BLUE=''
+    NC=''
+fi
 
 # Global logging variables
 LOG_BASE_DIR="$HOME/.local/share/maintenance-logs"
@@ -53,44 +61,28 @@ init_logging() {
 }
 
 log() {
-    if [[ $# -lt 2 ]]; then
-        echo "Error: log requires at least 2 arguments (level and message)" >&2
-        return 1
-    fi
-
-    # Check if logging has been initialized
-    if [[ -z "$LOG_FILE" ]]; then
-        echo "Error: Logging not initialized. Call init_logging() first." >&2
-        return 1
-    fi
-
-    local level="$1"
-    shift  # Remove first argument, rest is the message
-
-    local timestamp
-    timestamp=$(date +'%Y-%m-%d %H:%M:%S')
-
-    local log_entry="[$timestamp] [$level] $*"
-
-    # Write to both terminal and log file
-    echo "$log_entry" | tee -a "$LOG_FILE"
+    printf "[%s] %s\n" "$(date +"%Y-%m-%d %H:%M:%S")" "$*" >>"$LOG_FILE"
 }
 
-# Print colored messages
-print_status() {
-    echo -e "${BLUE}==>${NC} $1"
+# Print colored messages and log them at the same time
+print_info() {
+    printf "${BLUE}[]${NC} %s\n" "$*"
+    log "[INFO] $*"
 }
 
 print_success() {
-    echo -e "${GREEN}✓${NC} $1"
+    printf "${GREEN}[✓]${NC} %s\n" "$*"
+    log "[SUCCESS] $*"
 }
 
-print_warning() {
-    echo -e "${YELLOW}⚠${NC} $1"
+print_warn() {
+    printf "${YELLOW}[⚠]${NC} %s\n" "$*" >&2
+    log "[WARN] $*"
 }
 
 print_error() {
-    echo -e "${RED}✗${NC} $1"
+    printf "${RED}[✗]${NC} %s\n" "$*"
+    log "[ERROR] $*"
 }
 
 # Get the current log file path (useful for displaying to user)
