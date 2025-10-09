@@ -1,10 +1,12 @@
 #!/bin/bash
 
 
-set -euo pipefail
+set -Eeuo pipefail
+trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
 # Source utilities
-source "$HOME/maintenance/utils.sh"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+source "$SCRIPT_DIR/../utils.sh"
 
 # Initialize logging with monthly log file
 CURRENT_MONTH=$(date +'%Y-%m')
@@ -30,35 +32,26 @@ check_dependencies() {
 
     if [[ ${#missing_deps[@]} -gt 0 ]]; then
         print_error "Missing required packages: ${missing_deps[*]}"
-        print_status "Install them with: paru -S ${missing_deps[*]}"
+        print_info "Install them with: paru -S ${missing_deps[*]}"
         exit 1
     fi
 }
 
 # Verify snapper hooks are active
 verify_snapper_hooks() {
-    print_status "Verifying snapper hooks..."
+    print_info "Verifying snapper hooks..."
 
-    if ! pacman -Q snap-pac &> /dev/null; then
-        print_warning "snap-pac is not installed. Automatic snapshots will not be created!"
-        read -rp "Continue without automatic snapshots? (y/N): " response
-        if [[ ! "$response" =~ ^[Yy]$ ]]; then
-            log "WARN" "Update cancelled: snap-pac not installed"
-            exit 0
-        fi
+    # Check if the pacman hook exists
+    if [[ -f /usr/share/libalpm/hooks/05-snap-pac-pre.hook && -f /usr/share/libalpm/hooks/zz-snap-pac-post.hook ]]; then
+        print_success "snap-pac hooks are active"
     else
-        # Check if the pacman hook exists
-        if [[ -f /usr/share/libalpm/hooks/05-snap-pac-pre.hook && -f /usr/share/libalpm/hooks/zz-snap-pac-post.hook ]]; then
-            print_success "snap-pac hooks are active"
-        else
-            print_warning "snap-pac hooks may not be properly configured"
-        fi
+        print_warning "snap-pac hooks may not be properly configured"
     fi
 }
 
 # Check Arch news using informant
 check_arch_news() {
-    print_status "Checking for Arch Linux news..."
+    print_info "Checking for Arch Linux news..."
 
     # Run informant check and capture output
     if ! sudo informant check &> /dev/null; then
@@ -72,8 +65,8 @@ check_arch_news() {
             sudo informant read
             print_success "News marked as read"
         else
-            log "INFO" "Update cancelled: Unread Arch news"
-            print_status "Run 'sudo informant read' after reviewing the news, then run this script again"
+            print_warning "Update cancelled: Unread Arch news"
+            print_info "Run 'sudo informant read' after reviewing the news, then run this script again"
             exit 0
         fi
     else
@@ -83,8 +76,7 @@ check_arch_news() {
 
 # Perform system update
 perform_update() {
-    print_status "Starting system update..."
-    log "INFO" "Starting system update"
+    print_info "Starting system update..."
 
     # Count packages before update
     local before_count
@@ -102,12 +94,10 @@ perform_update() {
         after_count=$(pacman -Q | wc -l)
         local updated_count=$((after_count - before_count))
 
-        print_success "System update completed successfully"
-        log "SUCCESS" "Update completed. Packages: $after_count (changed: $updated_count)"
+        print_success "Update completed. Packages: $after_count (changed: $updated_count)"
         return 0
     else
         print_error "System update failed with exit code $update_status"
-        log "ERROR" "Update failed with exit code $update_status"
         return 1
     fi
 }

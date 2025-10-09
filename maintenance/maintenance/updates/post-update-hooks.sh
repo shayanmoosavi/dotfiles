@@ -1,10 +1,12 @@
 #!/bin/bash
 
 
-set -euo pipefail
+set -Eeuo pipefail
+trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
 # Source utilities
-source "$HOME/maintenance/utils.sh"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+source "$SCRIPT_DIR/../utils.sh"
 
 # Keep current package version and the previous one
 PACMAN_KEEP_VERSIONS=2
@@ -15,7 +17,7 @@ init_logging "updates/${CURRENT_MONTH}.log"
 
 # Clean pacman cache
 clean_pacman_cache() {
-    print_status "Cleaning pacman cache (keeping $PACMAN_KEEP_VERSIONS versions)..."
+    print_info "Cleaning pacman cache (keeping $PACMAN_KEEP_VERSIONS versions)..."
 
     # paccache is part of pacman-contrib
     if ! command -v paccache &> /dev/null; then
@@ -36,7 +38,7 @@ clean_pacman_cache() {
 
 # Clean paru cache (orphaned AUR package clones)
 clean_paru_cache() {
-    print_status "Cleaning paru cache (orphaned AUR clones)..."
+    print_info "Cleaning paru cache (orphaned AUR clones)..."
 
     local paru_cache_dir="$HOME/.cache/paru/clone"
 

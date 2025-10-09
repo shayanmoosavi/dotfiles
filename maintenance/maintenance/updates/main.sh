@@ -15,7 +15,7 @@ main() {
     echo "╚════════════════════════════════════════╝"
     echo ""
 
-    log "INFO" "========== Update script started =========="
+    print_info "========== Update script started =========="
 
     # Pre-flight checks
     check_privileges
@@ -34,18 +34,17 @@ main() {
         clean_paru_cache
 
         echo ""
-        print_success "All tasks completed successfully!"
-        log "INFO" "========== Update script completed successfully =========="
+        print_info "========== Update script completed successfully =========="
     else
         echo ""
-        print_warning "Update failed. Skipping cache cleaning for troubleshooting."
-        print_status "Check the log at: $(get_log_file)"
-        log "INFO" "========== Update script completed with errors =========="
+        print_error "Update failed. Skipping cache cleaning for troubleshooting."
+        print_info "Check the log at: $(get_log_file)"
+        print_info "========== Update script completed with errors =========="
         exit 1
     fi
 
     echo ""
-    print_status "Log saved to: $(get_log_file)"
+    print_info "Log saved to: $(get_log_file)"
     echo ""
 }
 
