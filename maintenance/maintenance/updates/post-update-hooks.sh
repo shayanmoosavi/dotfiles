@@ -4,8 +4,7 @@
 set -euo pipefail
 
 # Source utilities
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/utils.sh"
+source "$HOME/maintenance/utils.sh"
 
 # Keep current package version and the previous one
 PACMAN_KEEP_VERSIONS=2
