@@ -4,8 +4,7 @@
 set -euo pipefail
 
 # Source utilities
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/utils.sh"
+source "$HOME/maintenance/utils.sh"
 
 # Initialize logging with monthly log file
 CURRENT_MONTH=$(date +'%Y-%m')
@@ -94,7 +93,7 @@ perform_update() {
     # Run paru update
     # The 'set +e' temporarily disables exit-on-error so we can handle failures
     set +e
-    paru -Syu --noconfirm 2>&1 | tee -a "$LOG_FILE"
+    paru -Syu
     local update_status=${PIPESTATUS[0]}
     set -e
 
