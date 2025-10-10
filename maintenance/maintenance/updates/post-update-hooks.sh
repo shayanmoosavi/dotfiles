@@ -22,7 +22,6 @@ clean_pacman_cache() {
     # paccache is part of pacman-contrib
     if ! command -v paccache &> /dev/null; then
         print_error "paccache not found. Install pacman-contrib package."
-        log "ERROR" "paccache not available for cache cleaning"
         return 1
     fi
 
@@ -32,8 +31,7 @@ clean_pacman_cache() {
     # Remove uninstalled packages cache
     sudo paccache -ruk0
 
-    print_success "Pacman cache cleaned"
-    log "INFO" "Pacman cache cleaned (kept $PACMAN_KEEP_VERSIONS versions)"
+    print_success "Pacman cache cleaned (kept $PACMAN_KEEP_VERSIONS versions)"
 }
 
 # Clean paru cache (orphaned AUR package clones)
@@ -53,6 +51,7 @@ clean_paru_cache() {
 
     local removed_count=0
     local total_size=0
+    local orphans=()
 
     # Iterate through cached clones
     for clone_dir in "$paru_cache_dir"/*; do
@@ -65,13 +64,17 @@ clean_paru_cache() {
 
         # Check if package is still installed
         if ! echo "$installed_aur" | grep -q "^${pkg_name}$"; then
+            
+            print_info "Found orphaned AUR clone: $pkg_name"
+            orphans+=("$pkg_name")
+            
             # Calculate size before removal
             local size
             size=$(du -sb "$clone_dir" 2>/dev/null | awk '{print $1}')
             total_size=$((total_size + size))
 
             rm -rf "$clone_dir"
-            ((removed_count++))
+            ((removed_count+=1))
         fi
     done
 
@@ -80,9 +83,9 @@ clean_paru_cache() {
 
     if [[ $removed_count -gt 0 ]]; then
         print_success "Removed $removed_count orphaned AUR clones (freed ${size_mb}MB)"
-        log "INFO" "Paru cache cleaned: $removed_count clones removed, ${size_mb}MB freed"
+        print_info "Paru cache cleaned: $removed_count clones removed, ${size_mb}MB freed"
     else
         print_success "No orphaned AUR clones found"
-        log "INFO" "Paru cache: no orphaned clones"
+        print_info "Paru cache: no orphaned clones"
     fi
 }
