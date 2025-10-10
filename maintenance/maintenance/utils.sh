@@ -97,6 +97,7 @@ is_logging_initialized() {
 
 # Check if running with appropriate privileges
 check_privileges() {
+    print_info "Checking privileges..."
     if [[ $EUID -eq 0 ]]; then
         print_error "Do not run this script as root. It will request sudo when needed."
         exit 1
@@ -107,6 +108,7 @@ check_privileges() {
 check_dependencies() {
     local missing_deps=()
 
+    print_info "Checking dependencies..."
     for cmd in paru pacman informant snap-pac reflector pacman-contrib arch-audit; do
         if ! pacman -Q "$cmd" &> /dev/null 2>&1; then
             missing_deps+=("$cmd")
