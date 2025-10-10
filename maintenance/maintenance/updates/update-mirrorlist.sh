@@ -9,14 +9,14 @@ source "$SCRIPT_DIR/../utils.sh"
 
 # Initialize logging with bi-weekly log file
 CURRENT_DATE=$(date +'%Y-%m-%d')
-init_logging "mirrorlist/${CURRENT_DATE}.log"
+init_logging "updates/${CURRENT_DATE}.log"
 
 # Configuration
 MIRRORLIST="/etc/pacman.d/mirrorlist"
 BACKUP_DIR="/etc/pacman.d/mirrorlist.backup"
-COUNTRIES=("France" "Germany" "Switzerland")
-MIRROR_COUNT=5
-SORT_BY="rate"  # Options: rate, age, country, score, delay
+COUNTRIES=("Germany" "France" "Sweden")
+MIRROR_COUNT=10
+SORT_BY="score"  # Options: rate, age, country, score, delay
 
 # Create backup of current mirrorlist
 backup_mirrorlist() {
@@ -67,7 +67,7 @@ restore_mirrorlist() {
 
 # Update mirrorlist using reflector
 update_mirrorlist() {
-    print_status "Updating mirrorlist using reflector..."
+    print_info "Updating mirrorlist using reflector..."
 
     # Join countries array into comma-separated string
     local countries_str
@@ -79,7 +79,7 @@ update_mirrorlist() {
     # Run reflector with error handling
     # We use a temporary file to avoid corrupting mirrorlist if reflector fails mid-write
     local temp_mirrorlist
-    temp_mirrorlist=$(mktemp)
+    temp_mirrorlist="$HOME/mirrorlist.tmp"
 
     set +e
     sudo reflector \
