@@ -12,31 +12,6 @@ source "$SCRIPT_DIR/../utils.sh"
 CURRENT_MONTH=$(date +'%Y-%m')
 init_logging "updates/${CURRENT_MONTH}.log"
 
-# Check if running with appropriate privileges
-check_privileges() {
-    if [[ $EUID -eq 0 ]]; then
-        print_error "Do not run this script as root. It will request sudo when needed."
-        exit 1
-    fi
-}
-
-# Check required commands
-check_dependencies() {
-    local missing_deps=()
-
-    for cmd in paru pacman informant snap-pac; do
-        if ! command -v "$cmd" &> /dev/null && ! pacman -Q "$cmd" &> /dev/null 2>&1; then
-            missing_deps+=("$cmd")
-        fi
-    done
-
-    if [[ ${#missing_deps[@]} -gt 0 ]]; then
-        print_error "Missing required packages: ${missing_deps[*]}"
-        print_info "Install them with: paru -S ${missing_deps[*]}"
-        exit 1
-    fi
-}
-
 # Verify snapper hooks are active
 verify_snapper_hooks() {
     print_info "Verifying snapper hooks..."
