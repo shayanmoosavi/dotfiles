@@ -26,7 +26,7 @@ check_package_file_integrity() {
     if sudo pacman -Qkq | tee /tmp/pacman_qk.txt; then
         if [[ -s /tmp/pacman_qk.txt ]]; then
             print_warning "possible missing/changed files. See log for details."
-            print_info "pacman -Qkq output:\n$(< /tmp/pacman_qk.txt)"
+            log "pacman -Qkq output:\n$(< /tmp/pacman_qk.txt)"
         else
             print_success "No issues found"
         fi
@@ -42,7 +42,6 @@ list_orphans() {
     orphans=$(pacman -Qtdq || true)
     if [[ -n "$orphans" ]]; then
         print_warning "Found orphaned packages:\n$orphans"
-        print_info "Orphans:\n$orphans"
     else
         print_success "No orphaned packages found"
     fi
@@ -54,7 +53,7 @@ run_pacdiff() {
     if pacdiff 2>&1 | tee /tmp/pacdiff_check.txt; then
         if [[ -s /tmp/pacdiff_check.txt ]]; then
             print_warning "pacdiff reports config file differences. Inspect and merge as needed."
-            print_info "pacdiff output:\n$(< /tmp/pacdiff_check.txt)"
+            log "pacdiff output:\n$(< /tmp/pacdiff_check.txt)"
         else
             print_success "pacdiff reports no differences"
         fi
@@ -68,7 +67,6 @@ run_systemd_checks() {
     failed=$(systemctl --failed --no-legend || true)
     if [[ -n "$failed" ]]; then
         print_warning "Some systemd units have failed:\n$failed"
-        print_info "systemctl --failed output:\n$failed"
     else
         print_success "No failed systemd units"
     fi
@@ -80,7 +78,7 @@ run_security_checks() {
     if arch-audit -rf "%n | %t | Fixed version: %v | %s | Required by: %r" | tee /tmp/arch_audit.txt; then
         if [[ -s /tmp/arch_audit.txt ]]; then
             print_warning "arch-audit found vulnerable packages. See log."
-            print_info "arch-audit:\n$(< /tmp/arch_audit.txt)"
+            log "arch audit output:\n$(< /tmp/arch_audit.txt)"
         else
             print_success "arch-audit found no vulnerable packages"
         fi
@@ -91,10 +89,10 @@ run_security_checks() {
 # Checking for journal error messages since last boot
 run_journal_checks() {
     print_info "Collecting recent journal errors (last boot)..."
-    journalctl -p 3 -xb --no-pager | tee /tmp/journal_errors.txt || true
+    journalctl -p 3 -xb --no-pager > /tmp/journal_errors.txt || true
     if [[ -s /tmp/journal_errors.txt ]]; then
         print_warning "Recent journald errors found. See logs."
-        print_info "journalctl -p 3 -xb:\n$(< /tmp/journal_errors.txt)"
+        log "recent journal logs:\n$(< /tmp/journal_errors.txt)"
     else
         print_success "No recent critical journal errors"
     fi
