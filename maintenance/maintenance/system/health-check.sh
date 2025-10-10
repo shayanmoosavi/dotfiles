@@ -41,7 +41,7 @@ list_orphans() {
     print_info "Listing orphaned packages (pacman -Qtdq)..."
     orphans=$(pacman -Qtdq || true)
     if [[ -n "$orphans" ]]; then
-        print_warning "Found orphaned packages:\n$orphans"
+        print_warning "Found orphaned packages: $orphans"
     else
         print_success "No orphaned packages found"
     fi
@@ -75,7 +75,7 @@ run_systemd_checks() {
 # Security checks
 run_security_checks() {
     print_info "Running arch-audit for known Vulnerabalities..."
-    if arch-audit -rf "%n | %t | Fixed version: %v | %s | Required by: %r" | tee /tmp/arch_audit.txt; then
+    if arch-audit -rf "%n | %t | Fixed version: %v | %s | Required by: %r" > /tmp/arch_audit.txt; then
         if [[ -s /tmp/arch_audit.txt ]]; then
             print_warning "arch-audit found vulnerable packages. See log."
             log "arch audit output:\n$(< /tmp/arch_audit.txt)"
