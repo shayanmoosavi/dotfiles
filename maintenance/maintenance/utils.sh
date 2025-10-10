@@ -75,7 +75,7 @@ print_success() {
     log "[SUCCESS] $*"
 }
 
-print_warn() {
+print_warning() {
     printf "${YELLOW}[⚠]${NC} %s\n" "$*" >&2
     log "[WARN] $*"
 }
@@ -107,7 +107,7 @@ check_privileges() {
 check_dependencies() {
     local missing_deps=()
 
-    for cmd in paru pacman informant snap-pac reflector pacman-contrib; do
+    for cmd in paru pacman informant snap-pac reflector pacman-contrib arch-audit; do
         if ! pacman -Q "$cmd" &> /dev/null 2>&1; then
             missing_deps+=("$cmd")
         fi
