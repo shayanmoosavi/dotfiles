@@ -25,6 +25,34 @@ main() {
 
     echo ""
 
+    print_info "------ Mirrorlist update started ------"
+
+    # Backup current mirrorlist
+    if ! backup_mirrorlist; then
+        print_error "Cannot proceed without backup"
+        print_error "Update aborted: backup failed"
+        exit 1
+    fi
+
+    echo ""
+
+    # Update mirrorlist
+    if ! update_mirrorlist; then
+        print_error "Failed to update mirrorlist"
+        restore_mirrorlist
+        print_error "------ Mirrorlist update failed, restored from backup ------"
+        exit 1
+    fi
+
+    echo ""
+
+    # Clean old backups
+    clean_old_backups
+
+    echo ""
+    print_success "------ Mirrorlist update completed successfully ------"
+    echo ""
+
     # Perform update
     if perform_update; then
         echo ""
@@ -39,7 +67,7 @@ main() {
         echo ""
         print_error "Update failed. Skipping cache cleaning for troubleshooting."
         print_info "Check the log at: $(get_log_file)"
-        print_info "========== Update script completed with errors =========="
+        print_error "========== Update script failed with errors =========="
         exit 1
     fi
 
