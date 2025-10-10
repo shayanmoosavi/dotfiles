@@ -1,11 +1,14 @@
 #!/bin/bash
 
 
-set -euo pipefail
+set -Eeuo pipefail
+trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Sourcing the update and post-update scripts
-source $HOME/maintenance/updates/update-packages.sh
-source $HOME/maintenance/updates/post-update-hooks.sh
+# Sourcing the functions
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+source $SCRIPT_DIR/update-packages.sh
+source $SCRIPT_DIR/post-update-hooks.sh
+source $SCRIPT_DIR/update-mirrorlist.sh
 
 # Main execution
 main() {
