@@ -121,3 +121,24 @@ check_dependencies() {
         exit 1
     fi
 }
+
+# Get human-readable size
+human_readable_size() {
+    local bytes=$1
+    local -a units=('B' 'KB' 'MB' 'GB' 'TB')
+    local unit=0
+    local size=$bytes
+
+    while (( size > 1024 && unit < 4 )); do
+        size=$((size / 1024))
+        ((unit+=1))
+    done
+
+    echo "${size}${units[$unit]}"
+}
+
+# Calculate directory size in bytes
+get_dir_size() {
+    local dir="$1"
+    du -sb "$dir" 2>/dev/null | awk '{print $1}'
+}
