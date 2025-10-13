@@ -26,26 +26,33 @@ verify_snapper_hooks() {
 
 # Check Arch news using informant
 check_arch_news() {
-    print_info "Checking for Arch Linux news..."
 
-    # Run informant check and capture output
-    if ! sudo informant check &> /dev/null; then
-        print_warning "There is unread Arch news!"
-        echo ""
-        sudo informant check 2>&1 || true
-        echo ""
-        read -rp "Have you read and understood the news? Mark as read and continue? (y/N): " response
-
-        if [[ "$response" =~ ^[Yy]$ ]]; then
-            sudo informant read
-            print_success "News marked as read"
-        else
-            print_warning "Update cancelled: Unread Arch news"
-            print_info "Run 'sudo informant read' after reviewing the news, then run this script again"
-            exit 0
-        fi
+    print_info "Verifying informant pacman hook..."
+    if [[ -f /usr/share/libalpm/hooks/00-informant.hook ]]; then
+        print_info "informant hook is active. No need for manual checking."
     else
-        print_success "No unread Arch news"
+        print_info "informant pacman hook is not active or misconfigured. Falling back to manual checking..."
+        print_info "Checking for Arch Linux news..."
+
+        # Run informant check and capture output
+        if ! sudo informant check &> /dev/null; then
+            print_warning "There is unread Arch news!"
+            echo ""
+            sudo informant check 2>&1 || true
+            echo ""
+            read -rp "Have you read and understood the news? Mark as read and continue? (y/N): " response
+
+            if [[ "$response" =~ ^[Yy]$ ]]; then
+                sudo informant read
+                print_success "News marked as read"
+            else
+                print_warning "Update cancelled: Unread Arch news"
+                print_info "Run 'sudo informant read' after reviewing the news, then run this script again"
+                exit 0
+            fi
+        else
+            print_success "No unread Arch news"
+        fi
     fi
 }
 
