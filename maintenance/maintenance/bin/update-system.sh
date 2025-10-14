@@ -6,9 +6,9 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
 # Sourcing the functions
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source $SCRIPT_DIR/update-packages.sh
-source $SCRIPT_DIR/post-update-hooks.sh
-source $SCRIPT_DIR/update-mirrorlist.sh
+source $SCRIPT_DIR/../updates/update-packages.sh
+source $SCRIPT_DIR/../updates/update-mirrorlist.sh
+source $SCRIPT_DIR/../updates/post-update-hooks.sh
 
 # Main execution
 main() {
@@ -21,6 +21,7 @@ main() {
     print_info "========== Update script started =========="
 
     # Pre-flight checks
+    print_info "Pre-flight checks:"
     check_privileges
     check_dependencies
     verify_snapper_hooks
@@ -61,6 +62,7 @@ main() {
         echo ""
 
         # Clean caches only if update succeeded
+        print_info "Performing post-update hooks:"
         clean_pacman_cache
         clean_paru_cache
 
