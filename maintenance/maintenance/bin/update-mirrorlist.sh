@@ -40,7 +40,7 @@ main() {
     echo "╚════════════════════════════════════════╝"
     echo ""
 
-    print_info "========== Mirrorlist Update started =========="
+    print_info "========== Mirrorlist update started =========="
 
     # Pre-flight checks
     print_info "Pre-flight checks:"
