@@ -4,14 +4,6 @@
 set -Eeuo pipefail
 trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Source utilities
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "$SCRIPT_DIR/../utils.sh"
-
-# Initialize logging with monthly log file
-CURRENT_MONTH=$(date +'%Y-%m')
-init_logging "cleanup/${CURRENT_MONTH}.log"
-
 # Remove orphaned packages
 remove_orphans() {
     print_info "Checking for orphaned packages..."
