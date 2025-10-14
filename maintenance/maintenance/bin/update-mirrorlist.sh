@@ -1,19 +1,22 @@
 #!/bin/bash
 
 # Wrapper: Update Mirrorlist Task
-# Executes: bin/update-mirrorlist.sh
+# Sources and Executes: updates/mirrorlist.sh
 # Purpose: Single entry point for maintenance task system
 
-set -euo pipefail
+set -Eeuo pipefail
+trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Get script directory and source utilities
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PARENT_DIR="$(dirname "$SCRIPT_DIR")"
+# Source utilities
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+source "$SCRIPT_DIR/../utils.sh"
 
-source "$PARENT_DIR/utils.sh"
+# Initialize logging with bi-weekly log file
+CURRENT_DATE=$(date +'%Y-%m-%d')
+init_logging "updates/${CURRENT_DATE}.log"
 
 # Define the actual script to execute
-ACTUAL_SCRIPT="$PARENT_DIR/bin/update-mirrorlist.sh"
+ACTUAL_SCRIPT="$SCRIPT_DIR/../updates/mirrorlist.sh"
 
 # Verify the script exists and is executable
 if [[ ! -f "$ACTUAL_SCRIPT" ]]; then
@@ -27,11 +30,48 @@ if [[ ! -x "$ACTUAL_SCRIPT" ]]; then
     exit 1
 fi
 
-# Execute the actual script, passing all arguments
-if "$ACTUAL_SCRIPT" "$@"; then
-    exit 0
-else
-    local exit_code=$?
-    print_error "Task failed with exit code: $exit_code"
-    exit $exit_code
-fi
+source "$ACTUAL_SCRIPT"
+
+# Main function
+main() {
+    echo ""
+    echo "╔════════════════════════════════════════╗"
+    echo "║        Pacman Mirrorlist Update        ║"
+    echo "╚════════════════════════════════════════╝"
+    echo ""
+
+    print_info "========== Mirrorlist Update started =========="
+
+    # Pre-flight checks
+    print_info "Pre-flight checks:"
+    check_privileges
+    check_dependencies
+
+    # Backup current mirrorlist
+    if ! backup_mirrorlist; then
+        print_error "Cannot proceed without backup"
+        print_error "Update aborted: backup failed"
+        exit 1
+    fi
+
+    echo ""
+
+    # Update mirrorlist
+    if ! update_mirrorlist; then
+        print_error "Failed to update mirrorlist"
+        restore_mirrorlist
+        print_error "========== Mirrorlist update failed, restored from backup =========="
+        exit 1
+    fi
+
+    echo ""
+
+    # Clean old backups
+    clean_old_backups
+
+    echo ""
+    print_success "========== Mirrorlist update completed successfully =========="
+    echo ""
+}
+
+main "$@"
