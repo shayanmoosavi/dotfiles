@@ -10,18 +10,17 @@ source "$SCRIPT_DIR/../utils.sh"
 
 # Initialize logging with monthly log file
 CURRENT_MONTH=$(date +'%Y-%m')
-init_logging "cache-cleanup/${CURRENT_MONTH}.log"
-
-# Configuration
-CACHE_DIR="$HOME/.cache"
-CONFIG_DIR="$HOME/.config/cache-cleanup"
-MAPPINGS_FILE="$CONFIG_DIR/mappings.conf"
-AGE_THRESHOLD_DAYS=45
-DRY_RUN=true  # Default to dry-run mode
+init_logging "cleanup/${CURRENT_MONTH}.log"
 
 # Colors for table output
 BOLD='\033[1m'
 DIM='\033[2m'
+
+AGE_THRESHOLD_DAYS=45
+DRY_RUN=true  # Default to dry-run mode
+
+source "$SCRIPT_DIR/../cleanup/cache-config.sh"
+source "$SCRIPT_DIR/../cleanup/cache-status.sh"
 
 # Parse command line arguments
 parse_args() {
@@ -68,166 +67,6 @@ EXAMPLES:
 CONFIG:
     Mappings: $MAPPINGS_FILE
 EOF
-}
-
-# Create default mappings config if it doesn't exist
-create_default_config() {
-    if [[ -f "$MAPPINGS_FILE" ]]; then
-        return 0
-    fi
-
-    print_info "Creating default mappings configuration..."
-
-    mkdir -p "$CONFIG_DIR"
-
-    cat > "$MAPPINGS_FILE" << 'EOF'
-# Cache Cleanup Mappings Configuration
-# Format: package_name:cache_directory_name
-#
-# This file maps package names to their cache directories in ~/.cache
-# When a package is uninstalled, its cache directory will be cleaned up
-#
-# Examples:
-#   discord:discord
-#   visual-studio-code-bin:Code
-#   slack-desktop:Slack
-#
-# You can add your own mappings below:
-
-# Communication apps
-discord:discord
-slack-desktop:Slack
-telegram-desktop:telegram-desktop
-zoom:zoom
-
-# Browsers (note: these are in exclude list, but mapping for reference)
-# firefox:mozilla
-# google-chrome:google-chrome
-# chromium:chromium
-
-# Development tools
-visual-studio-code-bin:Code
-visual-studio-code-bin:vscode
-jetbrains-toolbox:JetBrains
-
-# Media apps
-spotify:spotify
-vlc:vlc
-
-# Electron apps (common pattern)
-obsidian:obsidian
-notion-app:Notion
-
-# Add your custom mappings below this line:
-
-EOF
-
-    print_success "Default config created at: $MAPPINGS_FILE"
-    log "INFO" "Created default mappings config"
-}
-
-# Load package-to-cache mappings from config
-load_mappings() {
-    local -n mappings_ref=$1
-
-    if [[ ! -f "$MAPPINGS_FILE" ]]; then
-        print_warning "Mappings file not found: $MAPPINGS_FILE"
-        return 0
-    fi
-
-    while IFS=':' read -r package cache_dir; do
-        # Skip empty lines and comments
-        [[ -z "$package" || "$package" =~ ^[[:space:]]*# ]] && continue
-
-        # Trim whitespace
-        package=$(echo "$package" | xargs)
-        cache_dir=$(echo "$cache_dir" | xargs)
-
-        [[ -z "$package" || -z "$cache_dir" ]] && continue
-
-        mappings_ref["$package"]="$cache_dir"
-    done < "$MAPPINGS_FILE"
-
-    log "INFO" "Loaded ${#mappings_ref[@]} package-to-cache mappings"
-}
-
-# Get list of directories to exclude from cleanup
-get_excluded_dirs() {
-    cat << 'EOF'
-paru
-mozilla
-BraveSoftware
-firefox
-floorp
-pip
-fontconfig
-thumbnails
-mesa_shader_cache
-mesa_shader_cache_db
-radv_builtin_shaders
-nvidia
-AMD
-pkgfile
-zen
-.pk2
-EOF
-}
-
-# Check if atime tracking is enabled
-check_atime_tracking() {
-    print_info "Checking filesystem atime tracking..."
-
-    # Get mount options for home directory
-    local mount_point
-    mount_point=$(df "$HOME" | tail -1 | awk '{print $1}')
-
-    local mount_options
-    mount_options=$(findmnt -n -o OPTIONS "$mount_point" 2>/dev/null || echo "")
-
-    if [[ "$mount_options" =~ noatime|relatime ]]; then
-        print_warning "Filesystem has reduced atime tracking ($mount_options)"
-        print_warning "Will use modification time (mtime) as fallback for age detection"
-        return 1
-    else
-        print_success "Full atime tracking is enabled"
-        return 0
-    fi
-}
-
-# Calculate days since last access
-get_days_since_access() {
-    local dir="$1"
-    local use_atime="$2"
-
-    if [[ "$use_atime" == "true" ]]; then
-        # Find newest atime in directory
-        local newest_atime
-        newest_atime=$(find "$dir" -type f -printf '%A@\n' 2>/dev/null | sort -n | tail -1)
-
-        if [[ -z "$newest_atime" ]]; then
-            echo "0"
-            return
-        fi
-
-        local current_time
-        current_time=$(date +%s)
-        local days=$(( (current_time - ${newest_atime%.*}) / 86400 ))
-        echo "$days"
-    else
-        # Fallback to mtime
-        local newest_mtime
-        newest_mtime=$(find "$dir" -type f -printf '%T@\n' 2>/dev/null | sort -n | tail -1)
-
-        if [[ -z "$newest_mtime" ]]; then
-            echo "0"
-            return
-        fi
-
-        local current_time
-        current_time=$(date +%s)
-        local days=$(( (current_time - ${newest_mtime%.*}) / 86400 ))
-        echo "$days"
-    fi
 }
 
 # Find caches from uninstalled packages
