@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Wrapper: Journal Cleanup Task
+# Wrapper: Orphan Removal Task
 # Sources and Executes: cleanup/cleanup-journal.sh
 # Purpose: Single entry point for maintenance task system
 
@@ -16,7 +16,7 @@ CURRENT_DATE=$(date +'%Y-%m-%d')
 init_logging "cleanup/${CURRENT_DATE}.log"
 
 # Define the actual script to execute
-ACTUAL_SCRIPT="$SCRIPT_DIR/../cleanup/clean-journal.sh"
+ACTUAL_SCRIPT="$SCRIPT_DIR/../cleanup/remove-orphans.sh"
 
 # Verify the script exists and is executable
 if [[ ! -f "$ACTUAL_SCRIPT" ]]; then
@@ -35,22 +35,22 @@ source "$ACTUAL_SCRIPT"
 # Main function
 main() {
     echo ""
-    echo "╔════════════════════════════════════════╗"
-    echo "║        Systemd Journal Cleanup         ║"
-    echo "╚════════════════════════════════════════╝"
+    echo "╔═════════════════════════════════════════╗"
+    echo "║        Orphaned Packages Removal        ║"
+    echo "╚═════════════════════════════════════════╝"
     echo ""
 
-    print_info "========== Journal cleanup started =========="
+    print_info "========== Purging orphans started =========="
 
     # Pre-flight checks
     print_info "Pre-flight checks:"
     check_privileges
 
     # Execute the actual script
-    clean_journal
+    remove_orphans
 
     echo ""
-    print_success "========== Journal cleanup completed successfully =========="
+    print_success "========== Orphans purged successfully =========="
     echo ""
 }
 
