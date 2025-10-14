@@ -7,7 +7,7 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 # Sourcing the functions
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 source $SCRIPT_DIR/../updates/update-packages.sh
-source $SCRIPT_DIR/../updates/update-mirrorlist.sh
+source $SCRIPT_DIR/../updates/mirrorlist.sh
 source $SCRIPT_DIR/../updates/post-update-hooks.sh
 
 # Main execution
