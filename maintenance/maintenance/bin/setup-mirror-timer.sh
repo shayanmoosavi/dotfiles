@@ -22,7 +22,7 @@ fi
 
 # Get the absolute path to the update-mirrorlist.sh script
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-UPDATE_SCRIPT="$SCRIPT_DIR/../updates/update-mirrorlist.sh"
+UPDATE_SCRIPT="$SCRIPT_DIR/update-mirrorlist.sh"
 
 if [[ ! -f "$UPDATE_SCRIPT" ]]; then
     echo "Error: update-mirrorlist.sh not found at $UPDATE_SCRIPT"
