@@ -3,13 +3,13 @@
 # Maintenance Tasks Management Script
 # Interactive TUI for viewing and running maintenance tasks
 
-# Initialize logging with daily log file
-CURRENT_DATE=$(date +'%Y-%m-%d')
-init_logging "maintenance-tasks/${CURRENT_DATE}.log"
-
 # Source utilities
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utils.sh"
+
+# Initialize logging with daily log file
+CURRENT_DATE=$(date +'%Y-%m-%d')
+init_logging "maintenance-tasks/${CURRENT_DATE}.log"
 
 # Configuration
 CONFIG_DIR="$HOME/.config/maintenance-tasks"
