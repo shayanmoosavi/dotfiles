@@ -4,8 +4,15 @@
 set -Eeuo pipefail
 trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Sourcing the functions
+# Source utilities
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+source "$SCRIPT_DIR/../utils.sh"
+
+# Initialize logging with daily log file
+CURRENT_DATE=$(date +'%Y-%m-%d')
+init_logging "updates/${CURRENT_DATE}.log"
+
+# Source update scripts
 source $SCRIPT_DIR/../updates/update-packages.sh
 source $SCRIPT_DIR/../updates/mirrorlist.sh
 source $SCRIPT_DIR/../updates/post-update-hooks.sh

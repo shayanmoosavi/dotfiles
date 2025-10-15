@@ -11,7 +11,7 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 source "$SCRIPT_DIR/../utils.sh"
 
-# Initialize logging with bi-weekly log file
+# Initialize logging with daily log file
 CURRENT_DATE=$(date +'%Y-%m-%d')
 init_logging "updates/${CURRENT_DATE}.log"
 

@@ -4,16 +4,8 @@
 set -Eeuo pipefail
 trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Source utilities
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "$SCRIPT_DIR/../utils.sh"
-
 # Keep current package version and the previous one
 PACMAN_KEEP_VERSIONS=2
-
-# Initialize logging with monthly log file
-CURRENT_MONTH=$(date +'%Y-%m')
-init_logging "updates/${CURRENT_MONTH}.log"
 
 # Clean pacman cache
 clean_pacman_cache() {
@@ -64,10 +56,10 @@ clean_paru_cache() {
 
         # Check if package is still installed
         if ! echo "$installed_aur" | grep -q "^${pkg_name}$"; then
-            
+
             print_info "Found orphaned AUR clone: $pkg_name"
             orphans+=("$pkg_name")
-            
+
             # Calculate size before removal
             local size
             size=$(du -sb "$clone_dir" 2>/dev/null | awk '{print $1}')

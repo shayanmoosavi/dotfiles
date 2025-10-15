@@ -4,14 +4,6 @@
 set -Eeuo pipefail
 trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
-# Source utilities
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "$SCRIPT_DIR/../utils.sh"
-
-# Initialize logging with monthly log file
-CURRENT_MONTH=$(date +'%Y-%m')
-init_logging "updates/${CURRENT_MONTH}.log"
-
 # Verify snapper hooks are active
 verify_snapper_hooks() {
     print_info "Verifying snapper hooks..."
