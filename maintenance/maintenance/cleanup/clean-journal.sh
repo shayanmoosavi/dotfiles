@@ -10,7 +10,7 @@ clean_journal() {
 
     # Check current journal size
     local journal_size
-    journal_size=$(journalctl --disk-usage 2>/dev/null | grep -oP '\d+\.\d+[A-Z]' | head -1)
+    journal_size=$(journalctl --disk-usage 2>/dev/null | grep -oP '\d+\.?\d+[A-Z]' | head -1)
 
     print_info "Current journal size: $journal_size"
 
@@ -19,7 +19,7 @@ clean_journal() {
 
     # Check new size
     local new_size
-    new_size=$(journalctl --disk-usage 2>/dev/null | grep -oP '\d+\.\d+[A-Z]' | head -1)
+    new_size=$(journalctl --disk-usage 2>/dev/null | grep -oP '\d+\.?\d+[A-Z]' | head -1)
 
     print_success "Journal cleaned (was: $journal_size, now: $new_size)"
 }
