@@ -24,11 +24,15 @@ fi
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 UPDATE_SCRIPT="$SCRIPT_DIR/update-mirrorlist.sh"
 
-# Username (edit to your actual username)
-USER_NAME="shayan"
-
 if [[ ! -f "$UPDATE_SCRIPT" ]]; then
     echo "Error: update-mirrorlist.sh not found at $UPDATE_SCRIPT"
+    exit 1
+fi
+
+MAINTENANCE_SCRIPT="$SCRIPT_DIR/../maintenance-tasks.sh"
+
+if [[ ! -f "$MAINTENANCE_SCRIPT" ]]; then
+    echo "Error: maintenance-tasks.sh not found at $MAINTENANCE_SCRIPT"
     exit 1
 fi
 
@@ -44,19 +48,19 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=$UPDATE_SCRIPT
+ExecStart=$MAINTENANCE_SCRIPT setup mirror-timer
 User=root
 StandardOutput=journal
 StandardError=journal
 
 # Environment for logging to user directory
-Environment="MAINTENANCE_USER=$USER_NAME"
+Environment="MAINTENANCE_USER=$USER"
 
 # Security hardening
 PrivateTmp=yes
 NoNewPrivileges=yes
 ProtectSystem=strict
-ReadWritePaths=/etc/pacman.d /home/$USER_NAME/.local/share/maintenance-logs
+ReadWritePaths=/etc/pacman.d /home/$USER/.local/share/maintenance-logs
 EOF
 
 echo "✓ Service file created"
