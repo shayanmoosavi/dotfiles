@@ -11,6 +11,15 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 source "$SCRIPT_DIR/../utils.sh"
 
+# Handle logging when running as root via systemd
+if [[ $EUID -eq 0 ]]; then
+    # Get actual user from environment or detect
+    ACTUAL_USER="${MAINTENANCE_USER:-$(stat -c '%U' "$SCRIPT_DIR")}"
+
+    # Override log base directory
+    LOG_BASE_DIR="/home/$ACTUAL_USER/.local/share/maintenance-logs"
+fi
+
 # Initialize logging with daily log file
 CURRENT_DATE=$(date +'%Y-%m-%d')
 init_logging "updates/${CURRENT_DATE}.log"

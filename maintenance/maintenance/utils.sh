@@ -98,6 +98,11 @@ is_logging_initialized() {
 # Check if running with appropriate privileges
 check_privileges() {
     print_info "Checking privileges..."
+    # Skip check if running via systemd (as root is expected)
+    if [[ -n "${INVOCATION_ID:-}" ]]; then
+        # INVOCATION_ID is set by systemd
+        return 0
+    fi
     if [[ $EUID -eq 0 ]]; then
         print_error "Do not run this script as root. It will request sudo when needed."
         exit 1
