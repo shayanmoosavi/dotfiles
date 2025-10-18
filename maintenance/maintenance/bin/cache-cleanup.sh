@@ -12,10 +12,6 @@ source "$SCRIPT_DIR/../utils.sh"
 CURRENT_MONTH=$(date +'%Y-%m')
 init_logging "cleanup/${CURRENT_MONTH}.log"
 
-# Colors for table output
-BOLD='\033[1m'
-DIM='\033[2m'
-
 AGE_THRESHOLD_DAYS=45
 DRY_RUN=true  # Default to dry-run mode
 
