@@ -10,12 +10,12 @@ get_update_count() {
 get_last_update_date() {
     if [[ -f /var/log/pacman.log ]]; then
         local last_update
-        last_update=$(tac /var/log/pacman.log | grep -m1 "starting full system upgrade" | awk '{print $1, $2}')
+        last_update=$(tac /var/log/pacman.log | grep -m1 "starting full system upgrade" | awk '{print $1}')
 
         if [[ -n "$last_update" ]]; then
             # Parse date and calculate days ago
             local update_timestamp
-            update_timestamp=$(date -d "$last_update" +%s 2>/dev/null)
+            update_timestamp=$(echo "$last_update" | date -d - +%s 2>/dev/null)
 
             if [[ -n "$update_timestamp" ]]; then
                 local days_ago=$(( ($(date +%s) - update_timestamp) / 86400 ))
