@@ -13,10 +13,8 @@ plugins=(
     eza
     man
     sudo
-    zsh-autosuggestions
     zsh-interactive-cd
-    zsh-syntax-highlighting
-    zsh-completions
+    zsh-autosuggestions
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
