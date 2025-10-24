@@ -12,8 +12,14 @@ CURRENT_DATE=$(date +'%Y-%m-%d')
 init_logging "maintenance-tasks/${CURRENT_DATE}.log"
 
 # Configuration
-CONFIG_DIR="$HOME/.config/maintenance-tasks"
-STATE_DIR="$HOME/.local/share/maintenance-tasks"
+if [[ -n "${INVOCATION_ID:-}" ]]; then
+    # Changing the directory to user home instead of root home when run from systemd
+    CONFIG_DIR="/home/$MAINTENANCE_USER/.config/maintenance-tasks"
+    STATE_DIR="/home/$MAINTENANCE_USER/.local/share/maintenance-tasks"
+else
+    CONFIG_DIR="$HOME/.config/maintenance-tasks"
+    STATE_DIR="$HOME/.local/share/maintenance-tasks"
+fi
 LAST_RUN_DIR="$STATE_DIR/last-run"
 CONFIG_FILE="$CONFIG_DIR/tasks.conf"
 PENDING_FLAG="$STATE_DIR/pending-reminders"
