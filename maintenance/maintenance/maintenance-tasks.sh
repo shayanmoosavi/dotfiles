@@ -14,8 +14,13 @@ init_logging "maintenance-tasks/${CURRENT_DATE}.log"
 # Configuration
 if [[ -n "${INVOCATION_ID:-}" ]]; then
     # Changing the directory to user home instead of root home when run from systemd
-    CONFIG_DIR="/home/$MAINTENANCE_USER/.config/maintenance-tasks"
-    STATE_DIR="/home/$MAINTENANCE_USER/.local/share/maintenance-tasks"
+    if [[ $USER == "root" ]]; then
+        CONFIG_DIR="/home/$MAINTENANCE_USER/.config/maintenance-tasks"
+        STATE_DIR="/home/$MAINTENANCE_USER/.local/share/maintenance-tasks"
+    else
+        CONFIG_DIR="$HOME/.config/maintenance-tasks"
+        STATE_DIR="$HOME/.local/share/maintenance-tasks"
+    fi
 else
     CONFIG_DIR="$HOME/.config/maintenance-tasks"
     STATE_DIR="$HOME/.local/share/maintenance-tasks"
