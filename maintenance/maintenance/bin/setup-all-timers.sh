@@ -19,7 +19,6 @@ This script will set up systemd timers for all automated maintenance tasks:
   Monthly:
     - btrfs-scrub (verifies filesystem integrity)
     - journal-cleanup (removes old journal entries)
-    - orphan-removal (removes unused packages)
 
 Note: System updates should be run manually via maintenance-tasks
 
@@ -50,7 +49,6 @@ declare -A TIMERS=(
     [mirrorlist-update]="update-mirrorlist.sh:weekly:Update pacman mirrorlist"
     [btrfs-scrub]="btrfs-scrub.sh:monthly:Btrfs filesystem scrub"
     [journal-cleanup]="cleanup-journal.sh:monthly:Clean up old journal logs"
-    [orphan-removal]="orphan-removal.sh:monthly:Remove orphaned packages"
 )
 
 # Create service and timer for each task
