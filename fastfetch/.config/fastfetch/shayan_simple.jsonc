@@ -8,16 +8,15 @@
     },
     "display": {
         "color": {
-            "separator": "cyan"
+            "separator": "cyan",
+            "title": "red"
         },
         "separator": " -> ",
         "size": {
             "maxPrefix": "MB",
             "ndigits": 0
         },
-        "constants": [
-            "────────────────────────────────────"
-        ]
+        "constants": ["────────────────────────────────────"]
     },
     "modules": [
         {
@@ -27,7 +26,8 @@
         },
         {
             "type": "title",
-            "key": " User"
+            "key": " User",
+            "keyColor": "red"
         },
         {
             "type": "custom",
@@ -135,6 +135,6 @@
             "type": "custom",
             "format": "└{$1}{$1}┘",
             "outputColor": "separator"
-        },
+        }
     ]
 }
