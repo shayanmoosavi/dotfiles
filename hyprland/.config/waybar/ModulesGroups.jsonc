@@ -1,38 +1,31 @@
 {
     "group/audio": {
         "orientation": "inherit",
-        "modules": [
-            "wireplumber#sink",
-            "wireplumber#source",
-            "mpris"
-        ],
+        "modules": ["wireplumber#sink", "wireplumber#source", "mpris"],
         "drawer": {
             "transition-duration": 500,
-            "transition-left-to-right": true,
+            "transition-left-to-right": true
         }
     },
     "group/system_info": {
         "orientation": "inherit",
-        "modules": [
-            "custom/btop",
-            "systemd-failed-units"
-        ],
+        "modules": ["custom/system-monitor", "systemd-failed-units"],
         "drawer": {
             "transition-duration": 500,
-            "transition-left-to-right": true,
+            "transition-left-to-right": true
         }
     },
     "group/app_drawer": {
         "orientation": "inherit",
         "modules": [
-            "custom/app_drawer",
+            "custom/app-drawer",
             "custom/browser",
             "custom/terminal",
             "custom/file-manager"
         ],
         "drawer": {
             "transition-duration": 500,
-            "transition-left-to-right": true,
+            "transition-left-to-right": true
         }
     }
 }

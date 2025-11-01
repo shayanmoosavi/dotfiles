@@ -1,5 +1,5 @@
 {
-    "custom/btop": {
+    "custom/system-monitor": {
         "format": "",
         "tooltip-format": "System Monitor\nLeft Click: GUI\nRight Click: TUI",
         "on-click": "missioncenter",
@@ -26,7 +26,7 @@
         "on-click": "~/.config/hypr/scripts/Launcher.sh --terminal",
         "interval": "once"
     },
-    "custom/app_drawer": {
+    "custom/app-drawer": {
         "format": "  ",
         "tooltip-format": "App Drawer"
     },
@@ -56,7 +56,7 @@
         "on-click": "pkill rofi || rofi -show drun",
         "tooltip-format": "App Launcher"
     },
-    "custom/key_ref": {
+    "custom/key-ref": {
         "format": " ",
         "on-click": "~/.config/hypr/scripts/KeybindsReference.sh --rofi",
         "on-click-right": "~/.config/hypr/scripts/KeybindsReference.sh --tui",
