@@ -1,8 +1,9 @@
 {
     "custom/btop": {
         "format": "",
-        "tooltip-format": "System Monitor",
-        "on-click": "kitty --title='System Monitor' btop"
+        "tooltip-format": "System Monitor\nLeft Click: GUI\nRight Click: TUI",
+        "on-click": "missioncenter",
+        "on-click-right": "kitty --title='System Monitor' btop"
     },
     "custom/browser": {
         "format": " ",
