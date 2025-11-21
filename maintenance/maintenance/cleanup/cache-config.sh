@@ -98,6 +98,7 @@ mozilla
 BraveSoftware
 firefox
 floorp
+vivaldi
 pip
 fontconfig
 thumbnails
