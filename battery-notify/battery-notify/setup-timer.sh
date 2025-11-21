@@ -24,7 +24,7 @@ Description= Battery Notification Service
 Type=oneshot
 ExecStart=$HOME/battery-notify/battery-notify.sh
 User=$USER
-Environment=DISPLAY=:1
+Environment=DISPLAY=:0
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
 StandardOutput=journal
 StandardError=journal
