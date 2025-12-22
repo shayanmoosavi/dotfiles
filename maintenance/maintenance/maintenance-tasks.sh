@@ -281,6 +281,16 @@ run_task() {
     print_info "Running task: $task"
     echo ""
 
+    # Skip task if it's automated and is not due
+    # Because they are handled by systemd timers and I don't want them
+    # to run the task after each reboot or shutdown
+    if [[ -n "${INVOCATION_ID:-}" ]]; then
+        if ! is_task_due "$task"; then
+            print_info "Skipping automated task $task"
+            return 0
+        fi
+    fi
+
     # Run the task script
     if "$script_path"; then
         # Reset logging path
