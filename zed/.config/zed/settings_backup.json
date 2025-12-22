@@ -7,22 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5"
+    },
+    "model_parameters": []
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "icon_theme": "Catppuccin Mocha",
   "auto_update_extensions": {
     "ruff": true
   },
   "vim_mode": false,
   "base_keymap": "VSCode",
-  // "features": {
-  //   "copilot": false
-  // },
   "buffer_font_family": "FiraCode Nerd Font",
   "ui_font_family": "FiraCode Nerd Font",
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "Catppuccin Macchiato (Blur)",
     "dark": "Catppuccin Frappé (Blur)"
   },
   // Whether to confirm before quitting Zed.
@@ -39,7 +46,7 @@
   "auto_signature_help": true,
   // Controls whether inline completions are shown immediately (true)
   // or manually by triggering `editor::ShowInlineCompletion` (false).
-  "show_inline_completions": false,
+  "show_edit_predictions": true,
   "indent_guides": {
     /// Whether to show indent guides in the editor.
     "enabled": true,
@@ -105,10 +112,12 @@
   },
   "languages": {
     "Python": {
-      "tab_size": 4,
       "formatter": "language_server",
       "language_servers": ["ruff", "!pyright"]
     }
+  },
+  "file_types": {
+    "JSON": ["*.json", ".prettierrc"]
   },
   "tabs": {
     // Show git status colors in the editor tabs.
@@ -131,5 +140,7 @@
   "extend_comment_on_newline": true,
   // Whether or not to ensure there's a single newline at the end of a buffer
   // when saving it.
-  "ensure_final_newline_on_save": true
+  "ensure_final_newline_on_save": true,
+  // How many columns a tab should occupy.
+  "tab_size": 4
 }

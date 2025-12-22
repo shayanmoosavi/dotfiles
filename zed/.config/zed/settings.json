@@ -7,9 +7,24 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "colorize_brackets": true,
+  "lsp_document_colors": "inlay",
+  "toolbar": {
+    "code_actions": false,
+    "breadcrumbs": true
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "show_signature_help_after_edits": true,
   "agent": {
     "play_sound_when_agent_done": true,
-    "default_profile": "ask"
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5"
+    },
+    "model_parameters": []
   },
   "features": {
     "edit_prediction_provider": "zed"
@@ -65,12 +80,15 @@
     /// 2. "indent_aware"
     "background_coloring": "disabled"
   },
-  "relative_line_numbers": false,
+  "relative_line_numbers": "disabled",
   // Inlay hint related settings
   "inlay_hints": {
     // Global switch to toggle hints on and off, switched off by default.
     // "enabled": true,
     // Toggle certain types of hints on and off, all switched on by default.
+    "show_value_hints": true,
+    "enabled": true,
+    "show_background": false,
     "show_type_hints": true,
     "show_parameter_hints": true,
     // Corresponds to null/None LSP hint type value.
