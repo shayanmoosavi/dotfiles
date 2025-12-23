@@ -6,14 +6,14 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 
 # Source utilities
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-source "$SCRIPT_DIR/utils.sh"
+source "$SCRIPT_DIR/../utils.sh"
 
 # Initialize logging with daily log file
 CURRENT_DATE=$(date +'%Y-%m-%d')
 init_logging "system/${CURRENT_DATE}.log"
 
 # Define the actual script to execute
-ACTUAL_SCRIPT="$SCRIPT_DIR/system/health-check.sh"
+ACTUAL_SCRIPT="$SCRIPT_DIR/../system/health-check.sh"
 
 # Verify the script exists and is executable
 if [[ ! -f "$ACTUAL_SCRIPT" ]]; then

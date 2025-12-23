@@ -84,6 +84,13 @@ description = Check for failed systemd services
 command = failed-services
 enabled = true
 
+[health-check]
+type = manual
+frequency = 30
+description = Perform health checks on system components
+command = check-health
+enabled = true
+
 [disk-space-review]
 type = manual
 frequency = 90
