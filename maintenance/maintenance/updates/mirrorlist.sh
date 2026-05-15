@@ -6,9 +6,9 @@ trap 'print_error "Unexpected error occurred at line $LINENO"; exit 1' ERR
 # Configuration
 MIRRORLIST="/etc/pacman.d/mirrorlist"
 BACKUP_DIR="/etc/pacman.d/mirrorlist.backup"
-COUNTRIES=("Germany" "France" "Sweden")
+COUNTRIES=("Germany" "Netherlands" "Sweden")
 MIRROR_COUNT=10
-SORT_BY="score"  # Options: rate, age, country, score, delay
+SORT_BY="rate"  # Options: rate, age, country, score, delay
 
 # Create backup of current mirrorlist
 backup_mirrorlist() {
