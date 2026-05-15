@@ -15,13 +15,16 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "bashls",
                     "clangd",
                     "cmake",
-                    "fortls",
                     "kotlin_language_server",
                     "lua_ls",
+                    "pylint",
                     "ruff",
-                    -- "sqlls",
+                    "rust_analyzer",
+                    "sqlls",
+                    "stylua",
                     "texlab",
                 },
             })
@@ -32,33 +35,35 @@ return {
         lazy = false,
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
 
-            lspconfig.clangd.setup({
+            vim.lsp.config('bashls', {
                 capabilities = capabilities,
             })
-            lspconfig.cmake.setup({
-
+            vim.lsp.config('clangd', {
                 capabilities = capabilities,
             })
-            lspconfig.fortls.setup({
-
+            vim.lsp.config('cmake', {
                 capabilities = capabilities,
             })
-            lspconfig.kotlin_language_server.setup({
-
+            vim.lsp.config('kotlin_language_server', {
                 capabilities = capabilities,
             })
-            lspconfig.lua_ls.setup({
-
+            vim.lsp.config('lua_ls', {
                 capabilities = capabilities,
             })
-            lspconfig.ruff.setup({
-
+            vim.lsp.config('ruff', {
                 capabilities = capabilities,
             })
-            lspconfig.texlab.setup({
-
+            vim.lsp.config('rust_analyzer', {
+                capabilities = capabilities
+            })
+            vim.lsp.config('texlab', {
+                capabilities = capabilities,
+            })
+            vim.lsp.config('sqlls', {
+                capabilities = capabilities,
+            })
+            vim.lsp.config('stylua', {
                 capabilities = capabilities,
             })
 
@@ -95,20 +100,24 @@ return {
             local config = require("nvim-treesitter.configs")
             config.setup({
                 ensure_installed = {
+                    "bash",
                     "c",
                     "cmake",
                     "cpp",
-                    "fortran",
                     "html",
+                    "json",
+                    "jsonc",
                     "kotlin",
                     "lua",
                     "markdown",
                     "markdown_inline",
                     "python",
+                    "rust",
                     "sql",
                     "toml",
                     "vim",
                     "vimdoc",
+                    "yaml"
                 },
                 highlight = { enable = true },
                 indent = { enable = true },
