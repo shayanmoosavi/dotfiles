@@ -5,3 +5,4 @@ hyprland/.config/hypr/current_wallpaper
 hyprland/.config/waybar/colors/colors-matugen.css
 hyprland/.config/waybar/colors/colors-wallust.css
 rofi/.config/rofi/wallust/colors-rofi.rasi
+nvim/.config/nvim/lazy-lock.json
