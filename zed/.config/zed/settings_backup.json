@@ -7,7 +7,33 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "colorize_brackets": true,
+  "lsp_document_colors": "inlay",
+  "toolbar": {
+    "code_actions": false,
+    "breadcrumbs": true
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "show_signature_help_after_edits": true,
   "agent": {
+    "dock": "right",
+    "play_sound_when_agent_done": true,
+    "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-haiku-4.5"
@@ -23,14 +49,13 @@
   },
   "vim_mode": false,
   "base_keymap": "VSCode",
-  "buffer_font_family": "FiraCode Nerd Font",
-  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato (Blur)",
-    "dark": "Catppuccin Frappé (Blur)"
+    "dark": "Catppuccin Frappé"
   },
   // Whether to confirm before quitting Zed.
   "confirm_quit": true,
@@ -68,12 +93,15 @@
     /// 2. "indent_aware"
     "background_coloring": "disabled"
   },
-  "relative_line_numbers": false,
+  "relative_line_numbers": "disabled",
   // Inlay hint related settings
   "inlay_hints": {
     // Global switch to toggle hints on and off, switched off by default.
     // "enabled": true,
     // Toggle certain types of hints on and off, all switched on by default.
+    "show_value_hints": true,
+    "enabled": true,
+    "show_background": false,
     "show_type_hints": true,
     "show_parameter_hints": true,
     // Corresponds to null/None LSP hint type value.
@@ -112,6 +140,9 @@
   },
   "languages": {
     "Python": {
+      "inlay_hints": {
+        "show_background": false
+      },
       "formatter": "language_server",
       "language_servers": ["ruff", "!pyright"]
     }

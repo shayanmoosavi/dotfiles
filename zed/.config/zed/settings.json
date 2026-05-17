@@ -7,6 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "colorize_brackets": true,
   "lsp_document_colors": "inlay",
   "toolbar": {
@@ -18,7 +34,8 @@
   },
   "show_signature_help_after_edits": true,
   "agent": {
-    "play_sound_when_agent_done": true,
+    "dock": "right",
+    "play_sound_when_agent_done": "always",
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
@@ -26,23 +43,19 @@
     },
     "model_parameters": []
   },
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
   "icon_theme": "Catppuccin Mocha",
   "auto_update_extensions": {
     "ruff": true
   },
   "vim_mode": false,
   "base_keymap": "VSCode",
-  "buffer_font_family": "FiraCode Nerd Font",
-  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato (Blur)",
-    "dark": "Catppuccin Frappé (Blur)"
+    "dark": "Catppuccin Frappé"
   },
   // Whether to confirm before quitting Zed.
   "confirm_quit": true,
@@ -127,6 +140,9 @@
   },
   "languages": {
     "Python": {
+      "inlay_hints": {
+        "show_background": false
+      },
       "formatter": "language_server",
       "language_servers": ["ruff", "!pyright"]
     }
