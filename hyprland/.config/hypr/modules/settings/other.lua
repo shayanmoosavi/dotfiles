@@ -9,7 +9,8 @@ hl.config({
 
     binds = {
         allow_workspace_cycles = true,
-        workspace_back_and_forth = true
+        workspace_back_and_forth = true,
+        drag_threshold = 10
     },
 
     xwayland = {
