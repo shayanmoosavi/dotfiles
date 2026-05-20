@@ -1,4 +1,2 @@
-local rules = "hypr.modules.rules"
-
-require(rules .. ".window")
-require(rules .. ".layer")
+require("modules.rules.window")
+require("modules.rules.layer")

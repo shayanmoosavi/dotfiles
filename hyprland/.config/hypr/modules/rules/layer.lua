@@ -2,7 +2,7 @@
 -- ==============================================================================================================================================
 
 -- Import helpers
-local helpers = require("hypr.modules.rules.helpers")
+local helpers = require("modules.rules.helpers")
 
 helpers.Blur_rofi()
 helpers.Blur_notifications()

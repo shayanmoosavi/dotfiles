@@ -1,1 +1,1 @@
-require("hypr.modules")
+require("modules")

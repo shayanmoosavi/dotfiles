@@ -1,5 +1,3 @@
-local settings = "modules.settings"
-
-require(settings .. ".decorations")
-require(settings .. ".input")
-require(settings .. ".other")
+require("modules.settings.decorations")
+require("modules.settings.input")
+require("modules.settings.other")
