@@ -278,4 +278,16 @@ return {
         })
     end,
 
+    -- Blur Wlogout
+    Blur_wlogout = function()
+        hl.layer_rule({
+            name = "blur-wlogout",
+            match = {
+                namespace = "logout_dialog"
+            },
+            blur = true,
+            ignore_alpha = 0.2
+        })
+    end
+
 }
