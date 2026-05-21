@@ -96,8 +96,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.6",
-                "monitor_w * 0.6"
+                "monitor_w * 0.6",
+                "monitor_h * 0.6"
             }
         })
 
@@ -109,8 +109,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.6",
-                "monitor_w * 0.6"
+                "monitor_w * 0.6",
+                "monitor_h * 0.6"
             }
         })
     end,
@@ -125,8 +125,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.7",
-                "monitor_w * 0.7"
+                "monitor_w * 0.7",
+                "monitor_h * 0.7"
             }
         })
     end,
@@ -141,8 +141,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.7",
-                "monitor_w * 0.7"
+                "monitor_w * 0.7",
+                "monitor_h * 0.7"
             }
         })
     end,
@@ -214,8 +214,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.7",
-                "monitor_w * 0.6"
+                "monitor_w * 0.7",
+                "monitor_h * 0.6"
             }
         })
         hl.window_rule({
@@ -226,8 +226,8 @@ return {
             float = true,
             center = true,
             size = {
-                "monitor_h * 0.7",
-                "monitor_w * 0.6"
+                "monitor_w * 0.7",
+                "monitor_h * 0.6"
             }
         })
     end,
