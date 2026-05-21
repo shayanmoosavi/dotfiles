@@ -89,8 +89,8 @@ hl.window_rule({
     float = true,
     center = true,
     size = {
-        "monitor_h * 0.7",
         "monitor_w * 0.7",
+        "monitor_h * 0.7",
     },
 })
 
@@ -103,8 +103,8 @@ hl.window_rule({
     float = true,
     center = true,
     size = {
-        "monitor_h * 0.6",
         "monitor_w * 0.6",
+        "monitor_h * 0.6",
     },
 })
 
@@ -144,7 +144,7 @@ hl.window_rule({
 hl.window_rule({
     name = "float-center-calculator",
     match = {
-        title = "^(org.kde.kalk|org.kde.kcalc)$",
+        class = "^(org.kde.kalk|org.kde.kcalc)$",
     },
     float = true,
     center = true,

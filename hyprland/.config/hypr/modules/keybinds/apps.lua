@@ -24,7 +24,7 @@ hl.bind(default.MainMod .. " + " .. "B", hl.dsp.exec_cmd(default.Browser), {
 })
 
 -- Launch Clipboard Manager
-local clipse_cmd = default.Terminal .. "--class clipse -e clipse"
+local clipse_cmd = default.Terminal .. " --class clipse -e clipse"
 hl.bind(default.MainMod .. " + " .. "V", hl.dsp.exec_cmd(clipse_cmd), {
     description = "Launch Clipboard Manager",
 })
