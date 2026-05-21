@@ -72,7 +72,7 @@ return {
             desktop_portal = "xdg-desktop-portal-gtk",
         }
 
-        for category, pattern in ipairs(settings_window_classes) do
+        for category, pattern in pairs(settings_window_classes) do
             hl.window_rule({
                 name = "tag-settings-" .. category,
                 match = {
