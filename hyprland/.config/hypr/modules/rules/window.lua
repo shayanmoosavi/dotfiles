@@ -58,7 +58,7 @@ hl.window_rule({
         tag = "multimedia*",
     },
     no_blur = true,
-    opacity = "1.0",
+    opacity = "1.0 override",
 })
 
 -- No blur for games
