@@ -56,7 +56,7 @@ return {
         hl.window_rule({
             name = "tag-gamelauncher",
             match = {
-                class = "^([Ss]team|[Ll]utris)$"
+                class = "^([Ss]team|net.lutris.Lutris)$"
             },
             tag = "+gamelauncher"
         })
