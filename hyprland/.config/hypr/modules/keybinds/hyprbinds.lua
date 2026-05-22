@@ -162,11 +162,10 @@ hl.bind(mainMod .. " + " .. "CTRL + TAB", hl.dsp.group.next(), {
     description = "Cycle through windows in a group",
 })
 
--- Drag window with long click
-hl.bind("mouse:272", hl.dsp.window.drag(), {
+-- Drag window
+hl.bind(mainMod .. " + " .. "mouse:272", hl.dsp.window.drag(), {
     mouse = true,
-    long_press = true,
-    description = "Drag window with long click",
+    description = "Drag window",
 })
 
 -- Dwindle layout specific keybinds
