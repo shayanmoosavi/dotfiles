@@ -3,18 +3,15 @@
 
 local M = {}
 
+-- Importing common helpers
+local exec = require("utils.common").exec
+local play_sound = require("utils.common").play_sound
+
+local desktop_sound_dir = "/usr/share/sounds/freedesktop"
+local vol_change_sound = desktop_sound_dir .. "/stereo/audio-volume-change.oga"
+
 -- Internal helpers
 -- ----------------------------------------------------------------------
-
--- Run a shell command and return its trimmed stdout.
-local function exec(cmd)
-    local handle = io.popen(cmd)
-    if not handle then return "" end
-    local out = handle:read("*a")
-    handle:close()
-    -- Strip surrounding whitespace so callers get clean strings/numbers.
-    return out:gsub("^%s+", ""):gsub("%s+$", "")
-end
 
 -- Get the name of the current default PulseAudio/PipeWire sink.
 local function default_sink()
@@ -71,18 +68,6 @@ local function notify(volume, muted)
     ))
 end
 
--- Play the system volume-change sound.
-local function play_sound()
-    local path = "/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
-    local f = io.open(path, "r")
-    if f then
-        f:close()
-        if not is_muted() then
-            os.execute("paplay " .. path .. " &")
-        end
-    end
-end
-
 -- Public API
 -- ----------------------------------------------------------------------
 
@@ -99,7 +84,7 @@ function M.up()
     os.execute("pactl set-sink-mute @DEFAULT_SINK@ 0")
 
     notify(vol, false)
-    play_sound()
+    play_sound(vol_change_sound)
 end
 
 function M.down()
@@ -110,7 +95,7 @@ function M.down()
 
     local vol = get_volume()
     notify(vol, false)
-    play_sound()
+    play_sound(vol_change_sound)
 end
 
 function M.mute()
