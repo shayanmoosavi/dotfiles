@@ -5,6 +5,8 @@ local M = {}
 
 -- Importing common helpers
 local exec = require("utils.common").exec
+local safe_exec = require("utils.common").safe_exec
+
 
 -- Icons directory
 local icons_dir = os.getenv("HOME") .. "/.config/swaync/icons/"
@@ -50,11 +52,11 @@ local function notify(percentage)
     local icon = get_brightness_icon(percentage)
     local title = "Brightness: " .. percentage .. "%"
 
-    os.execute(string.format(
+    safe_exec(string.format(
         'notify-send -t 2000'
         .. ' -h string:x-canonical-private-synchronous:brightness'
         .. ' -h int:value:%d'
-        .. ' "%s" "" -i "%s" &',
+        .. ' "%s" "" -i "%s"',
         percentage, title, icon)
     )
 end

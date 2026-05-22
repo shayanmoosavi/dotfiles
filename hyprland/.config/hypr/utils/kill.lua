@@ -1,8 +1,9 @@
 -- Custom kill program helper function
 -- ==============================================================================
 
--- Import play sound function
+-- Import helpers
 local play_sound = require("utils.common").play_sound
+local safe_exec = require("utils.common").safe_exec
 
 -- DOOM shotgun sound path
 local hypr_root = os.getenv("HOME") .. "/.config/hypr"
@@ -16,6 +17,6 @@ return {
         -- Plays the DOOM shotgun sound
         play_sound(doom_shotgun)
 
-        os.execute('notify-send -t 3000 "󰓾  Kill Program" "Target Neutralized" &')
+        safe_exec('notify-send -t 3000 "󰓾  Kill Program" "Target Neutralized"')
     end,
 }

@@ -6,6 +6,7 @@ local M = {}
 -- Importing common helpers
 local exec = require("utils.common").exec
 local play_sound = require("utils.common").play_sound
+local safe_exec = require("utils.common").safe_exec
 
 local desktop_sound_dir = "/usr/share/sounds/freedesktop"
 local vol_change_sound = desktop_sound_dir .. "/stereo/audio-volume-change.oga"
@@ -60,10 +61,10 @@ local function notify(volume, muted)
     -- The x-canonical-private-synchronous hint makes notification daemons
     -- (like dunst) replace the previous volume notification instead of
     -- stacking them.
-    os.execute(string.format(
+    safe_exec(string.format(
         'notify-send -t 2000'
         .. ' -h string:x-canonical-private-synchronous:volume'
-        .. ' -h %s "%s" "" -i "%s" &',
+        .. ' -h %s "%s" "" -i "%s"',
         hint, title, icon
     ))
 end

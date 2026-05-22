@@ -38,7 +38,7 @@ function M.play_sound(path)
     local f = io.open(path, "r")
     if f then
         f:close()
-        os.execute("paplay " .. path .. " &")
+        M.safe_exec("paplay " .. path)
     end
 end
 
