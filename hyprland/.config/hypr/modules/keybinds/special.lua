@@ -1,6 +1,9 @@
 -- Special Keys Keybinds
 -- ==============================================================================================================================================
 
+-- Scripts directory
+local script_dir = os.getenv("HOME") .. "/.config/hypr/scripts"
+
 -- Import required helpers
 local volume = require("utils.volume")
 local brightness = require("utils.brightness")
