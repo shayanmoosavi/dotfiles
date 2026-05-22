@@ -3,16 +3,26 @@
 
 local M = {}
 
+-- Internal helpers
+-- ----------------------------------------------------------------------
+
+-- Strip surrounding whitespace from a string.
+local function strip(str)
+    -- (necessary to store into a variable because of the two return values)
+    local stripped_str = str:gsub("^%s+", ""):gsub("%s+$", "")
+    return stripped_str
+end
+
+-- Public API
+-- ----------------------------------------------------------------------
+
 -- Run a shell command and return its trimmed stdout.
 function M.exec(cmd)
     local handle = io.popen(cmd)
     if not handle then return "" end
     local out = handle:read("*a")
     handle:close()
-    -- Strip surrounding whitespace so callers get clean strings/numbers.
-    -- (necessary to store into a variable because of the two return values)
-    local cleaned_out = out:gsub("^%s+", ""):gsub("%s+$", "")
-    return cleaned_out
+    return strip(out)
 end
 
 -- Play the system volume-change sound.
