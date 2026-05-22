@@ -4,8 +4,9 @@
 -- Scripts directory
 local script_dir = os.getenv("HOME") .. "/.config/hypr/scripts"
 
--- Volume helpers
+-- Import required helpers
 local volume = require("utils.volume")
+local brightness = require("utils.brightness")
 
 -- Volume Control
 -- --------------------------------------------------------------------------------------------------------------------------------------
@@ -27,10 +28,10 @@ hl.bind("XF86AudioMute", volume.mute, {
 -- Brightness Control
 -- --------------------------------------------------------------------------------------------------------------------------------------
 
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(script_dir .. "/Brightness.sh --inc 5"), {
+hl.bind("XF86MonBrightnessUp", brightness.up, {
     description = "Brightness up"
 })
 
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(script_dir .. "/Brightness.sh --dec 5"), {
+hl.bind("XF86MonBrightnessDown", brightness.down, {
     description = "Brightness down"
 })
