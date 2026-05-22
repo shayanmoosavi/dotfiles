@@ -10,7 +10,9 @@ function M.exec(cmd)
     local out = handle:read("*a")
     handle:close()
     -- Strip surrounding whitespace so callers get clean strings/numbers.
-    return out:gsub("^%s+", ""):gsub("%s+$", "")
+    -- (necessary to store into a variable because of the two return values)
+    local cleaned_out = out:gsub("^%s+", ""):gsub("%s+$", "")
+    return cleaned_out
 end
 
 -- Play the system volume-change sound.
