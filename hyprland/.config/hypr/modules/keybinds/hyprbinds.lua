@@ -4,6 +4,8 @@
 -- MainMod key
 local mainMod = require("modules.keybinds.defaults").MainMod
 
+local kill = require("utils.kill").kill
+
 -- Session Control
 -- --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,16 +49,15 @@ hl.bind(mainMod .. " + " .. "Q", hl.dsp.window.close(), {
 })
 
 -- Kill active window
-hl.bind(mainMod .. " + " .. "SHIFT + Q", hl.dsp.exec_cmd(script_dir .. "/KillProgram.sh"), {
+hl.bind(mainMod .. " + " .. "SHIFT + Q", kill, {
     description = "Kill active window",
 })
--- TODO: Migrate to native lua and hyprland if a better solution is available
 
 -- Refresh
+-- TODO: Migrate to native lua and hyprland if a better solution is available
 hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd(script_dir .. "/Refresh.sh"), {
     description = "Refresh",
 })
--- TODO: Migrate to native lua and hyprland if a better solution is available
 
 -- Toggle Floating Window
 hl.bind(
