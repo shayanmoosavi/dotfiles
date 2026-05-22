@@ -25,6 +25,14 @@ function M.exec(cmd)
     return strip(out)
 end
 
+-- Non-blocking execution of a shell command.
+function M.safe_exec(cmd)
+    -- (Necessary for some commands such as 'notify-send')
+    -- Sends the command to background and returns immediately.
+    -- Otherwise, lua thread will be locked and hyprland will not respond.
+    os.execute(cmd .. " &")
+end
+
 -- Play the system volume-change sound.
 function M.play_sound(path)
     local f = io.open(path, "r")
