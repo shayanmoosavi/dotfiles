@@ -2,8 +2,8 @@
 -- ==============================================================================================================================================
 
 -- Import required helpers
-local volume = require("utils.volume")
-local brightness = require("utils.brightness")
+local volume = require("utils.keybinds.volume")
+local brightness = require("utils.keybinds.brightness")
 
 -- Volume Control
 -- --------------------------------------------------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 -- MainMod key
 local mainMod = require("modules.keybinds.defaults").MainMod
 
-local kill = require("utils.kill").kill
+local kill = require("utils.keybinds.kill").kill
 
 -- Session Control
 -- --------------------------------------------------------------------------------------------------------------------------------------
@@ -105,9 +105,9 @@ local resize_properties = {
 for direction, properties in pairs(resize_properties) do
     hl.bind(mainMod .. " + " .. "SHIFT + " .. direction,
         hl.dsp.window.resize({ x = properties.x, y = properties.y, relative = true }), {
-        repeating = true,
-        description = "Resize active window " .. "(" .. direction .. ")",
-    })
+            repeating = true,
+            description = "Resize active window " .. "(" .. direction .. ")",
+        })
 end
 
 -- Move properties
