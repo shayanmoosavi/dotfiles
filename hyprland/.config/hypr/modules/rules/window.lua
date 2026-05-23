@@ -24,6 +24,22 @@ end
 -- Window rules
 -- --------------------------------------------------------------------------------------------------------------------------------------
 
+-- Helper function for floating and centering windows
+local function float_and_center(specs)
+    local specs = specs or {}
+    specs.name = specs.name or "float-center"
+    local float_and_center_specs = {
+        float = true,
+        center = true
+    }
+
+    for k, v in pairs(specs) do
+        float_and_center_specs[k] = v
+    end
+
+    hl.window_rule(float_and_center_specs)
+end
+
 -- No transparency and blur for multimedia
 hl.window_rule({
     name = "no-transparency-multimedia",
@@ -53,54 +69,13 @@ hl.window_rule({
     idle_inhibit = "fullscreen",
 })
 
--- Float and center keybinds reference
-hl.window_rule({
-    name = "float-center-key-ref",
-    match = {
-        title = "Keybinds Reference",
-    },
-    float = true,
-    center = true,
-    size = {
-        "monitor_w * 0.7",
-        "monitor_h * 0.7",
-    },
-})
+-- Window rule specs for floating and centering windows
+local float_center_window_rule_specs = require("modules.rules.declarative").FloatCenter
 
--- Float and center SDDM wallpaper updater dialogue
-hl.window_rule({
-    name = "float-center-sddm-wallpaper",
-    match = {
-        title = "Update SDDM Wallpaper",
-    },
-    float = true,
-    center = true,
-    size = {
-        "monitor_w * 0.6",
-        "monitor_h * 0.6",
-    },
-})
-
--- Float and center waypaper
-hl.window_rule({
-    name = "float-center-waypaper",
-    match = {
-        class = "waypaper",
-    },
-    float = true,
-    center = true,
-})
-
--- Float and center steam dialogues
-hl.window_rule({
-    name = "float-center-steam-dialogues",
-    match = {
-        class = "^([Ss]team)$",
-        title = "negative:^([Ss]team)$",
-    },
-    float = true,
-    center = true,
-})
+-- Apply float center window rule specs
+for _, specs in pairs(float_center_window_rule_specs) do
+    float_and_center(specs)
+end
 
 -- Picture-in-picture
 hl.window_rule({
@@ -112,26 +87,6 @@ hl.window_rule({
     pin = true,
     keep_aspect_ratio = true,
 })
-
--- Float and center calculator
-hl.window_rule({
-    name = "float-center-calculator",
-    match = {
-        class = "^(org.kde.kalk|org.kde.kcalc)$",
-    },
-    float = true,
-    center = true,
-})
-
-helpers.Float_center_archive_manager()
-helpers.Float_center_auth_dialog()
-helpers.Float_center_clip_manager()
-helpers.Float_center_file_dialog()
-helpers.Float_center_file_manager_dialog()
-helpers.Float_center_firefox_dialog()
-helpers.Float_center_image_viewer()
-helpers.Float_center_settings()
-helpers.Float_center_system_monitor()
 
 -- Move to workspace window rules
 local workspace_categories = {
