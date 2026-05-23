@@ -3,14 +3,15 @@
 
 -- Import helpers
 local helpers = require("modules.rules.helpers")
+local tags = require("utils.rules.tags")
 
 -- Tags
 -- --------------------------------------------------------------------------------------------------------------------------------------
 -- Tagging certain grouped windows for easier window rules
 
-helpers.Tag_browser_type()
-helpers.Tag_games()
-helpers.Tag_settings()
+tags.tag_browser_type()
+tags.tag_games()
+tags.tag_settings()
 
 -- Social Media
 hl.window_rule({
