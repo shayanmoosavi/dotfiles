@@ -39,34 +39,21 @@ local function float_and_center(specs)
     hl.window_rule(float_and_center_specs)
 end
 
--- No transparency and blur for multimedia
-hl.window_rule({
-    name = "no-transparency-multimedia",
-    match = {
-        tag = "multimedia*",
-    },
-    no_blur = true,
-    opacity = "1.0 override",
-})
+-- Window rule specs for no blur
+local no_blur_specs = require("modules.rules.declarative").NoBlur
 
--- No blur for games
-hl.window_rule({
-    name = "no-blur-games",
-    match = {
-        tag = "games*",
-    },
-    no_blur = true,
-    fullscreen = true,
-})
+-- Apply window rules
+for _, spec in pairs(no_blur_specs) do
+    hl.window_rule(spec)
+end
 
--- Prevent idle for fullscreen windows
-hl.window_rule({
-    name = "no-idle-fullscreen",
-    match = {
-        fullscreen = true,
-    },
-    idle_inhibit = "fullscreen",
-})
+-- Window rule specs for no idle
+local no_idle_specs = require("modules.rules.declarative").NoIdle
+
+-- Apply no idle window rule specs
+for _, spec in pairs(no_idle_specs) do
+    hl.window_rule(spec)
+end
 
 -- Window rule specs for floating and centering windows
 local float_center_specs = require("modules.rules.declarative").FloatCenter
@@ -76,16 +63,13 @@ for _, specs in pairs(float_center_specs) do
     float_and_center(specs)
 end
 
--- Picture-in-picture
-hl.window_rule({
-    name = "picture-in-picture",
-    match = {
-        title = "Picture-in-Picture",
-    },
-    float = true,
-    pin = true,
-    keep_aspect_ratio = true,
-})
+-- Window rule specs for picture-in-picture
+local pip_specs = require("modules.rules.declarative").PiP
+
+-- Apply picture-in-picture window rule specs
+for _, spec in pairs(pip_specs) do
+    hl.window_rule(spec)
+end
 
 -- Move to workspace window rules
 local workspace_categories = {

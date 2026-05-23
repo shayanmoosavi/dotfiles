@@ -39,6 +39,56 @@ return {
         }
     },
 
+    -- Disable blur for certain windows
+    -- -------------------------------------------------------------------------------------------------------------------
+    NoBlur = {
+        -- No transparency and blur for multimedia
+        multimedia = {
+            name = "no-transparency-multimedia",
+            match = {
+                tag = "multimedia*",
+            },
+            no_blur = true,
+            opacity = "1.0 override"
+        },
+
+        -- No blur for games
+        games = {
+            name = "no-blur-games",
+            match = {
+                tag = "games*",
+            },
+            no_blur = true,
+            fullscreen = true,
+        }
+    },
+
+    -- Prevent idle for fullscreen windows
+    -- -------------------------------------------------------------------------------------------------------------------
+    NoIdle = {
+        fullscreen = {
+            name = "no-idle-fullscreen",
+            match = {
+                fullscreen = true,
+            },
+            idle_inhibit = "fullscreen",
+        }
+    },
+
+    -- Picture-in-Picture
+    -- -------------------------------------------------------------------------------------------------------------------
+    PiP = {
+        pip = {
+            name = "picture-in-picture",
+            match = {
+                title = "Picture-in-Picture",
+            },
+            float = true,
+            pin = true,
+            keep_aspect_ratio = true
+        }
+    },
+
     -- Floating and centering windows
     -- -------------------------------------------------------------------------------------------------------------------
     FloatCenter = {
