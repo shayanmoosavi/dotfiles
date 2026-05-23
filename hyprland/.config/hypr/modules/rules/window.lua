@@ -2,7 +2,6 @@
 -- ==============================================================================================================================================
 
 -- Import helpers
-local helpers = require("modules.rules.helpers")
 local tags = require("utils.rules.tags")
 
 -- Tags
@@ -14,10 +13,10 @@ tags.tag_games()
 tags.tag_settings()
 
 -- Window rule specs for tagging different window categories
-local tag_window_rule_specs = require("modules.rules.declarative").Tags
+local tag_specs = require("modules.rules.declarative").Tags
 
 -- Apply window rules
-for _, spec in pairs(tag_window_rule_specs) do
+for _, spec in pairs(tag_specs) do
     hl.window_rule(spec)
 end
 
@@ -70,10 +69,10 @@ hl.window_rule({
 })
 
 -- Window rule specs for floating and centering windows
-local float_center_window_rule_specs = require("modules.rules.declarative").FloatCenter
+local float_center_specs = require("modules.rules.declarative").FloatCenter
 
 -- Apply float center window rule specs
-for _, specs in pairs(float_center_window_rule_specs) do
+for _, specs in pairs(float_center_specs) do
     float_and_center(specs)
 end
 
