@@ -54,8 +54,7 @@ hl.bind(mainMod .. " + " .. "SHIFT + Q", kill, {
 })
 
 -- Refresh
--- TODO: Migrate to native lua and hyprland if a better solution is available
-hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd(script_dir .. "/Refresh.sh"), {
+hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("python3 " .. script_dir .. "/refresh.py"), {
     description = "Refresh",
 })
 
