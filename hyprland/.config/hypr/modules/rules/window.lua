@@ -13,41 +13,13 @@ tags.tag_browser_type()
 tags.tag_games()
 tags.tag_settings()
 
--- Social Media
-hl.window_rule({
-    name = "tag-social-media",
-    match = {
-        class = "^(org.telegram.desktop|discord)$",
-    },
-    tag = "+social",
-})
+-- Window rule specs for tagging different window categories
+local tag_window_rule_specs = require("modules.rules.declarative").Tags
 
--- Terminal
-hl.window_rule({
-    name = "tag-terminal",
-    match = {
-        class = "^(alacritty|kitty|com.mitchellh.ghostty)$",
-    },
-    tag = "+terminal",
-})
-
--- Multimedia
-hl.window_rule({
-    name = "tag-multimedia",
-    match = {
-        class = "^(vlc|mpv|spotify|spotify-client)$",
-    },
-    tag = "+multimedia",
-})
-
--- IDE
-hl.window_rule({
-    name = "tag-ide",
-    match = {
-        class = "^(jetbrains-.*|code|code-oss|codium|dev.zed.Zed)$",
-    },
-    tag = "+ide",
-})
+-- Apply window rules
+for _, spec in pairs(tag_window_rule_specs) do
+    hl.window_rule(spec)
+end
 
 -- Window rules
 -- --------------------------------------------------------------------------------------------------------------------------------------
