@@ -103,7 +103,8 @@ local resize_properties = {
 
 -- Resize active window
 for direction, properties in pairs(resize_properties) do
-    hl.bind(mainMod .. " + " .. "SHIFT + " .. direction, hl.dsp.window.resize(properties), {
+    hl.bind(mainMod .. " + " .. "SHIFT + " .. direction,
+        hl.dsp.window.resize({ x = properties.x, y = properties.y, relative = true }), {
         repeating = true,
         description = "Resize active window " .. "(" .. direction .. ")",
     })
