@@ -39,6 +39,52 @@ return {
         }
     },
 
+    -- Enable blur for certain layers
+    -- -------------------------------------------------------------------------------------------------------------------
+    Blur = {
+
+        -- Rofi
+        rofi = {
+            name = "blur-rofi",
+            match = {
+                namespace = "rofi"
+            },
+            blur = true,
+            xray = true,
+            dim_around = true,
+            ignore_alpha = 0
+        },
+
+        -- Notifications
+        notifications = {
+            name = "blur-notifications",
+            match = {
+                namespace = "notifications"
+            },
+            blur = true
+        },
+
+        -- Notification Center (replace with your preferred notification center)
+        notification_center = {
+            name = "blur-notification-center",
+            match = {
+                namespace = "^(swaync-control-center|swaync-notification-window)$"
+            },
+            blur = true,
+            ignore_alpha = 0.5
+        },
+
+        -- Logout dialogue (replace with your preferred logout dialogue)
+        logout_dialog = {
+            name = "blur-logout-dialog",
+            match = {
+                namespace = "logout_dialog"
+            },
+            blur = true,
+            ignore_alpha = 0.2
+        },
+    },
+
     -- Disable blur for certain windows
     -- -------------------------------------------------------------------------------------------------------------------
     NoBlur = {

@@ -1,9 +1,10 @@
 -- Layer rules
 -- ==============================================================================================================================================
 
--- Import helpers
-local helpers = require("modules.rules.helpers")
+-- Layer rule specs for blur
+local blur_specs = require("modules.rules.declarative").Blur
 
-helpers.Blur_rofi()
-helpers.Blur_notifications()
-helpers.Blur_wlogout()
+-- Apply blur rules
+for _, spec in pairs(blur_specs) do
+    hl.layer_rule(spec)
+end
