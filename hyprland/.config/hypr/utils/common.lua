@@ -33,7 +33,7 @@ function M.safe_exec(cmd)
     os.execute(cmd .. " &")
 end
 
--- Play the system volume-change sound.
+-- Play a sound from provided path.
 function M.play_sound(path)
     local f = io.open(path, "r")
     if f then
