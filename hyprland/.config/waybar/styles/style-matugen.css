@@ -14,21 +14,22 @@ window#waybar.empty #window {
 }
 
 tooltip {
-    background: @inverse_on_surface;
+    background: @tertiary_container;
+    color: @on_tertiary_container;
     border-radius: 10px;
-    opacity: 0.85;
-    border-color: @on_background;
+    border: 1px solid @outline_variant;
+    opacity: 0.95;
 }
 
 label.module {
-    color: @on_surface;
+    color: @primary;
 }
 
 .modules-right {
-    opacity: 0.7;
-    border: 2px solid @on_primary_container;
+    opacity: 0.85;
+    border: 2px solid @shadow;
     border-radius: 40px;
-    background-color: @primary_container;
+    background-color: @surface_container;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 6px;
@@ -37,10 +38,10 @@ label.module {
 }
 
 .modules-center {
-    opacity: 0.7;
-    border: 2px solid @on_tertiary_container;
+    opacity: 0.85;
+    border: 2px solid @shadow;
     border-radius: 40px;
-    background-color: @tertiary_container;
+    background-color: @surface_container;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 12px;
@@ -49,10 +50,10 @@ label.module {
 }
 
 .modules-left {
-    opacity: 0.7;
-    border: 2px solid @on_primary_container;
+    opacity: 0.85;
+    border: 2px solid @shadow;
     border-radius: 40px;
-    background-color: @primary_container;
+    background-color: @surface_container;
     padding-top: 4px;
     padding-bottom: 4px;
     padding-right: 10px;
@@ -61,7 +62,7 @@ label.module {
 }
 
 #workspaces button {
-    color: @on_surface;
+    color: @primary;
     font-size: 18px;
     border-radius: 8px;
     padding-left: 4px;
@@ -70,28 +71,25 @@ label.module {
 }
 
 #workspaces button.active {
-    color: @on_primary_fixed_variant;
-    background-color: @surface_tint;
+    color: @on_primary_container;
+    background-color: @primary_container;
 }
 
 #workspaces button:hover {
-    color: @on_tertiary_fixed_variant;
-    background-color: @tertiary_fixed;
+    color: @on_tertiary;
+    background-color: @tertiary;
 }
 
 #battery.charging {
     color: #3ff10e;
-    background-color: @primary_container;
 }
 
 #battery.warning {
     color: #f5f54e;
-    background-color: @primary_container;
 }
 
 #battery.critical:not(.charging) {
     color: #ff2b2b;
-    background-color: @primary_container;
 }
 
 #backlight-slider trough {
