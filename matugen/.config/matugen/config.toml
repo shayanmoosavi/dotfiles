@@ -1,6 +1,14 @@
 [config]
 
+# Which color to choose if multiple good colors were found from an image.
+# choices: [darkness, lightness, saturation, less-saturation, value, closest-to-fallback]
+prefer = "saturation"
+
 [templates.waybar]
+# Defaults to the type from CLI if unspecified.
+# One of `SchemeContent`, `SchemeExpressive`, `SchemeFidelity`, `SchemeFruitSalad`, 
+# `SchemeMonochrome`, `SchemeNeutral`, `SchemeRainbow`, `SchemeTonalSpot`, `SchemeVibrant`
+type = "SchemeFidelity"
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/colors/colors-matugen.css'
 post_hook = 'pkill -SIGUSR2 waybar'
