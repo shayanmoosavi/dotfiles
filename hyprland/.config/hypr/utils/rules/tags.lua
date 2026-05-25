@@ -67,16 +67,27 @@ function tags.tag_settings()
         audio = "^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$",
         theme_and_display = "^(qt5ct|qt6ct|nwg-displays|nwg-look|kvantummanager)$",
         desktop_portal = "xdg-desktop-portal-gtk",
+        zed_settings = "Zed — Settings"
     }
 
     for category, pattern in pairs(settings_window_classes) do
-        hl.window_rule({
-            name = "tag-settings-" .. category,
-            match = {
-                class = pattern
-            },
-            tag = "+settings"
-        })
+        if category == "zed_settings" then
+            hl.window_rule({
+                name = "tag-settings-" .. category,
+                match = {
+                    initial_title = pattern
+                },
+                tag = "+settings"
+            })
+        else
+            hl.window_rule({
+                name = "tag-settings-" .. category,
+                match = {
+                    class = pattern
+                },
+                tag = "+settings"
+            })
+        end
     end
 end
 
