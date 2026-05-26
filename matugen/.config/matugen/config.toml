@@ -17,3 +17,8 @@ post_hook = 'pkill -SIGUSR2 waybar'
 type = "SchemeFidelity"
 input_path = '~/.config/matugen/templates/colors.lua'
 output_path = '~/.config/hypr/colors/matugen.lua'
+
+[templates.hyprlock]
+type = "SchemeFidelity"
+input_path = "~/.config/matugen/templates/colors-hyprlock.conf"
+output_path = "~/.config/hypr/colors/colors-matugen.conf"
