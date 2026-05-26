@@ -14,11 +14,11 @@ window#waybar.empty #window {
 }
 
 tooltip {
-    background: @tertiary_container;
-    color: @on_tertiary_container;
+    background: @surface_bright;
+    color: @on_surface;
     border-radius: 10px;
     border: 1px solid @outline_variant;
-    opacity: 0.95;
+    opacity: 0.85;
 }
 
 label.module {
@@ -26,8 +26,8 @@ label.module {
 }
 
 .modules-right {
-    opacity: 0.85;
-    border: 2px solid @shadow;
+    opacity: 0.8;
+    border: 2px solid @outline;
     border-radius: 40px;
     background-color: @surface_container;
     padding-top: 2px;
@@ -38,8 +38,8 @@ label.module {
 }
 
 .modules-center {
-    opacity: 0.85;
-    border: 2px solid @shadow;
+    opacity: 0.8;
+    border: 2px solid @outline;
     border-radius: 40px;
     background-color: @surface_container;
     padding-top: 2px;
@@ -50,8 +50,8 @@ label.module {
 }
 
 .modules-left {
-    opacity: 0.85;
-    border: 2px solid @shadow;
+    opacity: 0.8;
+    border: 2px solid @outline;
     border-radius: 40px;
     background-color: @surface_container;
     padding-top: 4px;
