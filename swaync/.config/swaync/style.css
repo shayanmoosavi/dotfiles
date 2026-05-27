@@ -7,7 +7,7 @@ https://github.com/cebem1nt/dotfiles/tree/main/.config/swaync
 @import "colors.css";
 
 * {
-    font-family: "MartianMono Nerd Font Propo";
+    font-family: "DepartureMono Nerd Font Propo";
     font-weight: 700;
     all: unset;
 
@@ -284,7 +284,7 @@ https://github.com/cebem1nt/dotfiles/tree/main/.config/swaync
 }
 
 .widget-buttons-grid button > label {
-    font-family: "CaskaydiaCove Nerd Font Propo";
+    font-family: "MartianMono Nerd Font Propo";
     font-size: 20px;
     color: @on_primary;
 }
