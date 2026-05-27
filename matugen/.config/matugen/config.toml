@@ -9,7 +9,7 @@ prefer = "saturation"
 # One of `SchemeContent`, `SchemeExpressive`, `SchemeFidelity`, `SchemeFruitSalad`,
 # `SchemeMonochrome`, `SchemeNeutral`, `SchemeRainbow`, `SchemeTonalSpot`, `SchemeVibrant`
 type = "SchemeExpressive"
-input_path = '~/.config/matugen/templates/colors.css'
+input_path = '~/.config/matugen/templates/colors-waybar.css'
 output_path = '~/.config/waybar/colors/colors-matugen.css'
 post_hook = 'pkill -SIGUSR2 waybar'
 
@@ -19,6 +19,6 @@ input_path = '~/.config/matugen/templates/colors.lua'
 output_path = '~/.config/hypr/colors/matugen.lua'
 
 [templates.hyprlock]
-type = "SchemeFidelity"
+type = "SchemeVibrant"
 input_path = "~/.config/matugen/templates/colors-hyprlock.conf"
 output_path = "~/.config/hypr/colors/colors-matugen.conf"
