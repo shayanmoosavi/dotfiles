@@ -5,37 +5,8 @@ https://github.com/JaKooLit
 
 /* A modified version of KooL Hyprland Rofi Style 6 */
 
-/* ---- Configuration ---- */
-
-configuration {
-	modi:                       "drun,run,filebrowser";
-    show-icons:                 true;
-    display-drun:               " apps";
-    display-run:                " term";
-    display-filebrowser:        " files";
-    display-window:             " window";
-	drun-display-format:        "{name}";
-	hover-select:               true;
-	me-select-entry:            "MouseSecondary";
-    me-accept-entry:            "MousePrimary";
-	window-format:              "{w} · {c} · {t}";
-}
-
-/* ---- Load wallust colors ---- */
-@theme "~/.config/rofi/wallust/colors-rofi.rasi"
-
-/* ---- Global Properties ---- */
-* {
-
-    background-alt:              @color1;
-    selected:                    @color12;
-    active:                      @color11;
-    urgent:                      red;
-
-    text-selected:               @background;
-    text-color:                  @foreground;
-    border-color:                @selected;
-}
+// Load matugen colors
+@theme "themes/matugen"
 
 /* ---- Window ---- */
 window {
@@ -52,7 +23,9 @@ window {
 
     // Style Values
     width:                      50%;
-    background-color:           #00000099;
+    background-color:           @background;
+    text-color:                 @text;
+    border-color:               @frame-border;
 }
 
 /* ----- Main Box ----- */
@@ -69,7 +42,7 @@ inputbar {
     enabled:                     true;
     padding:                     10px 10px 10px 10px;
     margin:                      10px;
-    background-color:            transparent;
+    background-color:            @background-alt;
     border-radius:               25px;
     orientation:                 horizontal;
     children:                    ["entry", "dummy", "mode-switcher" ];
@@ -82,7 +55,7 @@ entry {
     width:                       300px;
     padding:                     10px;
     border-radius:               12px;
-    background-color:            @background;
+    background-color:            @input-background;
     text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "  Search "; // << Search symbol
@@ -113,6 +86,7 @@ listview {
     spacing:                     10px;
     padding:					 10px;
     background-color:            transparent;
+    text-color:                  @text;
 
 //  Adapt rofi theme
     border:                      0px;
@@ -122,8 +96,8 @@ listview {
 scrollbar {
   	border:						0px;
   	border-radius:				10px;
-  	background-color:			transparent;
-  	handle-color: 				@active;
+  	background-color:			@background-alt;
+  	handle-color: 				@accent;
   	handle-width: 				2px ;
   	padding:      				0;
 }
@@ -137,19 +111,19 @@ dummy {
 mode-switcher{
     enabled:                     true;
     spacing:                     10px;
-    background-color:            transparent;
+    background-color:            @background-alt;
 }
 button {
     width:                       5%;
     padding:                     12px;
     border-radius:               12px;
-    background-color:            @background;
-    text-color:                  inherit;
+    background-color:            @button-background;
+    text-color:                  @button-text;
     cursor:                      pointer;
 }
 button selected {
-    background-color:            @active;
-    text-color:                  @text-selected;
+    background-color:            @accent;
+    text-color:                  @accent-text;
 }
 
 
@@ -159,7 +133,7 @@ element {
     spacing:                     10px;
     padding:                     15px;
     border-radius:               10px;
-    background-color:            transparent;
+    background-color:            @accent;
     cursor:                      pointer;
 }
 
@@ -168,27 +142,27 @@ element normal.normal {
     text-color:                  inherit;
 }
 element normal.urgent {
-    background-color:            @urgent;
-    text-color:                  @foreground;
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
 }
 
 element-text selected,
 element normal.active {
-    background-color:            @active;
-    text-color:                  @foreground;
+    background-color:            @active-background;
+    text-color:                  @active-text;
 }
 
 element selected.normal {
-    background-color:            @color11;
-    text-color:                  @text-selected;
+    background-color:            @accent;
+    text-color:                  @accent-text;
 }
 element selected.urgent {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
 }
 element selected.active {
-    background-color:            @urgent;
-    text-color:                  @text-selected;
+    background-color:            @active-background;
+    text-color:                  @active-text;
 }
 // Adapt rofi theme
 element alternate.normal {
@@ -200,8 +174,8 @@ element alternate.urgent {
     text-color:                  inherit;
 }
 element alternate.active {
-    background-color:            transparent;
-    text-color:                  inherit;
+    background-color:            @active-background;
+    text-color:                  @active-text;
 }
 element-icon {
     background-color:            transparent;
@@ -220,21 +194,21 @@ element-text {
 
 /* ---- Message ---- */
 message {
-    background-color:            @background;
+    background-color:            transparent;
     border:                      0px;
 }
 textbox {
 	margin:						 10px;
     padding:                     12px;
     border-radius:               10px;
-    background-color:            @active;
-    text-color:                  @foreground;
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
     vertical-align:              0.5;
     horizontal-align:            0.5;
 }
 error-message {
     padding:                     12px;
     border-radius:               20px;
-    background-color:            @background;
-    text-color:                  @foreground;
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
 }
