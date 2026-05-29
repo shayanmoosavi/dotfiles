@@ -1,8 +1,13 @@
 {
     "workspace": {
-        "library": ["/usr/share/hypr/stubs"]
+        "library": ["/usr/share/hypr/stubs"],
+        "ignoreDir": [
+            ".vscode",
+            "matugen/.config/matugen/templates"
+        ]
     },
     "diagnostics": {
-        "globals": ["hl"]
+        "globals": ["hl"],
+        "ignoredFiles": "Disable"
     }
 }
