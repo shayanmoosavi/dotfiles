@@ -1,3 +1,3 @@
 @import "settings"
 @import "fonts"
-@theme "themes/style"
+@theme "themes/style-matugen"
