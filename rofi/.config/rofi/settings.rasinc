@@ -1,0 +1,9 @@
+// Configuration options
+configuration {
+    modes:                      "drun,window";
+    show-icons:                 true;
+    hover-select:               true;
+    display-drun:               "󰀻 Apps";
+    display-window:             " Window";
+	window-format:              "{w} | {c} | {t}";
+}

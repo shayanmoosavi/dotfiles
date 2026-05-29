@@ -1,2 +1,3 @@
-@import "~/.config/rofi/fonts.rasi"
-@theme "~/.config/rofi/themes/KooL_style-6.rasi"
+@import "settings"
+@import "fonts"
+@theme "themes/KooL_style-6"
