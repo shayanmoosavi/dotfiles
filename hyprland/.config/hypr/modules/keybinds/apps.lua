@@ -30,6 +30,10 @@ hl.bind(default.MainMod .. " + " .. "V", hl.dsp.exec_cmd(clipse_cmd), {
 })
 
 -- # Change Wallpaper
--- bind = $mainMod, W, exec, ~/.config/hypr/scripts/Wallpaper.sh
+local scripts_dir = os.getenv("HOME") .. "/.config/hypr/scripts/"
+local wallpaper_cmd_prefix = default.Terminal .. " --title 'Wallpaper Picker' -e "
+local wallpaper_cmd = wallpaper_cmd_prefix .. "python3 " .. scripts_dir .. "wallpaper.py"
 
--- TODO: Migrate Wallpaper script to Lua
+hl.bind(default.MainMod .. " + " .. "W", hl.dsp.exec_cmd(wallpaper_cmd), {
+    description = "Change Wallpaper"
+})
