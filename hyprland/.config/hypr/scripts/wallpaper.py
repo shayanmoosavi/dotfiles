@@ -1,4 +1,7 @@
-"""Sets wallpaper and generate a color palette from it using Matugen and Wallust."""
+"""Wallpaper picker and setter module for Hyprland.
+
+Sets wallpaper and generate a color palette from it using Matugen and Wallust.
+"""
 
 import os
 import subprocess
@@ -24,7 +27,15 @@ SDDM_SCRIPT = Path(__file__).parent / "update_sddm.py"
 
 
 def get_mtime(path: Path) -> float:
-    """Return mtime of a file, or 0.0 if it doesn't exist."""
+    """
+    Gets the last modification time of a file.
+
+    Args:
+        path (pathlib.Path): The path to the file.
+
+    Returns:
+        float: mtime of a file, or 0.0 if it doesn't exist.
+    """
     try:
         return path.stat().st_mtime
     except FileNotFoundError:
@@ -50,13 +61,23 @@ def read_wallpaper_from_config() -> Path | None:
 
 
 def link_for_hyprlock(wallpaper: Path) -> None:
-    """Symlink the selected wallpaper to the path hyprlock expects."""
+    """
+    Symlink the selected wallpaper to the path hyprlock expects.
+
+    Args:
+        wallpaper (pathlib.Path): The path to the selected wallpaper.
+    """
     HYPRLOCK_WALLPAPER.unlink(missing_ok=True)
     HYPRLOCK_WALLPAPER.symlink_to(wallpaper)
 
 
 def launch_sddm_update(wallpaper: Path) -> None:
-    """Run update_sddm.py in a kitty terminal via hyprctl."""
+    """
+    Run update_sddm.py in a kitty terminal via hyprctl.
+
+    Args:
+        wallpaper (pathlib.Path): The path to the selected wallpaper.
+    """
     cmd = (
         'kitty --title="Update SDDM Wallpaper"'
         f' -e python3 {SDDM_SCRIPT} "{str(wallpaper)}"'
@@ -65,7 +86,12 @@ def launch_sddm_update(wallpaper: Path) -> None:
 
 
 def generate_palette(wallpaper: Path) -> None:
-    """Run wallust and matugen to derive a color palette from the wallpaper."""
+    """
+    Run wallust and matugen to derive a color palette from the wallpaper.
+
+    Args:
+        wallpaper (pathlib.Path): The path to the selected wallpaper.
+    """
     print("Generating color palette from current wallpaper...")
 
     for cmd in [
