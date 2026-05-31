@@ -9,21 +9,21 @@
         "format": " ",
         "tooltip": true,
         "tooltip-format": "Launch Browser",
-        "on-click": "~/.config/hypr/scripts/Launcher.sh --browser",
+        "on-click": "python3 ~/.config/hypr/scripts/launcher.py --browser",
         "interval": "once"
     },
     "custom/file-manager": {
         "format": " ",
         "tooltip": true,
         "tooltip-format": "Launch File Manager",
-        "on-click": "~/.config/hypr/scripts/Launcher.sh --file-manager",
+        "on-click": "python3 ~/.config/hypr/scripts/launcher.py --file-manager",
         "interval": "once"
     },
     "custom/terminal": {
         "format": " ",
         "tooltip": true,
         "tooltip-format": "Launch Terminal",
-        "on-click": "~/.config/hypr/scripts/Launcher.sh --terminal",
+        "on-click": "python3 ~/.config/hypr/scripts/launcher.py --terminal",
         "interval": "once"
     },
     "custom/app-drawer": {
