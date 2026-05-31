@@ -15,7 +15,7 @@ MAX_LOG_SIZE = 1_048_576  # 1 MB
 LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 # Path to the defaults.lua file, used by launcher.py and other scripts that need to read/write default module settings.
-_DEFAULTS = Path.home() / ".config/hypr/modules/defaults.lua"
+_DEFAULTS = Path.home() / ".config/hypr/modules/keybinds/defaults.lua"
 
 # Logging
 # ------------------------------------------------------------------------------------------------------------------------------
@@ -52,9 +52,9 @@ def is_running(process_name: str) -> bool:
 # ------------------------------------------------------------------------------------------------------------------------------
 
 _APP_MAP: dict[str, tuple[str, str]] = {
-    "browser": ("browser", "firefox"),
-    "file-manager": ("filemanager", "thunar"),
-    "terminal": ("terminal", "kitty"),
+    "browser": ("Browser", "firefox"),
+    "file-manager": ("FileManager", "thunar"),
+    "terminal": ("Terminal", "kitty"),
 }
 
 
