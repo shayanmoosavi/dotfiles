@@ -2,7 +2,7 @@
 -- ==============================================================================================================================================
 
 -- MainMod key
-local mainMod = require("modules.keybinds.defaults").MainMod
+local mainMod = require("modules.defaults").MainMod
 
 local kill = require("utils.keybinds.kill").kill
 

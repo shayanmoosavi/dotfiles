@@ -2,7 +2,7 @@
 -- ==============================================================================================================================================
 
 -- MainMod Key
-local mainMod = require("modules.keybinds.defaults").MainMod
+local mainMod = require("modules.defaults").MainMod
 
 -- Cycle workspaces on monitor
 hl.bind(mainMod .. " + " .. "TAB", hl.dsp.focus({ workspace = "m+1" }), {

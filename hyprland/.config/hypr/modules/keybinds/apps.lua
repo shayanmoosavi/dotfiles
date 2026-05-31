@@ -1,7 +1,7 @@
 -- Application Keybinds
 -- ==============================================================================================================================================
 
-local default = require("modules.keybinds.defaults")
+local default = require("modules.defaults")
 
 -- Launch terminal
 hl.bind(default.MainMod .. " + " .. "Return", hl.dsp.exec_cmd(default.Terminal), {
