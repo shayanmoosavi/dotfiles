@@ -1,34 +1,11 @@
 -- Special Keys Keybinds
 -- ==============================================================================================================================================
 
--- Import required helpers
-local volume = require("utils.keybinds.volume")
-local brightness = require("utils.keybinds.brightness")
+-- Importing the declarative keybind specs and the keybind manager
+local special_keybinds = require("modules.keybinds.declarative.specs").special
+local bind = require("utils.keybinds.manager").bind
 
--- Volume Control
--- --------------------------------------------------------------------------------------------------------------------------------------
-
-hl.bind("XF86AudioRaiseVolume", volume.up, {
-    repeating = true,
-    description = "Volume up"
-})
-
-hl.bind("XF86AudioLowerVolume", volume.down, {
-    repeating = true,
-    description = "Volume down"
-})
-
-hl.bind("XF86AudioMute", volume.mute, {
-    description = "Mute volume"
-})
-
--- Brightness Control
--- --------------------------------------------------------------------------------------------------------------------------------------
-
-hl.bind("XF86MonBrightnessUp", brightness.up, {
-    description = "Brightness up"
-})
-
-hl.bind("XF86MonBrightnessDown", brightness.down, {
-    description = "Brightness down"
-})
+-- Applying the keybinds using the manager
+for _, spec in ipairs(special_keybinds) do
+    bind(spec)
+end
