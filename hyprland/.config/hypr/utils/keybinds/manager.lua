@@ -11,6 +11,7 @@ function M.bind(specs)
     local key = specs.key
     local dsp_str = specs.dispatcher
     local args = specs.args
+    local repeating = specs.repeating
     local desc = specs.description
 
     local dsp = dispatcher[dsp_str]
@@ -21,13 +22,27 @@ function M.bind(specs)
 
     -- If there are no arguments, call the dispatcher directly. Otherwise, call it with the provided arguments.
     if not args then
-        hl.bind(key, dsp, {
-            description = desc,
-        })
+        if repeating then
+            hl.bind(key, dsp, {
+                description = desc,
+                repeating = true,
+            })
+        else
+            hl.bind(key, dsp, {
+                description = desc,
+            })
+        end
     else
-        hl.bind(key, dsp(args), {
-            description = desc,
-        })
+        if repeating then
+            hl.bind(key, dsp(args), {
+                description = desc,
+                repeating = true,
+            })
+        else
+            hl.bind(key, dsp(args), {
+                description = desc,
+            })
+        end
     end
 end
 
