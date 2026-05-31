@@ -3,9 +3,7 @@
 
 -- Importing the declarative keybind specs and the keybind manager
 local app_keybinds = require("modules.keybinds.declarative.specs").apps
-local bind = require("utils.keybinds.manager").bind
+local apply_keybinds = require("utils.keybinds.manager").apply_keybinds
 
 -- Applying the keybinds using the manager
-for _, spec in ipairs(app_keybinds) do
-    bind(spec)
-end
+apply_keybinds(app_keybinds)

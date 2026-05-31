@@ -6,7 +6,7 @@ local M = {}
 local dispatcher = require("utils.keybinds.dispatchers")
 
 -- Helper function to bind keybinds using the declarative specifications
-function M.bind(specs)
+local function bind(specs)
     -- Get the correct dispatcher from the declarative specs
     local key = specs.key
     local dsp_str = specs.dispatcher
@@ -43,6 +43,12 @@ function M.bind(specs)
                 description = desc,
             })
         end
+    end
+end
+
+function M.apply_keybinds(keybind_category)
+    for _, spec in ipairs(keybind_category) do
+        bind(spec)
     end
 end
 
