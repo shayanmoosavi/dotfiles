@@ -29,7 +29,6 @@ local dispatchers = {
     ["window.drag"] = hl.dsp.window.drag(),
     ["window.resize"] = hl.dsp.window.resize,
     ["window.swap"] = hl.dsp.window.swap,
-    ["window.focus"] = hl.dsp.focus,
     ["window.pseudo"] = hl.dsp.window.pseudo,
 
     -- For group management
@@ -37,7 +36,10 @@ local dispatchers = {
     ["group.next"] = hl.dsp.group.next(),
 
     -- For dwindle layout
-    ["togglesplit"] = hl.dsp.layout("togglesplit"),
+    ["layout"] = hl.dsp.layout,
+
+    -- For changing focus
+    ["focus"] = hl.dsp.focus,
 }
 
 return dispatchers

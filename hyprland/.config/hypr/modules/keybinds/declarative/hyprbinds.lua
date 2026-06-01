@@ -110,7 +110,10 @@ local hyprbinds = {
     },
     {
         key = mainMod .. " + " .. "I",
-        dispatcher = "togglesplit",
+        dispatcher = "layout",
+        opts = {
+            args = "togglesplit",
+        },
         description = "Toggle split",
     },
 }
@@ -178,7 +181,7 @@ for direction, properties in pairs(directions) do
     -- Move focus
     table.insert(hyprbinds, {
         key = mainMod .. " + CTRL + " .. properties.move_key,
-        dispatcher = "window.focus",
+        dispatcher = "focus",
         opts = {
             args = { direction = properties.focus_dir },
         },
