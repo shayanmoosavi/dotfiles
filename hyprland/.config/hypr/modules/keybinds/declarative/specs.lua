@@ -2,12 +2,10 @@
 -- ==============================================================================================================================================
 
 -- Importing the keybind specs
-local apps = require("modules.keybinds.declarative.apps")
-local special = require("modules.keybinds.declarative.special")
-
 local keybinds = {
-    apps = apps,
-    special = special,
+    require("modules.keybinds.declarative.apps"),
+    require("modules.keybinds.declarative.special"),
+    require("modules.keybinds.declarative.hyprbinds")
 }
 
 return keybinds

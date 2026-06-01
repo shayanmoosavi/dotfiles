@@ -3,11 +3,10 @@ local apply_keybinds = require("utils.keybinds.manager").apply_keybinds
 local exporter = require("utils.keybinds.exporter")
 
 -- Apply the keybinds
-for _, keybind_category in pairs(specs) do
+for _, keybind_category in ipairs(specs) do
     apply_keybinds(keybind_category)
 end
 
-require("modules.keybinds.hyprbinds")
 require("modules.keybinds.workspaces")
 
 -- Dump the fully evaluated table to a file for keybinds_reference.py
