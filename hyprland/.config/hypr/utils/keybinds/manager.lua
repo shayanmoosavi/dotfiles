@@ -10,9 +10,13 @@ local function bind(specs)
     -- Get the correct dispatcher from the declarative specs
     local key = specs.key
     local dsp_str = specs.dispatcher
-    local args = specs.args
-    local repeating = specs.repeating
     local desc = specs.description
+
+    -- Get the options and arguments from the declarative specs
+    local opts = specs.opts or nil
+    local args = opts and opts.args or nil
+    local repeating = opts and opts.repeating or nil
+
 
     local dsp = dispatcher[dsp_str]
 

@@ -14,31 +14,31 @@ local apps = {
     {
         key = mainMod .. " + " .. "Return",
         dispatcher = "exec",
-        args = terminal,
+        opts = { args = terminal },
         description = "Launch terminal",
     },
     {
         key = mainMod .. " + " .. "Space",
         dispatcher = "exec",
-        args = "rofi -show drun",
+        opts = { args = "rofi -show drun" },
         description = "Launch Application Launcher",
     },
     {
         key = mainMod .. " + " .. "SHIFT + Return",
         dispatcher = "exec",
-        args = file_manager,
+        opts = { args = file_manager },
         description = "Launch File Manager",
     },
     {
         key = mainMod .. " + " .. "B",
         dispatcher = "exec",
-        args = browser,
+        opts = { args = browser },
         description = "Launch Browser",
     },
     {
         key = mainMod .. " + " .. "V",
         dispatcher = "exec",
-        args = terminal .. " --class clipse -e clipse",
+        opts = { args = terminal .. " --class clipse -e clipse" },
         description = "Launch Clipboard Manager",
     }
 }
@@ -53,7 +53,7 @@ local wallpaper_cmd = wallpaper_cmd_prefix .. "python3 " .. scripts_dir .. "wall
 table.insert(apps, {
     key = mainMod .. " + " .. "W",
     dispatcher = "exec",
-    args = wallpaper_cmd,
+    opts = { args = wallpaper_cmd },
     description = "Change Wallpaper",
 })
 
