@@ -20,6 +20,24 @@ local dispatchers = {
 
     -- For the custom kill command
     ["kill"] = require("utils.keybinds.kill").kill,
+
+    -- For window management
+    ["window.close"] = hl.dsp.window.close(),
+    ["window.float"] = hl.dsp.window.float,
+    ["window.fullscreen"] = hl.dsp.window.fullscreen,
+    ["window.cycle_next"] = hl.dsp.window.cycle_next(),
+    ["window.drag"] = hl.dsp.window.drag(),
+    ["window.resize"] = hl.dsp.window.resize,
+    ["window.swap"] = hl.dsp.window.swap,
+    ["window.focus"] = hl.dsp.focus,
+    ["window.pseudo"] = hl.dsp.window.pseudo,
+
+    -- For group management
+    ["group.toggle"] = hl.dsp.group.toggle(),
+    ["group.next"] = hl.dsp.group.next(),
+
+    -- For dwindle layout
+    ["togglesplit"] = hl.dsp.layout("togglesplit"),
 }
 
 return dispatchers
