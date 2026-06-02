@@ -1,8 +1,2 @@
-local specs = require("modules.keybinds.declarative.specs")
-local exporter = require("utils.keybinds.exporter")
-
 require("modules.keybinds.bindall")
-
--- Dump the fully evaluated table to a file for keybinds_reference.py
-local json_path = os.getenv("HOME") .. "/.config/hypr/scripts/resources/keybinds.json"
-exporter.export(specs, json_path)
+require("modules.keybinds.export")
