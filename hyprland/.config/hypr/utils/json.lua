@@ -6,59 +6,54 @@ local M = {}
 -- Internal helpers
 -- ----------------------------------------------------------------------
 
--- Determine if a table acts as an array
-local function is_array(t)
-    local i = 1
-    for _ in pairs(t) do
-        if t[i] == nil then return false end
-        i = i + 1
-    end
-    return i > 1 or next(t) == nil
+-- Convert a string to a JSON-escaped string
+local function json_str(s)
+    -- Escape backslash first, then double-quote, then control characters
+    return '"' .. tostring(s)
+        :gsub('\\', '\\\\')
+        :gsub('"', '\\"')
+        :gsub('\n', '\\n')
+        :gsub('\r', '\\r')
+        :gsub('\t', '\\t')
+        .. '"'
 end
 
--- Escape special characters in a string
-local function escape_str(s)
-    local matches = {
-        ['"'] = '\\"',
-        ['\\'] = '\\\\',
-        ['\b'] = '\\b',
-        ['\f'] = '\\f',
-        ['\n'] = '\\n',
-        ['\r'] = '\\r',
-        ['\t'] = '\\t'
-    }
-    return s:gsub('["\\\b\f\n\r\t]', matches)
+-- Encode the keybind entry
+local function encode_bind(bind)
+    -- Only key and description are needed by the Python side;
+    -- dispatcher and opts are Hyprland-only concerns.
+    return string.format(
+        '{"key":%s,"description":%s}',
+        json_str(bind.key or ""),
+        json_str(bind.description or "")
+    )
+end
+
+-- Encode the section entry
+local function encode_section(section)
+    local bind_parts = {}
+    for _, bind in ipairs(section.binds) do
+        table.insert(bind_parts, encode_bind(bind))
+    end
+
+    return string.format(
+        '{"section":%s,"binds":[%s]}',
+        json_str(section.section or ""),
+        table.concat(bind_parts, ",")
+    )
 end
 
 -- Public API
 -- ----------------------------------------------------------------------
 
 function M.encode(val)
-    local t = type(val)
-
-    if t == "string" then
-        return '"' .. escape_str(val) .. '"'
-    elseif t == "number" or t == "boolean" then
-        return tostring(val)
-    elseif t == "table" then
-        if is_array(val) then
-            local parts = {}
-            for _, v in ipairs(val) do
-                table.insert(parts, M.encode(v))
-            end
-            return "[" .. table.concat(parts, ",") .. "]"
-        else
-            local parts = {}
-            for k, v in pairs(val) do
-                if type(k) == "string" then
-                    table.insert(parts, '"' .. escape_str(k) .. '":' .. M.encode(v))
-                end
-            end
-            return "{" .. table.concat(parts, ",") .. "}"
-        end
-    else
-        return "null"
+    -- Build and emit the top-level array
+    local section_parts = {}
+    for _, section in pairs(val) do
+        table.insert(section_parts, encode_section(section))
     end
+
+    return "[" .. table.concat(section_parts, ",") .. "]"
 end
 
 return M
