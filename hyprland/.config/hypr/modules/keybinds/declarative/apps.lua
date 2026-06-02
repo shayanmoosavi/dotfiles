@@ -57,4 +57,7 @@ table.insert(apps, {
     description = "Change Wallpaper",
 })
 
-return apps
+return {
+    section = "Applications",
+    binds = apps,
+}

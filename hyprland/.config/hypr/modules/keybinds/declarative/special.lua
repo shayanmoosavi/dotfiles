@@ -39,4 +39,7 @@ local special = {
     },
 }
 
-return special
+return {
+    section = "Special Keys",
+    binds = special,
+}

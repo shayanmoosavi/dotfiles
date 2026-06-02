@@ -189,4 +189,7 @@ for direction, properties in pairs(directions) do
     })
 end
 
-return hyprbinds
+return {
+    section = "Desktop",
+    binds = hyprbinds,
+}
