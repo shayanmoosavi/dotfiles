@@ -2,11 +2,15 @@
 -- ==============================================================================================================================================
 
 -- Importing the keybind specs
-local keybinds = {
-    apps = require("modules.keybinds.declarative.apps"),
-    special = require("modules.keybinds.declarative.special"),
-    hyprbinds = require("modules.keybinds.declarative.hyprbinds"),
-    workspaces = require("modules.keybinds.declarative.workspaces"),
-}
+-- IMPORTANT: It's important to assign them to variables due to require function behavior
+local apps = require("modules.keybinds.declarative.apps")
+local special = require("modules.keybinds.declarative.special")
+local hyprbinds = require("modules.keybinds.declarative.hyprbinds")
+local workspaces = require("modules.keybinds.declarative.workspaces")
 
-return keybinds
+return {
+    apps,
+    special,
+    hyprbinds,
+    workspaces,
+}
