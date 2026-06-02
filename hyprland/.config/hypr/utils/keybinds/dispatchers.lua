@@ -29,6 +29,7 @@ local dispatchers = {
     ["window.drag"] = hl.dsp.window.drag(),
     ["window.resize"] = hl.dsp.window.resize,
     ["window.swap"] = hl.dsp.window.swap,
+    ["window.move"] = hl.dsp.window.move,
     ["window.pseudo"] = hl.dsp.window.pseudo,
 
     -- For group management
