@@ -4,6 +4,8 @@
 -- MainMod key
 local mainMod = require("modules.defaults").MainMod
 
+local matugen = require("colors.matugen")
+
 local script_dir = os.getenv("HOME") .. "/.config/hypr/scripts"
 
 local hyprbinds = {
@@ -36,6 +38,15 @@ local hyprbinds = {
 
     -- Hyprland Control
     -- --------------------------------------------------------------------------------------------------------------------------------------
+    -- Keybind reference
+    -- TODO: Add the keybinds to config after finishing the implementation of keybinds_reference.py
+    -- hl.bind(mainMod .. " + " .. "slash", hl.dsp.exec_cmd(script_dir .. "/KeybindsReference.sh"), {
+    --     description = "Keybind reference",
+    -- })
+
+    -- hl.bind(mainMod .. " + " .. "SHIFT + slash", hl.dsp.exec_cmd(script_dir .. "/KeybindsReference.sh --tui"), {
+    --     description = "Keybind reference (TUI)",
+    -- })
     {
         key = mainMod .. " + " .. "Q",
         dispatcher = "window.close",
@@ -191,5 +202,9 @@ end
 
 return {
     section = "Desktop",
+    icon = "",
+    color = matugen.tertiary_container,
+    color_sep = matugen.tertiary_fixed,
+    color_desc = matugen.tertiary_fixed_dim,
     binds = hyprbinds,
 }

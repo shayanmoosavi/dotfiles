@@ -8,6 +8,8 @@ local terminal = defaults.Terminal
 local file_manager = defaults.FileManager
 local browser = defaults.Browser
 
+local matugen = require("colors.matugen")
+
 local scripts_dir = os.getenv("HOME") .. "/.config/hypr/scripts/"
 
 local apps = {
@@ -59,5 +61,9 @@ table.insert(apps, {
 
 return {
     section = "Applications",
+    icon = "",
+    color = matugen.primary_container,
+    color_sep = matugen.primary_fixed,
+    color_desc = matugen.primary_fixed_dim,
     binds = apps,
 }
