@@ -280,6 +280,18 @@ return {
             }
         },
 
+        -- Wallpaper picker
+        wallpaper_picker = {
+            name = "float-center-wallpaper-picker",
+            match = {
+                title = "Wallpaper Picker",
+            },
+            size = {
+                "monitor_w * 0.4",
+                "monitor_h * 0.4",
+            }
+        },
+
         -- Waypaper
         waypaper = {
             name = "float-center-waypaper",
