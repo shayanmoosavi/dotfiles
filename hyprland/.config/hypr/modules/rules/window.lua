@@ -4,6 +4,9 @@
 -- Import helpers
 local tags = require("utils.rules.tags")
 
+-- Internal helpers
+-- --------------------------------------------------------------------------------------------------------------------------------------
+
 -- Helper function for floating and centering windows
 local function float_and_center(specs)
     local float_and_center_specs = {
@@ -33,46 +36,23 @@ local function apply_rules(specs, is_float_center)
     end
 end
 
--- Tags
+-- Applying window rules
 -- --------------------------------------------------------------------------------------------------------------------------------------
--- Tagging certain grouped windows for easier window rules
 
 tags.tag_browser_type()
 tags.tag_games()
 tags.tag_settings()
 
--- Window rule specs for tagging different window categories
-local tag_specs = require("modules.rules.declarative").Tags
+-- Importing declarative window rule specs
+local window_specs = require("modules.rules.declarative.specs").Window
 
--- Apply window rules
-apply_rules(tag_specs)
-
--- Window rules
--- --------------------------------------------------------------------------------------------------------------------------------------
-
--- Window rule specs for no blur
-local no_blur_specs = require("modules.rules.declarative").NoBlur
-
--- Apply window rules
-apply_rules(no_blur_specs)
-
--- Window rule specs for no idle
-local no_idle_specs = require("modules.rules.declarative").NoIdle
-
--- Apply no idle window rule specs
-apply_rules(no_idle_specs)
-
--- Window rule specs for floating and centering windows
-local float_center_specs = require("modules.rules.declarative").FloatCenter
-
--- Apply float center window rule specs
-apply_rules(float_center_specs, true)
-
--- Window rule specs for picture-in-picture
-local pip_specs = require("modules.rules.declarative").PiP
-
--- Apply picture-in-picture window rule specs
-apply_rules(pip_specs)
+for category, specs in pairs(window_specs) do
+    if category == "FloatCenter" then
+        apply_rules(specs, true)
+    else
+        apply_rules(specs)
+    end
+end
 
 -- Move to workspace window rules
 local workspace_categories = {
