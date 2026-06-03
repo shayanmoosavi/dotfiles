@@ -41,4 +41,7 @@ hl.on("hyprland.start", function()
 
     -- Waybar
     hl.exec_cmd("waybar")
+
+    -- Hyprsunset
+    hl.exec_cmd("hyprsunset")
 end)
