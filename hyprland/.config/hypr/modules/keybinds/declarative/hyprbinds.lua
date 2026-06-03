@@ -1,12 +1,16 @@
 -- Declarative specification for Hyprland core keybinds
 -- ==============================================================================================================================================
 
--- MainMod key
+-- Defaults
 local mainMod = require("modules.defaults").MainMod
+local terminal = require("modules.defaults").Terminal
 
 local matugen = require("colors.matugen")
 
 local script_dir = os.getenv("HOME") .. "/.config/hypr/scripts"
+local key_ref_cmd_prefix = terminal .. ' --title="Keybinds Reference" -e'
+local keybind_ref_cmd = "python3 " .. script_dir .. "/keybinds_reference.py" .. " --rofi"
+local keybind_ref_tui_cmd = key_ref_cmd_prefix .. " python3 " .. script_dir .. "/keybinds_reference.py" .. " --tui"
 
 local hyprbinds = {
     -- Session Control
@@ -38,15 +42,18 @@ local hyprbinds = {
 
     -- Hyprland Control
     -- --------------------------------------------------------------------------------------------------------------------------------------
-    -- Keybind reference
-    -- TODO: Add the keybinds to config after finishing the implementation of keybinds_reference.py
-    -- hl.bind(mainMod .. " + " .. "slash", hl.dsp.exec_cmd(script_dir .. "/KeybindsReference.sh"), {
-    --     description = "Keybind reference",
-    -- })
-
-    -- hl.bind(mainMod .. " + " .. "SHIFT + slash", hl.dsp.exec_cmd(script_dir .. "/KeybindsReference.sh --tui"), {
-    --     description = "Keybind reference (TUI)",
-    -- })
+    {
+        key = mainMod .. " + " .. "slash",
+        dispatcher = "exec",
+        opts = { args = keybind_ref_cmd },
+        description = "Keybind reference",
+    },
+    {
+        key = mainMod .. " + " .. "SHIFT + slash",
+        dispatcher = "exec",
+        opts = { args = keybind_ref_tui_cmd },
+        description = "Keybind reference (TUI)",
+    },
     {
         key = mainMod .. " + " .. "Q",
         dispatcher = "window.close",
