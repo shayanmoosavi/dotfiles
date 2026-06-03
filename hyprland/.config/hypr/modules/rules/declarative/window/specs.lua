@@ -10,6 +10,7 @@ local window_specs = {
     NoIdle = require(decl_window .. ".noidle"),
     PictureInPicture = require(decl_window .. ".picture_in_picture"),
     FloatCenter = require(decl_window .. ".float_center"),
+    MoveToWorkspace = require(decl_window .. ".move_to_workspace"),
 }
 
 return window_specs

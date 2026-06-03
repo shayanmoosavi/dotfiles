@@ -53,22 +53,3 @@ for category, specs in pairs(window_specs) do
         apply_rules(specs)
     end
 end
-
--- Move to workspace window rules
-local workspace_categories = {
-    browser = 1,
-    social = 3,
-    ide = 4,
-    gamelauncher = 5,
-    games = 6,
-}
-
-for category, workspace in pairs(workspace_categories) do
-    hl.window_rule({
-        name = "move-" .. category .. "-to-" .. workspace,
-        match = {
-            tag = category .. "*",
-        },
-        workspace = workspace,
-    })
-end
