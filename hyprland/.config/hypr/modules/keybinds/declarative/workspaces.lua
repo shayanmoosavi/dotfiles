@@ -60,7 +60,7 @@ local workspaces = {
 -- Dynamic insertions into the keybinds table for commands that require some setup
 -- ---------------------------------------------------------------------------------------------------------------------
 
--- Number keys key code mapping
+-- Number row key code mapping
 local number_keys = {
     [1] = "code:10",
     [2] = "code:11",
@@ -71,12 +71,10 @@ local number_keys = {
     [7] = "code:16",
     [8] = "code:17",
     [9] = "code:18",
-    [0] = "code:19",
+    [10] = "code:19",
 }
 
 for number, keycode in pairs(number_keys) do
-    local desc_number = number == 0 and 10 or number
-
     -- Switch to specified workspace with mainMod + [0-9]
     table.insert(workspaces, {
         key = mainMod .. " + " .. keycode,
@@ -84,7 +82,7 @@ for number, keycode in pairs(number_keys) do
         opts = {
             args = { workspace = number }
         },
-        description = "Switch to workspace " .. desc_number,
+        description = "Switch to workspace " .. number,
     })
 
     -- Move active window and follow to workspace with mainMod + SHIFT + [0-9]
@@ -94,7 +92,7 @@ for number, keycode in pairs(number_keys) do
         opts = {
             args = { workspace = number }
         },
-        description = "Move active window to workspace " .. desc_number,
+        description = "Move active window to workspace " .. number,
     })
 
     -- Move active window to a workspace silently with mainMod + CTRL + [0-9]
@@ -104,7 +102,7 @@ for number, keycode in pairs(number_keys) do
         opts = {
             args = { workspace = number, follow = false }
         },
-        description = "Move active window to workspace " .. desc_number .. " (silent)",
+        description = "Move active window to workspace " .. number .. " (silent)",
     })
 end
 
