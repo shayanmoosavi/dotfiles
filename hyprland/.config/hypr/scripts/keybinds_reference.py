@@ -1,38 +1,26 @@
-import re
-import yaml
+import json
 import subprocess
 import sys
 from pathlib import Path
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.columns import Columns
-from rich.text import Text
+
 from rich import box
-from typing import Dict
+from rich.columns import Columns
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
 
 
 class KeybindReference:
     def __init__(self):
-        self.descriptions = None
-        self.categories = None
         self.console = Console()
         self.hypr_config = Path.home() / ".config/hypr"
-        self.descriptions_file = (
-            self.hypr_config / "scripts/resources/keybind_descriptions.yaml"
-        )
-        self.keybind_files = [
-            self.hypr_config / "keybinds/apps.conf",
-            self.hypr_config / "keybinds/hypr.conf",
-            self.hypr_config / "keybinds/workspaces.conf",
-        ]
 
         # Initialize key mappings
         self.key_mappings = self._create_key_mappings()
 
         # Load descriptions and config
-        self.load_descriptions()
-        self.keybinds = self.parse_keybinds()
+        self.keybinds = self._load_keybinds()
 
     @staticmethod
     def _create_key_mappings() -> dict:
@@ -67,6 +55,12 @@ class KeybindReference:
             "slash": "/",
             "minus": "-",
             "equal": "=",
+            # Special function keys
+            "XF86AudioRaiseVolume": "󰝝",
+            "XF86AudioLowerVolume": "󰝞",
+            "XF86AudioMute": "󰸈",
+            "XF86MonBrightnessUp": "󰃠+",
+            "XF86MonBrightnessDown": "󰃠-",
             # Arrow keys
             "left": "←",
             "right": "→",
@@ -78,6 +72,8 @@ class KeybindReference:
             "BackSpace": "⌫ Backspace",
             "Escape": "󱊷 Esc",
             "Space": "␣ Space",
+            # SUPER key
+            "SUPER": "",
         }
 
     def _format_key(self, key: str) -> str:
@@ -94,74 +90,22 @@ class KeybindReference:
         # For unmapped keys, return as-is
         return key
 
-    def load_descriptions(self):
-        """Load descriptions from YAML file"""
-        try:
-            with open(self.descriptions_file, "r") as f:
-                data = yaml.safe_load(f)
-                self.categories = data.get("categories", {})
-                self.descriptions = data.get("descriptions", {})
-        except FileNotFoundError:
-            self.console.print("[red]Error: keybind_descriptions.yaml not found![/red]")
-            sys.exit(1)
+    def _format_key_combo(self, combo: str) -> str:
+        """Formats a key combo string by replacing key codes with user-friendly representations"""
+        return " + ".join(self._format_key(part.strip()) for part in combo.split(" + "))
 
-    def parse_keybinds(self) -> Dict[str, list[Dict]]:
-        """Parse keybinds from config files"""
-        keybinds_by_category = {cat: [] for cat in self.categories.keys()}
+    def _load_keybinds(self) -> list[dict]:
+        """Loads the keybinds from keybinds.json, and format key combos for display."""
+        keybinds_path = self.hypr_config / "scripts/resources/keybinds.json"
 
-        # Mapping from filename to category
-        file_to_category = {
-            "apps.conf": "Applications",
-            "hypr.conf": "Desktop",
-            "workspaces.conf": "Workspaces",
-        }
+        sections = json.loads(keybinds_path.read_text())
 
-        for config_file in self.keybind_files:
-            if not config_file.exists():
-                continue
+        # Format key combos in-place so both UI modes see friendly strings
+        for section in sections:
+            for bind in section["binds"]:
+                bind["key"] = self._format_key_combo(bind["key"])
 
-            category = file_to_category.get(config_file.name, "Other")
-            if category not in keybinds_by_category:
-                keybinds_by_category[category] = []
-
-            with open(config_file, "r") as f:
-                content = f.read()
-
-            # Parse different bind types
-            patterns = [
-                r"bind\s*=\s*([^,]+),\s*([^,]+),\s*(.+)",
-                r"binde\s*=\s*([^,]+),\s*([^,]+),\s*(.+)",
-                r"bindm\s*=\s*([^,]+),\s*([^,]+),\s*(.+)",
-            ]
-
-            for pattern in patterns:
-                matches = re.findall(pattern, content)
-                for modifier, key, action in matches:
-                    # Replace $mainMod with SUPER
-                    modifier = modifier.strip().replace("$mainMod", "")
-                    key = key.strip()
-                    action = action.strip()
-
-                    # Format the key using our mapping
-                    formatted_key = self._format_key(key)
-
-                    # Create keybind string and get description
-                    keybind_str = (
-                        f"{modifier} + {formatted_key}"
-                        if modifier != ""
-                        else f" + {formatted_key}"
-                    )
-                    description = self.descriptions.get(action, action)
-
-                    keybinds_by_category[category].append(
-                        {
-                            "keybind": keybind_str,
-                            "action": action,
-                            "description": description,
-                        }
-                    )
-
-        return keybinds_by_category
+        return sections
 
     def show_tui(self):
         """Display rich TUI"""
@@ -169,33 +113,31 @@ class KeybindReference:
 
         # Title
         title = Text(
-            "Hyprland Keybind Reference", style="bold magenta", justify="center"
+            " Hyprland Keybind Reference", style="bold magenta", justify="center"
         )
         self.console.print(Panel(title, box=box.DOUBLE))
         self.console.print()
 
         # Create tables for each category
         tables = []
-        for category, binds in self.keybinds.items():
-            if not binds:
+        for section in self.keybinds:
+            if not section["binds"]:
                 continue
 
-            cat_info = self.categories.get(category, {})
-            icon = cat_info.get("icon", "📝")
-            color = cat_info.get("color", "white")
-
             table = Table(
-                title=f"{icon} {category}", box=box.ROUNDED, title_style=f"bold {color}"
+                title=f"{section['icon']} {section['section']}",
+                box=box.ROUNDED,
+                title_style=f"bold {section['color']}",
+                style=f"{section['color_sep']}",
             )
-            table.add_column("Keybind", style="cyan", width=20)
-            table.add_column("Description", style="white")
+            table.add_column("Keybind", style=section["color"], width=24)
+            table.add_column("Description", style=section["color_desc"])
 
-            for bind in binds:
-                table.add_row(bind["keybind"], bind["description"])
+            for bind in section["binds"]:
+                table.add_row(bind["key"], bind["description"])
 
             tables.append(table)
 
-        # Display in columns
         self.console.print(Columns(tables, equal=True, expand=True))
 
         # Footer
@@ -217,59 +159,32 @@ class KeybindReference:
         # Prepare rofi data
         rofi_entries = []
 
-        # Define color scheme (Catppuccin-inspired)
-        colors = {
-            "Applications": "#89dceb",  # Cyan
-            "Desktop": "#a6e3a1",  # Green
-            "Workspaces": "#cba6f7",  # Magenta
-        }
-
-        # Description color scheme (analogous colors)
-        colors_desc = {
-            "Applications": "#89abeb",
-            "Desktop": "#a1e3bc",
-            "Workspaces": "#f3a6f7",
-        }
-
-        # Seperator color scheme (complementary colors)
-        colors_sep = {
-            "Applications": "#eb9889",
-            "Desktop": "#dda1e3",
-            "Workspaces": "#d3f7a6",
-        }
-
-        for category, binds in self.keybinds.items():
-            if not binds:
+        for section in self.keybinds:
+            if not section["binds"]:
                 continue
 
-            cat_info = self.categories.get(category, {})
-            icon = cat_info.get("icon", "📝")
-            category_color = colors.get(category, "#cdd6f4")
-            seperator_color = colors_sep.get(category, "#f4ebcd")
-            description_color = colors_desc.get(category, "#cdeaf4")
+            # Define color scheme
+            color = section["color"]
+            color_desc = section.get("color_desc", color)
+            color_sep = section.get("color_sep", color)
 
-            # Styled category header with background
-            header = f"<span background='{category_color}' foreground='#1e1e2e' weight='bold' size='large'> {icon} {category.upper()} </span>"
-            rofi_entries.append(header)
-            rofi_entries.append(
-                f"<span foreground='{seperator_color}'>{'─' * 100}</span>"
-            )  # Spacing after header
-
-            # Add keybinds
-            for bind in binds:
-                # Format: [KEYBIND] │ Description
-                keybind_part = f"<span foreground='{category_color}' weight='bold'>{bind['keybind']:<25}</span>"
-                separator = f"<span foreground='{seperator_color}'>│</span>"
-                desc_part = f"<span foreground='{description_color}'>{bind['description']}</span>"
-
-                entry = f"{keybind_part} {separator} {desc_part}"
-                rofi_entries.append(entry)
-
-            # Category separator
-            rofi_entries.append(
-                f"<span foreground='{seperator_color}'>{'─' * 100}</span>"
+            header = (
+                f"<span background='{color}' foreground='#1e1e2e' "
+                f"weight='bold' size='large'> {section['icon']} {section['section'].upper()} </span>"
             )
-            rofi_entries.append("")  # Separator
+            rofi_entries.append(header)
+            rofi_entries.append(f"<span foreground='{color_sep}'>{'─' * 100}</span>")
+
+            for bind in section["binds"]:
+                keybind_part = f"<span foreground='{color}'      weight='bold'>{bind['key']:<25}</span>"
+                separator = f"<span foreground='{color_sep}'>│</span>"
+                desc_part = (
+                    f"<span foreground='{color_desc}'>{bind['description']}</span>"
+                )
+                rofi_entries.append(f"{keybind_part} {separator} {desc_part}")
+
+            rofi_entries.append(f"<span foreground='{color_sep}'>{'─' * 100}</span>")
+            rofi_entries.append("")
 
         # Create rofi command
         rofi_input = "\n".join(rofi_entries)
