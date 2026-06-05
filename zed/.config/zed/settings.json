@@ -55,7 +55,7 @@
     "theme": {
         "mode": "system",
         "light": "Catppuccin Latte",
-        "dark": "Catppuccin Frappé",
+        "dark": "Matugen Dark",
     },
     // Whether to confirm before quitting Zed.
     "confirm_quit": true,
