@@ -1,7 +1,7 @@
 # Wallust config
 
 # full - resized - wal - thumb -  fastresize - kmeans
-backend = "fastresize"
+backend = "full"
 check_contrast = true
 
 # lab - labmixed - lch - lchmixed - lchansi
@@ -11,7 +11,7 @@ color_space = "lch"
 fallback_generator = "complementary"
 
 # Use 'lchansi' color space if you choose ansi color palettes (ansidark, ansidark16) for best results
-palette = "saliencedarkbalanced16"
+palette = "softdark16"
 
 # Difference between similar colors, used by the colorspace. Wallust automatically uses the best value.
 # Only set this if you don't like the resulting color palette. Different color spaces may require different values.
