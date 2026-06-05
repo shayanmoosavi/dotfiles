@@ -2,7 +2,7 @@
 
 return {
     MainMod = "SUPER",
-    Browser = "floorp",
+    Browser = "zen-browser",
     Terminal = "kitty",
     FileManager = "thunar",
 }
