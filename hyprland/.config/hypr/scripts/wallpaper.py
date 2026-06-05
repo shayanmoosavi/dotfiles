@@ -95,8 +95,7 @@ def generate_palette(wallpaper: Path) -> None:
     print("Generating color palette from current wallpaper...")
 
     for cmd in [
-        # TODO: Fix wallust templates and config to get better colors
-        # ["wallust", "run", str(wallpaper)],
+        ["wallust", "run", str(wallpaper)],
         ["matugen", "image", str(wallpaper)],
     ]:
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
