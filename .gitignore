@@ -8,3 +8,4 @@ hyprland/.config/waybar/colors/
 rofi/.config/rofi/wallust/colors-rofi.rasi
 rofi/.config/rofi/themes/matugen.rasinc
 nvim/.config/nvim/lazy-lock.json
+kitty/.config/kitty/wallust.conf
