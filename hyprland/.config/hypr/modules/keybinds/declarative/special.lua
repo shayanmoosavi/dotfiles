@@ -44,8 +44,5 @@ local special = {
 return {
     section = "Special Keys",
     icon = "󰬍",
-    color = matugen.secondary_container,
-    color_sep = matugen.secondary_fixed,
-    color_desc = matugen.secondary_fixed_dim,
     binds = special,
 }

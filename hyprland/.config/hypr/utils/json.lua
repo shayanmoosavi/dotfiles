@@ -37,12 +37,9 @@ local function encode_section(section)
     end
 
     return string.format(
-        '{"section":%s,"icon":%s,"color":%s,"color_desc":%s,"color_sep":%s,"binds":[%s]}',
+        '{"section":%s,"icon":%s,"binds":[%s]}',
         json_str(section.section or "Undefined"),
         json_str(section.icon or "󰆧"),
-        json_str(section.color or "#ffffff"),
-        json_str(section.color_desc or section.color or "#ffffff"),
-        json_str(section.color_sep or section.color or "#ffffff"),
         table.concat(bind_parts, ",")
     )
 end

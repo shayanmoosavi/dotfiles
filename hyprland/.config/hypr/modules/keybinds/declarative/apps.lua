@@ -62,8 +62,5 @@ table.insert(apps, {
 return {
     section = "Applications",
     icon = "",
-    color = matugen.primary_container,
-    color_sep = matugen.primary_fixed,
-    color_desc = matugen.primary_fixed_dim,
     binds = apps,
 }

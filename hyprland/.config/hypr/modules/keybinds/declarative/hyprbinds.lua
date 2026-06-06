@@ -210,8 +210,5 @@ end
 return {
     section = "Desktop",
     icon = "",
-    color = matugen.tertiary_container,
-    color_sep = matugen.tertiary_fixed,
-    color_desc = matugen.tertiary_fixed_dim,
     binds = hyprbinds,
 }
