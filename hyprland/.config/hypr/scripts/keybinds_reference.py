@@ -1,6 +1,7 @@
 import json
 import subprocess
 import sys
+from dataclasses import field
 from pathlib import Path
 
 from rich import box
@@ -15,11 +16,13 @@ class KeybindReference:
     def __init__(self):
         self.console = Console()
         self.hypr_config = Path.home() / ".config/hypr"
+        self.colors_path = self.hypr_config / "scripts/resources/keybind-colors.json"
 
         # Initialize key mappings
         self.key_mappings = self._create_key_mappings()
 
         # Load descriptions and config
+        self.global_colors: field(default_factory=dict)
         self.keybinds = self._load_keybinds()
 
     @staticmethod
@@ -94,26 +97,56 @@ class KeybindReference:
         """Formats a key combo string by replacing key codes with user-friendly representations"""
         return " + ".join(self._format_key(part.strip()) for part in combo.split(" + "))
 
+    def _load_colors(self) -> dict:
+        """Read the matugen-generated color file. Warns and returns empty dict if missing."""
+        if not self.colors_path.exists():
+            self.console.print(
+                "[yellow]Warning:[/yellow] keybind_colors.json not found — "
+                "run matugen to generate it. Falling back to plain colors."
+            )
+            return {}
+        return json.loads(self.colors_path.read_text())
+
     def _load_keybinds(self) -> list[dict]:
         """Loads the keybinds from keybinds.json, and format key combos for display."""
         keybinds_path = self.hypr_config / "scripts/resources/keybinds.json"
+        if not keybinds_path.exists():
+            self.console.print(
+                f"[red]Error:[/red] keybinds.json not found at {keybinds_path}. "
+                "Reload your Hyprland config to generate it."
+            )
+            sys.exit(1)
 
-        sections = json.loads(keybinds_path.read_text())
+        keybinds = json.loads(keybinds_path.read_text())
+        colors = self._load_colors()
+
+        # Store global colors so show_tui / show_rofi can use them without re-reading
+        self.global_colors = colors.get("global", {})
+        section_colors: dict = colors.get("sections", {})
 
         # Format key combos in-place so both UI modes see friendly strings
-        for section in sections:
+        for section in keybinds:
+            section_color = section_colors.get(section["section"], {})
+            # Fall back gracefully: color_desc → color, color_sep → color if not specified
+            section["color"] = section_color.get("color", "#ffffff")
+            section["color_desc"] = section_color.get("color_desc", section["color"])
+            section["color_sep"] = section_color.get("color_sep", section["color"])
+
             for bind in section["binds"]:
                 bind["key"] = self._format_key_combo(bind["key"])
 
-        return sections
+        return keybinds
 
     def show_tui(self):
         """Display rich TUI"""
         self.console.clear()
 
+        accent = self.global_colors.get("title_bg", "magenta")
+        muted = self.global_colors.get("muted", "dim")
+
         # Title
         title = Text(
-            " Hyprland Keybind Reference", style="bold magenta", justify="center"
+            " Hyprland Keybind Reference", style=f"bold {accent}", justify="center"
         )
         self.console.print(Panel(title, box=box.DOUBLE))
         self.console.print()
@@ -142,7 +175,7 @@ class KeybindReference:
 
         # Footer
         footer = Text(
-            "\nPress 'q' to quit, 'r' for rofi mode", style="dim", justify="center"
+            "\nPress 'q' to quit, 'r' for rofi mode", style=muted, justify="center"
         )
         self.console.print(Panel(footer, box=box.SIMPLE))
 
@@ -157,6 +190,10 @@ class KeybindReference:
     def show_rofi(self):
         """Display rofi interface"""
         # Prepare rofi data
+        bg = self.global_colors.get("background", "#1c100f")
+        title_clr = self.global_colors.get("title_bg", "#ffb4ab")
+        header_fg = self.global_colors.get("header_fg", bg)
+
         rofi_entries = []
 
         for section in self.keybinds:
@@ -169,7 +206,7 @@ class KeybindReference:
             color_sep = section.get("color_sep", color)
 
             header = (
-                f"<span background='{color}' foreground='#1e1e2e' "
+                f"<span background='{color}' foreground='{header_fg}' "
                 f"weight='bold' size='large'> {section['icon']} {section['section'].upper()} </span>"
             )
             rofi_entries.append(header)
@@ -192,10 +229,10 @@ class KeybindReference:
             "rofi",
             "-dmenu",
             "-mesg",
-            "<span foreground='#17d7e8' weight='bold'> Hyprland Keybind Reference</span>",
+            f"<span foreground='{title_clr}' weight='bold'> Hyprland Keybind Reference</span>",
             "-i",  # Case-insensitive
             "-theme-str",
-            "window { width: 75%; height: 75%; }",
+            f"window {{ width: 75%; height: 75%; background-color: {bg};}}",
             "-theme-str",
             "listview { lines: 20; columns: 1; }",
             "-markup-rows",
