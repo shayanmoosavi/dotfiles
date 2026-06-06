@@ -5,13 +5,13 @@ backend = "full"
 check_contrast = true
 
 # lab - labmixed - lch - lchmixed - lchansi
-color_space = "lch"
+color_space = "lchmixed"
 
 # Uses complementary colors as fallback when there aren't enough colors in the palette
 fallback_generator = "complementary"
 
 # Use 'lchansi' color space if you choose ansi color palettes (ansidark, ansidark16) for best results
-palette = "harddark16"
+palette = "dark16"
 
 # Difference between similar colors, used by the colorspace. Wallust automatically uses the best value.
 # Only set this if you don't like the resulting color palette. Different color spaces may require different values.
