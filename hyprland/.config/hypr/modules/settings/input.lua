@@ -1,34 +1,17 @@
 -- Input & Gestures
 -- ==============================================================================================================================================
 
+-- Importing declarative specs
+local decl_settings = "modules.settings.declarative"
+local input = require(decl_settings .. ".input")
+local gestures = require(decl_settings .. ".gestures")
 
 -- Keyboard layouts and touchpad settings
-hl.config({
-    input = {
-        kb_layout = "us, ir",
-        kb_options = "grp:alt_space_toggle",
-
-        natural_scroll = true,
-
-        touchpad = {
-            natural_scroll = true
-        }
-    }
-})
+hl.config(input)
 
 -- Touchpad gestures
 -- ---------------------------------------------------------------------
 
--- Swipe horizontal to switch workspaces
-hl.gesture({
-    fingers = 3,
-    direction = "horizontal",
-    action = "workspace"
-})
-
--- Swipe up to close active window
-hl.gesture({
-    fingers = 3,
-    direction = "up",
-    action = "close"
-})
+for _, gesture in ipairs(gestures) do
+    hl.gesture(gesture)
+end
