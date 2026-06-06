@@ -63,6 +63,7 @@ local function notify(volume, muted)
     -- stacking them.
     safe_exec(string.format(
         'notify-send -t 2000'
+        .. ' -e'
         .. ' -h string:x-canonical-private-synchronous:volume'
         .. ' -h %s "%s" "" -i "%s"',
         hint, title, icon

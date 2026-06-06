@@ -54,6 +54,7 @@ local function notify(percentage)
 
     safe_exec(string.format(
         'notify-send -t 2000'
+        .. ' -e'
         .. ' -h string:x-canonical-private-synchronous:brightness'
         .. ' -h int:value:%d'
         .. ' "%s" "" -i "%s"',

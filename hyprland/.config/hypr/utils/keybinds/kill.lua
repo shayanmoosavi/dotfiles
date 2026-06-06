@@ -17,6 +17,6 @@ return {
         -- Plays the DOOM shotgun sound
         play_sound(doom_shotgun)
 
-        safe_exec('notify-send -t 3000 "󰓾  Kill Program" "Target Neutralized"')
+        safe_exec('notify-send -t 3000 -e "󰓾  Kill Program" "Target Neutralized"')
     end,
 }
