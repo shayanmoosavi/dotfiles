@@ -65,7 +65,7 @@ hl.config({
         rounding = 16,
 
         -- Window opacity
-        active_opacity = 0.8,
+        active_opacity = 0.9,
         inactive_opacity = 0.75,
         fullscreen_opacity = 1.0,
 
@@ -78,10 +78,10 @@ hl.config({
         -- Window blur
         blur = {
             enabled = true,
-            size = 10,
-            passes = 3,
+            size = 15,
+            passes = 4,
             noise = 0.03,
-            contrast = 1.1,
+            contrast = 1.25,
             ignore_opacity = true,
             new_optimizations = true,
             popups = true,
