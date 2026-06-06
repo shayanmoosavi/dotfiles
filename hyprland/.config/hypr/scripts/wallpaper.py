@@ -14,7 +14,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 import refresh
 from lib.utils import log
 
-
 # Paths
 # ------------------------------------------------------------------------------
 
@@ -97,6 +96,7 @@ def generate_palette(wallpaper: Path) -> None:
     for cmd in [
         ["wallust", "run", str(wallpaper)],
         ["matugen", "image", str(wallpaper)],
+        ["notify-send", "-e", "󰏘 Theme Applied", "Theme applied successfully."],
     ]:
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
@@ -134,9 +134,23 @@ def main() -> None:
         sys.exit(1)
 
     # Apply the wallpaper
-    link_for_hyprlock(wallpaper)
-    launch_sddm_update(wallpaper)  # async — runs in its own kitty window
-    generate_palette(wallpaper)  # blocking — refresh needs the new colors
+    try:
+        link_for_hyprlock(wallpaper)
+        launch_sddm_update(wallpaper)  # async — runs in its own kitty window
+        generate_palette(wallpaper)  # blocking — refresh needs the new colors
+    except Exception as e:
+        subprocess.run(
+            [
+                "notify-send",
+                "-u",
+                "critical",
+                "󰏘 Theme Not Applied",
+                f"Failed to apply wallpaper: {e}",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        sys.exit(1)
 
     # Full session refresh (waybar + swaync + hyprland)
     log("INFO", "Wallpaper changed, triggering full session refresh")
