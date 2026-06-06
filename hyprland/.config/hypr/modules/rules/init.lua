@@ -1,2 +1,1 @@
-require("modules.rules.window")
-require("modules.rules.layer")
+require("modules.rules.apply")
