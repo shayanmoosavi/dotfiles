@@ -29,6 +29,6 @@ input_path = "~/.config/matugen/templates/colors.rasinc"
 output_path = "~/.config/rofi/themes/matugen.rasinc"
 
 [templates.zed]
-type = "SchemeExpressive"
+type = "SchemeRainbow"
 input_path = '~/.config/matugen/templates/zed-colors.json'
 output_path = '~/.config/zed/themes/matugen.json'
