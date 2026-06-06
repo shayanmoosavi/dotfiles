@@ -59,8 +59,8 @@ class KeybindReference:
             "XF86AudioRaiseVolume": "󰝝",
             "XF86AudioLowerVolume": "󰝞",
             "XF86AudioMute": "󰸈",
-            "XF86MonBrightnessUp": "󰃠+",
-            "XF86MonBrightnessDown": "󰃠-",
+            "XF86MonBrightnessUp": "󰃠 󰐕",
+            "XF86MonBrightnessDown": "󰃠 󰍴",
             # Arrow keys
             "left": "←",
             "right": "→",
