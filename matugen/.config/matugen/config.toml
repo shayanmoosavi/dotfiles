@@ -28,6 +28,11 @@ type = "SchemeFidelity"
 input_path = "~/.config/matugen/templates/colors.rasinc"
 output_path = "~/.config/rofi/themes/matugen.rasinc"
 
+[templates.keybinds]
+type = "SchemeFidelity"
+input_path = "~/.config/matugen/templates/keybind-colors.json"
+output_path = "~/.config/hypr/scripts/resources/keybind-colors.json"
+
 [templates.zed]
 type = "SchemeRainbow"
 input_path = '~/.config/matugen/templates/zed-colors.json'
