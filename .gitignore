@@ -1,5 +1,6 @@
 /zsh/.oh-my-zsh
 .idea
+.mypy_cache
 *__pycache__
 hyprland/.config/hypr/colors/
 hyprland/.config/hypr/current_wallpaper
