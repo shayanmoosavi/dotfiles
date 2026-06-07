@@ -1,4 +1,4 @@
-require("modules.autostart")
+require("modules.startup")
 require("modules.env")
 require("modules.monitors")
 require("modules.defaults")
