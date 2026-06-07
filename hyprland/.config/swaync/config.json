@@ -79,11 +79,13 @@
                 },
                 {
                     "label": "󱤅",
-                    "command": "echo 'TODO: Implement power-saving profile toggle'"
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.config/swaync/utils/toggle-power-profile.sh' > /dev/null 2>&1"
                 },
                 {
                     "label": "󱩌",
-                    "command": "echo 'TODO: Implement blue light filter toggle'"
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.config/swaync/utils/toggle-blue-light.sh' > /dev/null 2>&1"
                 }
             ]
         }
