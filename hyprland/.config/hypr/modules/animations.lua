@@ -11,7 +11,7 @@ hl.config({
 
 hl.curve("windows_curve", { type = "spring", mass = 1, stiffness = 40, dampening = 8 })
 hl.curve("workspace_curve", { type = "spring", mass = 1, stiffness = 30, dampening = 8 })
-hl.curve("layer_curve", { type = "spring", mass = 1, stiffness = 60, dampening = 12 })
+hl.curve("layer_curve", { type = "spring", mass = 1, stiffness = 80, dampening = 12 })
 
 hl.animation({
     leaf = "windows",
@@ -32,7 +32,7 @@ hl.animation({
 hl.animation({
     leaf = "layers",
     enabled = true,
-    speed = 6,
+    speed = 4,
     spring = "layer_curve",
     style = "slide right"
 })

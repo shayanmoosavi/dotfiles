@@ -1,10 +1,13 @@
 -- Declarative specification for layer rules
 -- ==============================================================================================================================================
 
-local blur = require("modules.rules.declarative.layer.blur")
+local decl_layers = "modules.rules.declarative.layer"
+local blur = require(decl_layers .. ".blur")
+local anim = require(decl_layers .. ".anim")
 
 local layer_specs = {
-    Blur = blur
+    Blur = blur,
+    Anim = anim
 }
 
 return layer_specs
