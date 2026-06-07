@@ -5,8 +5,6 @@
 local mainMod = require("modules.defaults").MainMod
 local terminal = require("modules.defaults").Terminal
 
-local matugen = require("colors.matugen")
-
 local script_dir = os.getenv("HOME") .. "/.config/hypr/scripts"
 local key_ref_cmd_prefix = terminal .. ' --title="Keybinds Reference" -e'
 local keybind_ref_cmd = "python3 " .. script_dir .. "/keybinds_reference.py" .. " --rofi"
