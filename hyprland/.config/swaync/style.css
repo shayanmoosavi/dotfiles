@@ -176,6 +176,24 @@ https://github.com/cebem1nt/dotfiles/tree/main/.config/swaync
     color: @text;
 }
 
+.widget-title > label {
+    color: @text;
+}
+
+.widget-title > button {
+    margin-left: 8px;
+    background-color: @primary_fixed;
+    color: @on_primary_fixed;
+    border-radius: var(--border-radius);
+}
+
+.widget-title > button:hover {
+    margin-left: 8px;
+    background-color: @tertiary_fixed;
+    color: @on_tertiary_fixed;
+    border-radius: var(--border-radius);
+}
+
 .widget-mpris-album-art {
     border-radius: var(--border-radius);
     margin: 6px 4px;

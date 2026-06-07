@@ -54,7 +54,7 @@
         "title": {
             "text": "Notifications",
             "clear-all-button": true,
-            "button-text": " 󰎟 "
+            "button-text": " clear all 󰩺 "
         },
         "buttons-grid": {
             "buttons-per-row": 3,
