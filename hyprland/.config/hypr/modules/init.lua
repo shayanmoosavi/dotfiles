@@ -1,7 +1,1 @@
-require("modules.startup")
-require("modules.env")
-require("modules.monitors")
-require("modules.defaults")
-require("modules.keybinds")
-require("modules.rules")
-require("modules.settings")
+require("modules.configure")
