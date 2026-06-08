@@ -22,7 +22,7 @@ class KeybindReference:
         self.key_mappings = self._create_key_mappings()
 
         # Load descriptions and config
-        self.global_colors: field(default_factory=dict)
+        self.global_colors = field(default_factory=dict)
         self.keybinds = self._load_keybinds()
 
     @staticmethod
