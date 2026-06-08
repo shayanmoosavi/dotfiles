@@ -68,16 +68,19 @@ label.module {
     padding-left: 4px;
     padding-right: 4px;
     min-width: 20px;
+    transition: all 0.4s cubic-bezier(0.88, 0.31, 0.86, 1.26);
 }
 
 #workspaces button.active {
     color: @on_primary_container;
     background-color: @primary_container;
+    transition: all 0.4s cubic-bezier(0.88, 0.31, 0.86, 1.26);
 }
 
 #workspaces button:hover {
     color: @on_tertiary;
     background-color: @tertiary;
+    transition: all 0.2s cubic-bezier(0.88, 0.31, 0.86, 1.26);
 }
 
 #battery.charging {
