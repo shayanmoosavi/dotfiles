@@ -28,7 +28,7 @@ local hyprbinds = {
     {
         key = mainMod .. " + " .. "Escape",
         dispatcher = "exec",
-        opts = { args = "wlogout" },
+        opts = { args = "pidof wlogout || wlogout" },
         description = "Wlogout Menu",
     },
     {
