@@ -8,10 +8,10 @@ check_contrast = true
 color_space = "lchansi"
 
 # Uses complementary colors as fallback when there aren't enough colors in the palette
-fallback_generator = "complementary"
+# fallback_generator = "complementary"
 
 # Use 'lchansi' color space if you choose ansi color palettes (ansidark, ansidark16) for best results
-palette = "dark16"
+palette = "saliencedarkdistributed16"
 
 # Difference between similar colors, used by the colorspace. Wallust automatically uses the best value.
 # Only set this if you don't like the resulting color palette. Different color spaces may require different values.
