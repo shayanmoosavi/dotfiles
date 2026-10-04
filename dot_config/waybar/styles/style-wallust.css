@@ -1,0 +1,99 @@
+@import './wallust/colors-waybar.css';
+
+* {
+    font-family: "DepartureMono Nerd Font Propo";
+    font-size: 100%;
+}
+
+window#waybar,
+window#waybar.empty #window {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+tooltip {
+    background: @background;
+    border-radius: 10px;
+    opacity: 0.85;
+    border-color: @color13;
+}
+
+label.module {
+    color: #D4C1C1
+}
+
+.modules-right {
+    opacity: 0.7;
+	border: 2px solid @color2;
+	border-radius: 40px;
+	background-color: @color3;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 6px;
+	padding-left: 4px;
+    font-size: 14px;
+}
+
+.modules-center {
+    opacity: 0.7;
+	border: 2px solid @color6;
+	border-radius: 40px;
+	background-color: @color9;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 12px;
+	padding-left: 12px;
+    font-size: 16px;
+}
+
+.modules-left {
+    opacity: 0.7;
+	border: 2px solid @color3;
+	border-radius: 40px;
+	background-color: @color2;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 10px;
+	padding-left: 4px;
+    font-size: 14px;
+}
+
+#workspaces button {
+    color: @foreground;
+    font-size: 18px;
+    border-radius: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 20px;
+}
+
+#workspaces button.active {
+    color: @background;
+    background-color: @color11;
+}
+
+#workspaces button:hover {
+    color: @background;
+    background-color: @color12;
+}
+
+#battery.charging {
+    color: #3FF10E;
+    background-color: @color3;
+}
+
+#battery.warning {
+    color: #F5F54E;
+    background-color: @color3;
+}
+
+#battery.critical:not(.charging) {
+    color: #FF2B2B;
+    background-color: @color3;
+}
+
+#backlight-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+}

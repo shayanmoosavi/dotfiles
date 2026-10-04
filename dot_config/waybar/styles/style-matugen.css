@@ -1,0 +1,101 @@
+@import "colors/colors-matugen.css";
+
+* {
+    font-family: "MartianMono Nerd Font Propo";
+    font-weight: bold;
+    font-size: 100%;
+}
+
+window#waybar,
+window#waybar.empty #window {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+tooltip {
+    background: @surface_bright;
+    color: @on_surface;
+    border-radius: 10px;
+    border: 1px solid @outline_variant;
+    opacity: 0.85;
+}
+
+label.module {
+    color: @primary;
+}
+
+.modules-right {
+    opacity: 0.8;
+    border: 2px solid @outline;
+    border-radius: 48px 0px 16px 0px;
+    background-color: @surface_container;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 8px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.modules-center {
+    opacity: 0.8;
+    border: 2px solid @outline;
+    border-radius: 48px 0px 48px 0px;
+    background-color: @surface_container;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 24px;
+    padding-left: 24px;
+    font-size: 14px;
+}
+
+.modules-left {
+    opacity: 0.8;
+    border: 2px solid @outline;
+    border-radius: 0px 0px 48px 16px;
+    background-color: @surface_container;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 24px;
+    padding-left: 8px;
+    font-size: 14px;
+}
+
+#workspaces button {
+    color: @primary;
+    font-size: 18px;
+    border-radius: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 20px;
+    transition: all 0.4s cubic-bezier(0.88, 0.31, 0.86, 1.26);
+}
+
+#workspaces button.active {
+    color: @on_primary_container;
+    background-color: @primary_container;
+    transition: all 0.4s cubic-bezier(0.88, 0.31, 0.86, 1.26);
+}
+
+#workspaces button:hover {
+    color: @on_tertiary;
+    background-color: @tertiary;
+    transition: all 0.2s cubic-bezier(0.88, 0.31, 0.86, 1.26);
+}
+
+#battery.charging {
+    color: #3ff10e;
+}
+
+#battery.warning {
+    color: #f5f54e;
+}
+
+#battery.critical:not(.charging) {
+    color: #ff2b2b;
+}
+
+#backlight-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+}
