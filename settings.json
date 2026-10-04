@@ -1,0 +1,91 @@
+{
+    "show_signature_help_after_edits": true,
+    "auto_signature_help": true,
+    "cursor_animation": {
+        "enabled": true
+    },
+    "confirm_quit": true,
+    "redact_private_values": true,
+    "tab_size": 4,
+    "edit_predictions": {
+        "open_ai_compatible_api": {
+            "model": "glm-5.2:free",
+            "api_url": "https://openrouter.ai/api/v1/completions"
+        },
+        "provider": "codestral",
+        "mode": "subtle"
+    },
+    "inlay_hints": {
+        "enabled": true
+    },
+    "completion_menu_item_kind": "symbol",
+    "format_on_save": "on",
+    "ui_font_family": "Fira Sans",
+    "buffer_font_family": "JetBrainsMono Nerd Font",
+    "terminal": {
+        "font_family": "JetBrainsMono Nerd Font"
+    },
+    "icon_theme": "Catppuccin Mocha",
+    "theme": "Matugen Dark",
+    "project_panel": {
+        "dock": "left"
+    },
+    "outline_panel": {
+        "dock": "left"
+    },
+    "collaboration_panel": {
+        "dock": "left"
+    },
+    "agent": {
+        "default_profile": "write",
+        "default_model": {
+            "effort": "high",
+            "provider": "openrouter",
+            "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+            "enable_thinking": true
+        },
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": []
+    },
+    "git_panel": {
+        "dock": "left"
+    },
+    "languages": {
+        "YAML": {
+            "tab_size": 2
+        },
+        "Markdown": {
+            "tab_size": 4
+        },
+        "Python": {
+            "language_servers": [
+                "!basedpyright",
+                "ruff",
+                "ty",
+                "pytest-language-server",
+                "python-autodoc-lsp"
+            ]
+        }
+    },
+    "file_types": {
+        "Shell Script": ["*.sh", "dot_zsh*", ".zsh*", ".bash*", "dot_bash*"]
+    },
+    "context_servers": {
+        "codebase-memory-mcp": {
+            "enabled": true,
+            "remote": false,
+            "command": "/home/shayan/.local/bin/codebase-memory-mcp",
+            "args": []
+        },
+        "agentmemory": {
+            "command": "npx",
+            "args": ["-y", "@agentmemory/mcp"],
+            "env": {
+                "AGENTMEMORY_URL": "${AGENTMEMORY_URL:-http://localhost:3111}",
+                "AGENTMEMORY_SECRET": "${AGENTMEMORY_SECRET:-}",
+                "AGENTMEMORY_TOOLS": "${AGENTMEMORY_TOOLS:-all}"
+            }
+        }
+    }
+}
