@@ -1,0 +1,21 @@
+# File navigation
+alias ls='exa -al --color=always --group-directories-first --icons'
+alias la='exa -a --color=always --group-directories-first --icons'
+alias ll='exa -l --color=always --group-directories-first --icons'
+alias lt='exa -aT --color=always --group-directories-first --icons'
+alias l.='exa -ald --color=always --group-directories-first --icons .*'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# Utilities
+alias cat='bat --color=always'
+alias grep='ugrep --color=auto'
+alias fgrep='ugrep -F --color=auto'
+alias egrep='ugrep -E --color=auto'
+alias untar='tar -zxvf '
+alias wget='wget -c '
+alias ip='ip -color'
+alias grubup="sudo update-grub"
