@@ -1,0 +1,13 @@
+@import "../waybar/colors/colors-matugen.css";
+
+@define-color center-bg                 alpha(@surface_container_lowest, 0.55);
+@define-color notification-bg           @surface_container_high;
+@define-color center-notification-bg    @primary_container;
+@define-color background                @surface;
+@define-color background-alt            alpha(@surface_container_highest, 0.55);
+@define-color text                      @on_surface;
+@define-color text-alt                  @on_primary_container;
+@define-color selected                  @tertiary;
+@define-color on-selected               @on_tertiary;
+@define-color hover                     alpha(@selected, 0.75);
+@define-color urgent                    @error_container;
