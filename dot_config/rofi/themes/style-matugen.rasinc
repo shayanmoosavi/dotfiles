@@ -1,0 +1,217 @@
+/*Rofi
+
+Inspired by JaKooLit dotfiles
+https://github.com/JaKooLit
+*/
+
+
+// Load matugen colors
+@theme "themes/matugen"
+
+// Main window
+window {
+    enabled:                    true;
+    fullscreen:                 false;
+    transparency:               "real";
+    cursor:                     "default";
+    spacing:                    0px;
+    border:                     2px;
+    border-radius:              30px;
+    location:                   center;
+    anchor:                     center;
+    width:                      50%;
+    background-color:           @background;
+    text-color:                 @text;
+    border-color:               @frame-border;
+}
+
+// Main box
+mainbox {
+    enabled:                     true;
+    orientation:                 vertical;
+    children:                    ["textbox-custom", "inputbar", "body" ];
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+// Menu title
+textbox-custom {
+    enabled:                     true;
+    expand:                      false;
+    padding:                     10px;
+    margin:                      10px 360px;
+    border-radius:               18px;
+    background-color:            @input-background;
+    text-color:                  @input-text;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    content:                     "󰣇 Arch Menu";
+}
+
+// Searchbar container
+inputbar {
+    enabled:                     true;
+    padding:                     10px 10px 10px 10px;
+    margin:                      10px;
+    background-color:            @background-alt;
+    text-color:                  @input-text;
+    border-radius:               18px;
+    orientation:                 horizontal;
+    children:                    ["entry" ];
+}
+
+// Search entry
+entry {
+    enabled:                     true;
+    expand:                      true;
+    padding:                     10px;
+    border-radius:               25px;
+    background-color:            @input-background;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "  Search "; // << Search symbol
+    placeholder-color:           inherit;
+}
+
+// Main body
+body {
+    spacing:                     10px;
+    padding:                     10px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    ["mode-switcher", "message", "listview" ];
+}
+
+// Application list view
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   true;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;    
+    spacing:                     10px;
+    padding:					 10px;
+    background-color:            transparent;
+    text-color:                  @text;
+    border:                      0px;
+}
+
+scrollbar {
+  	border:						0px;
+  	border-radius:				10px;
+  	background-color:			@background-alt;
+  	handle-color: 				@accent;
+  	handle-width: 				8px;
+  	padding:      				0;
+}
+
+// Mode buttons
+mode-switcher{
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     10px 320px 10px;
+    border-radius:               18px;
+    background-color:            @background-alt;
+}
+button {
+    expand:                      true;
+    padding:                     12px;
+    border-radius:               12px;
+    background-color:            @button-background;
+    text-color:                  @button-text;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            @accent;
+    text-color:                  @accent-text;
+}
+
+
+// Elements
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:            @accent;
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
+}
+
+element-text selected {
+    background-color:            @accent;
+    text-color:                  @accent-text;
+}
+
+element-text selected.active {
+    background-color:            @active-background;
+    text-color:                  @active-text;
+}
+
+element selected.normal {
+    background-color:            @accent;
+    text-color:                  @accent-text;
+}
+element selected.urgent {
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
+}
+element selected.active,
+element normal.active {
+    background-color:            @active-background;
+    text-color:                  @active-text;
+}
+
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element alternate.urgent {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element alternate.active {
+    background-color:            @active-background;
+    text-color:                  @active-text;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        36px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+
+}
+
+message {
+    background-color:            transparent;
+    border:                      0px;
+}
+textbox {
+	margin:						 10px;
+    padding:                     12px;
+    border-radius:               10px;
+    background-color:            @urgent-background;
+    text-color:                  @urgent-text;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
