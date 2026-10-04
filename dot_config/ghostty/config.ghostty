@@ -1,0 +1,16 @@
+# Look and feel
+background-blur = 20
+background-image = ~/Pictures/662381-hd-arch-linux-wallpaper.png
+background-image-fit = cover
+background-image-opacity = 0.4
+theme = /home/shayan/.config/ghostty/themes/wallust.ghostty
+font-family = JetBrainsMono Nerd Font Mono
+background-opacity = 0.9
+minimum-contrast = 3.5
+palette-generate = true
+
+# Behavior
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify
+notify-on-command-finish-after = 1m
+window-inherit-working-directory = false
