@@ -1,0 +1,28 @@
+# Wallust config
+
+# full - resized - wal - thumb -  fastresize - kmeans
+backend = "full"
+check_contrast = true
+
+# lab - labmixed - lch - lchmixed - lchansi
+color_space = "lchansi"
+
+# Uses complementary colors as fallback when there aren't enough colors in the palette
+# fallback_generator = "complementary"
+
+# Use 'lchansi' color space if you choose ansi color palettes (ansidark, ansidark16) for best results
+palette = "saliencedarkdistributed16"
+
+# Difference between similar colors, used by the colorspace. Wallust automatically uses the best value.
+# Only set this if you don't like the resulting color palette. Different color spaces may require different values.
+# threshold = 16
+
+[templates]
+kitty.template = "colors-kitty.conf"
+kitty.target = "~/.config/kitty/wallust.conf"
+
+ghostty.template = "wallust.ghostty"
+ghostty.target = "~/.config/ghostty/themes/wallust.ghostty"
+
+starship.template = "starship.toml"
+starship.target = "~/.config/starship.toml"
