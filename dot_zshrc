@@ -15,7 +15,7 @@ fi
 export GTK_THEME=Graphite-Dark
 
 # Path
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Fastfetch
 if [[ $TERM == "xterm-kitty" ]] || [[ $TERM == "wezterm" ]] || [[ $TERM == "xterm-ghostty" ]]; then
@@ -35,6 +35,3 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 zstyle ':completion:*' menu select
-
-# Added by codebase-memory-mcp install
-export PATH="/home/shayan/.local/bin:$PATH"
