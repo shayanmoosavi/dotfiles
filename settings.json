@@ -75,7 +75,7 @@
         "codebase-memory-mcp": {
             "enabled": true,
             "remote": false,
-            "command": "/home/shayan/.local/bin/codebase-memory-mcp",
+            "command": "$HOME/.local/bin/codebase-memory-mcp",
             "args": []
         },
         "agentmemory": {
