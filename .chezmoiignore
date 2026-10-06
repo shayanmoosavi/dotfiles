@@ -19,4 +19,4 @@ Pictures/Screenshots/**
 
 # Ignoring Zed settings according to this page:
 # https://www.chezmoi.io/user-guide/manage-different-types-of-file
-settings.json
+zed-settings.json
