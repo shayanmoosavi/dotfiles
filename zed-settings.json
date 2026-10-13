@@ -45,7 +45,26 @@
             "enable_thinking": true
         },
         "dock": "right",
-        "favorite_models": [],
+        "favorite_models": [
+            {
+                "provider": "openrouter",
+                "model": "thinkingmachines/inkling:free",
+                "enable_thinking": true,
+                "effort": "high"
+            },
+            {
+                "provider": "openrouter",
+                "model": "thinkingmachines/inkling-small:free",
+                "enable_thinking": true,
+                "effort": "high"
+            },
+            {
+                "provider": "openrouter",
+                "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+                "enable_thinking": true,
+                "effort": "high"
+            }
+        ],
         "model_parameters": []
     },
     "git_panel": {
