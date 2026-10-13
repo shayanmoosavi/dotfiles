@@ -80,23 +80,24 @@ Produce the report format below. If sibling files were checked and clean, say so
 
 ## Claim Taxonomy
 
-| Claim type | Ground truth | Notes |
-|---|---|---|
-| File table rows (name + purpose) | `ls` the dir **and** read the file's header/docstring | Existence alone proves nothing; purposes drift independently |
-| Structure trees | `find`/`tree` on the real dirs | Include subdirectories, conftest/dunder files, nested extras |
-| Class/function/model names | grep for `^class `/`^def ` definitions; graph search when indexed | Check the name AND the file where it's claimed to live |
-| Dev commands | `pyproject.toml` (scripts, dependency groups), CI workflows, `Makefile`, `scripts/` | Commands often live in CI, not manifests |
-| Dependency lists | package manifests | Include extras/groups the doc names |
-| Version / language claims | `requires-python`, `engines`, CI matrix pins | Quote the exact range |
-| Env vars | grep source for the literal | Confirm both name and purpose |
-| Config file locations | loader/source code that constructs paths | |
-| Doc-site structure | site config nav (e.g. `mkdocs.yml`) + `find docs` | |
-| Behavioral claims (exit codes, scheduling rules) | source of the implementing function | Read the actual code path |
+| Claim type                                       | Ground truth                                                                        | Notes                                                        |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| File table rows (name + purpose)                 | `ls` the dir **and** read the file's header/docstring                               | Existence alone proves nothing; purposes drift independently |
+| Structure trees                                  | `find`/`tree` on the real dirs                                                      | Include subdirectories, conftest/dunder files, nested extras |
+| Class/function/model names                       | grep for `^class`/`^def` definitions; graph search when indexed                     | Check the name AND the file where it's claimed to live       |
+| Dev commands                                     | `pyproject.toml` (scripts, dependency groups), CI workflows, `Makefile`, `scripts/` | Commands often live in CI, not manifests                     |
+| Dependency lists                                 | package manifests                                                                   | Include extras/groups the doc names                          |
+| Version / language claims                        | `requires-python`, `engines`, CI matrix pins                                        | Quote the exact range                                        |
+| Env vars                                         | grep source for the literal                                                         | Confirm both name and purpose                                |
+| Config file locations                            | loader/source code that constructs paths                                            |                                                              |
+| Doc-site structure                               | site config nav (e.g. `mkdocs.yml`) + `find docs`                                   |                                                              |
+| Behavioral claims (exit codes, scheduling rules) | source of the implementing function                                                 | Read the actual code path                                    |
 
 ## Gotchas
 
-- Existence ≠ correctness: the real drift is often *omission* (a whole subtree missing from a
-  structure tree), not a wrong row.
+- Existence ≠ correctness: the real drift is often _omission_ (a whole subtree missing from a
+  structure tree), not a wrong row. When verifying directory structure tables (e.g. "### Core Layer"),
+  enumerate the actual directory (e.g., `ls src/archcare/core/`) and confirm every file appears in the table.
 - Truncated `find`/`grep` output manufactures false negatives — re-run with a targeted path
   before concluding a claim fails.
 - Row insertion breaks table column alignment — cosmetic; don't churn the whole table
@@ -131,4 +132,3 @@ Repos add this under a "Keep this file in sync" note so future agents self-trigg
 - **Keep this file in sync**: If you discover this file disagrees with the codebase, invoke the
   agents-md-sync skill before finishing.
 ```
-
