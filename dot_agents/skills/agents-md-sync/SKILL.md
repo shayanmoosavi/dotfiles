@@ -23,6 +23,8 @@ repo-specific is baked in; project truth lives in the repo itself.
 - **Master file:** the AGENTS.md nearest the project root.
 - **Siblings:** also check, when present — `CLAUDE.md`, `.cursorrules`, `.cursor/rules/`,
   `.github/copilot-instructions.md`, `.windsurfrules`, `GEMINI.md`.
+- **Project documentation:** also check hand-written docs (architecture, guides, reference)
+  and auto-generated API reference stubs for drift from docstrings and code changes.
 - Verify each claim once; repair the same drift everywhere it appears. Siblings that merely
   reference ("see AGENTS.md") are not expanded.
 - Nothing else in the repo is edited (no README prose, no other docs) unless the user asks.
@@ -105,6 +107,13 @@ Produce the report format below. If sibling files were checked and clean, say so
 - Symbols named in multiple places (ports table + file table) must be verified at each location.
 - Superlative claims ("the ONLY OS boundary", "must never import") — verify cheaply via import
   grep when trivial; otherwise mark unverifiable rather than assuming.
+- **Enum member tables**: When syncing agent docs, verify enum member tables match the source. The `OTHER = "other"` placeholder in `SkipReason` enum was removed; docs listing it must be updated.
+- **Configuration tables**: When settings fields are added/removed (e.g., `mirrorlist_stale_threshold_days`, `news_acknowledge_cooldown_minutes`), update configuration documentation tables accordingly.
+- **State machine diagrams**: State diagrams in docs (e.g., task lifecycle) must reflect current enum values. The `Skipped_Other (OTHER)` transition was replaced with `Skipped_Mirrorlist (MIRRORLIST_STALE)`, `Skipped_Reboot (REBOOT_REQUIRED)`, `Skipped_UserCancelled (USER_CANCELLED)`.
+- **API reference stubs**: Auto-generated via `scripts/gen_api_docs.py` + `mkdocstrings`. Regenerate and verify with `zensical build --strict` after docstring changes.
+- **Doc-site structure**: Site config nav (e.g. `mkdocs.yml`) + `find docs` for hand-written pages.
+- **Hand-written vs auto-generated docs**: Hand-written pages (architecture, guides, reference) require manual sync; API reference is auto-generated via `scripts/gen_api_docs.py` + `mkdocstrings`. Always regenerate API stubs and run `zensical build --strict` after docstring changes. The strict build must pass with zero warnings.
+- **Configuration field additions**: When a new field is added to a settings model (e.g., `SystemUpdateSettings.mirrorlist_stale_threshold_days`), update all configuration documentation tables and example TOML blocks.
 
 ## Report Format
 
