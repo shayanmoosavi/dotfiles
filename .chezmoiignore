@@ -20,3 +20,6 @@ Pictures/Screenshots/**
 # Ignoring Zed settings according to this page:
 # https://www.chezmoi.io/user-guide/manage-different-types-of-file
 zed-settings.json
+
+# Lock files change after updates
+.agents/.skill-lock.json
