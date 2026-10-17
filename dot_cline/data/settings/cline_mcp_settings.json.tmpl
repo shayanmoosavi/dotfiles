@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+        "agentmemory": {
+            "transport": {
+                "type": "stdio",
+                "command": "npx",
+                "args": ["-y", "@agentmemory/mcp"]
+            }
+        },
+        "codebase-memory-mcp": {
+            "transport": {
+                "type": "stdio",
+                "command": "{{.chezmoi.homeDir}}/.local/bin/codebase-memory-mcp"
+            }
+        }
+    }
+}
