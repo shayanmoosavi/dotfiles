@@ -28,7 +28,7 @@ https://github.com/cebem1nt/dotfiles/tree/main/.config/swaync
 }
 
 .notification-background {
-    background: alpha(@notification-bg, 0.5);
+    background: alpha(@notification-bg, 0.8);
     border-radius: var(--border-radius);
     margin: 8px;
     padding: 0;
@@ -119,6 +119,7 @@ https://github.com/cebem1nt/dotfiles/tree/main/.config/swaync
     border-radius: var(--border-radius);
     margin: 5px;
     padding: 5px 5px 0 5px;
+    backdrop-filter: blur(20px);
 }
 
 .control-center .notification-background {
