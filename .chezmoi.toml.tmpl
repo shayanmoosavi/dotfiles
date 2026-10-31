@@ -1,0 +1,7 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+encryption = "gpg"
+
+[data]
+    email = {{ $email | quote }}
+[gpg]
+    recipient = "9735668DF7D7EB34A9C0B3F5A9263E50FDD7FF76"
